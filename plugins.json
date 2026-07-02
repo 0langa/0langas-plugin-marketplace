@@ -83,7 +83,7 @@
       "displayName": "Agent Handoff",
       "description": "Cross-agent handoff plugin for Codex, Claude Code, and Kimi Code.",
       "repository": "https://github.com/0langa/agent-handoff-cck",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "author": "0langa",
       "license": "MIT",
       "providers": [
