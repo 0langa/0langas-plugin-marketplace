@@ -1,4 +1,4 @@
-# Agent Continuity
+# Agent Handoff
 
 Cross-agent handoff plugin for Codex, Claude Code, and Kimi Code.
 

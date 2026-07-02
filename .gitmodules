@@ -3,7 +3,7 @@
 	url = https://github.com/0langa/plugin-evaluation-kimi.git
 [submodule "plugins/webde-access"]
 	path = plugins/webde-access
-	url = https://github.com/0langa/WebDE-Codex-Plugin.git
+	url = https://github.com/0langa/Web.de-Access.git
 [submodule "plugins/RECALL"]
 	path = plugins/RECALL
 	url = https://github.com/0langa/RECALL.git

@@ -1,10 +1,10 @@
-# WEB.DE Access
+# Web.de Access
 
-Private WEB.DE mailbox connector for Codex, Claude Code, and Kimi Code.
+Private Web.de mailbox connector for Codex, Claude Code, and Kimi Code.
 
 ## Repository
 
-https://github.com/0langa/WebDE-Codex-Plugin
+https://github.com/0langa/Web.de-Access
 
 ## Plugin Root
 

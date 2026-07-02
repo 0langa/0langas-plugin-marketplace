@@ -7,19 +7,35 @@
   "plugins": [
     {
       "name": "webde-access",
-      "source": "./plugins/webde-access"
+      "source": "./plugins/webde-access",
+      "displayName": "Web.de Access",
+      "description": "Private Web.de mailbox connector for reading, drafting, sending, and managing mail.",
+      "version": "0.2.1",
+      "repository": "https://github.com/0langa/Web.de-Access"
     },
     {
       "name": "recall",
-      "source": "./plugins/RECALL/plugins/recall"
+      "source": "./plugins/RECALL/plugins/recall",
+      "displayName": "RECALL",
+      "description": "Local-first project memory shared across Codex, Claude Code, and Kimi Code.",
+      "version": "1.0.0",
+      "repository": "https://github.com/0langa/RECALL"
     },
     {
       "name": "plugin-evaluation-kimi",
-      "source": "./plugins/plugin-evaluation-kimi"
+      "source": "./plugins/plugin-evaluation-kimi",
+      "displayName": "Plugin Evaluation Kimi",
+      "description": "Three-layer quality evaluation for agent plugins and skills using Kimi by default.",
+      "version": "0.1.0",
+      "repository": "https://github.com/0langa/plugin-evaluation-kimi"
     },
     {
       "name": "agent-handoff",
-      "source": "./plugins/agent-handoff"
+      "source": "./plugins/agent-handoff",
+      "displayName": "Agent Handoff",
+      "description": "Cross-agent handoff plugin for Codex, Claude Code, and Kimi Code.",
+      "version": "0.1.1",
+      "repository": "https://github.com/0langa/agent-handoff-cck"
     }
   ]
 }

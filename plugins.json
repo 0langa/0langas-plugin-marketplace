@@ -2,10 +2,10 @@
   "plugins": [
     {
       "name": "webde-access",
-      "displayName": "WEB.DE Access",
-      "description": "Private WEB.DE mailbox connector for reading, drafting, sending, and managing mail.",
-      "repository": "https://github.com/0langa/WebDE-Codex-Plugin",
-      "version": "0.2.0",
+      "displayName": "Web.de Access",
+      "description": "Private Web.de mailbox connector for reading, drafting, sending, and managing mail.",
+      "repository": "https://github.com/0langa/Web.de-Access",
+      "version": "0.2.1",
       "author": "Local developer",
       "license": "MIT",
       "providers": [
@@ -80,10 +80,10 @@
     },
     {
       "name": "agent-handoff",
-      "displayName": "Agent Continuity",
+      "displayName": "Agent Handoff",
       "description": "Cross-agent handoff plugin for Codex, Claude Code, and Kimi Code.",
       "repository": "https://github.com/0langa/agent-handoff-cck",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "0langa",
       "license": "MIT",
       "providers": [

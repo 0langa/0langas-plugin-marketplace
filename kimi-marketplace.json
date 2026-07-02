@@ -3,7 +3,7 @@
   "plugins": [
     {
       "id": "webde-access",
-      "displayName": "WEB.DE Access",
+      "displayName": "Web.de Access",
       "source": "./plugins/webde-access"
     },
     {
@@ -18,7 +18,7 @@
     },
     {
       "id": "agent-handoff",
-      "displayName": "Agent Continuity",
+      "displayName": "Agent Handoff",
       "source": "./plugins/agent-handoff"
     }
   ]
