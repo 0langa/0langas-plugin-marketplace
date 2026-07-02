@@ -103,6 +103,32 @@
         "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
         "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\agent-handoff"
       }
+    },
+    {
+      "name": "customization-control",
+      "displayName": "Customization Control",
+      "description": "Audit, deduplicate, repair, sync, and manage agent customizations across Codex, Claude Code, and Kimi Code.",
+      "repository": "https://github.com/0langa/customization-control",
+      "version": "0.1.0",
+      "author": "0langa",
+      "license": "MIT",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "pluginRoot": "plugins/customization-control",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add customization-control@0langas-plugins",
+        "claude-code": "claude plugin install customization-control@0langas-plugins",
+        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\customization-control"
+      }
     }
   ]
 }

@@ -10,3 +10,6 @@
 [submodule "plugins/agent-handoff"]
 	path = plugins/agent-handoff
 	url = https://github.com/0langa/agent-handoff-cck.git
+[submodule "plugins/customization-control"]
+	path = plugins/customization-control
+	url = https://github.com/0langa/customization-control.git

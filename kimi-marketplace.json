@@ -20,6 +20,11 @@
       "id": "agent-handoff",
       "displayName": "Agent Handoff",
       "source": "./plugins/agent-handoff"
+    },
+    {
+      "id": "customization-control",
+      "displayName": "Customization Control",
+      "source": "./plugins/customization-control"
     }
   ]
 }
