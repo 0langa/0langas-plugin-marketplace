@@ -18,14 +18,14 @@ plugins/plugin-evaluation-kimi
 
 ```powershell
 codex plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-codex plugin add plugin-evaluation-kimi@0langas-personal
+codex plugin add plugin-evaluation-kimi@0langas-plugins
 ```
 
 ### Claude Code
 
 ```powershell
 claude plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-claude plugin install plugin-evaluation-kimi@0langas-personal
+claude plugin install plugin-evaluation-kimi@0langas-plugins
 ```
 
 ### Kimi Code

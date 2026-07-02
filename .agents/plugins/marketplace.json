@@ -1,7 +1,7 @@
 {
-  "name": "0langas-personal",
+  "name": "0langas-plugins",
   "interface": {
-    "displayName": "0langa Personal Plugins"
+    "displayName": "0langa Plugins"
   },
   "plugins": [
     {

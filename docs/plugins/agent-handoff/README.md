@@ -14,7 +14,7 @@ Install from the marketplace repo once submodules are initialized:
 
 ```powershell
 codex plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-codex plugin add agent-handoff@0langas-personal
+codex plugin add agent-handoff@0langas-plugins
 ```
 
 ### Claude Code
@@ -23,7 +23,7 @@ Install from the marketplace repo once submodules are initialized:
 
 ```powershell
 claude plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-claude plugin install agent-handoff@0langas-personal
+claude plugin install agent-handoff@0langas-plugins
 ```
 
 ### Kimi Code

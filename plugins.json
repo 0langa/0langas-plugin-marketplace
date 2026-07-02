@@ -20,8 +20,8 @@
         "kimi-code": "kimi.plugin.json"
       },
       "installCommands": {
-        "codex": "codex plugin add webde-access@0langas-personal",
-        "claude-code": "claude plugin install webde-access@0langas-personal",
+        "codex": "codex plugin add webde-access@0langas-plugins",
+        "claude-code": "claude plugin install webde-access@0langas-plugins",
         "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
         "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\webde-access"
       }
@@ -46,8 +46,8 @@
         "kimi-code": "kimi.plugin.json"
       },
       "installCommands": {
-        "codex": "codex plugin add recall@0langas-personal",
-        "claude-code": "claude plugin install recall@0langas-personal",
+        "codex": "codex plugin add recall@0langas-plugins",
+        "claude-code": "claude plugin install recall@0langas-plugins",
         "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
         "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\RECALL\\plugins\\recall"
       }
@@ -72,8 +72,8 @@
         "kimi-code": "kimi.plugin.json"
       },
       "installCommands": {
-        "codex": "codex plugin add plugin-evaluation-kimi@0langas-personal",
-        "claude-code": "claude plugin install plugin-evaluation-kimi@0langas-personal",
+        "codex": "codex plugin add plugin-evaluation-kimi@0langas-plugins",
+        "claude-code": "claude plugin install plugin-evaluation-kimi@0langas-plugins",
         "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
         "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\plugin-evaluation-kimi"
       }
@@ -98,8 +98,8 @@
       },
       "pluginRoot": "plugins/agent-handoff",
       "installCommands": {
-        "codex": "codex plugin add agent-handoff@0langas-personal",
-        "claude-code": "claude plugin install agent-handoff@0langas-personal",
+        "codex": "codex plugin add agent-handoff@0langas-plugins",
+        "claude-code": "claude plugin install agent-handoff@0langas-plugins",
         "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
         "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\agent-handoff"
       }

@@ -1,6 +1,6 @@
 # 0langa Plugin Marketplace
 
-Private plugin marketplace for personal Codex, Claude Code, and Kimi Code plugins.
+Private plugin marketplace for 0langa's Codex, Claude Code, and Kimi Code plugins.
 
 This repository keeps provider-specific marketplace files in one place while using the source plugin repositories as submodules.
 
@@ -39,20 +39,20 @@ Source plugins live under `plugins/` as git submodules. Per-plugin notes live un
 
 ```powershell
 codex plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-codex plugin add webde-access@0langas-personal
-codex plugin add recall@0langas-personal
-codex plugin add plugin-evaluation-kimi@0langas-personal
-codex plugin add agent-handoff@0langas-personal
+codex plugin add webde-access@0langas-plugins
+codex plugin add recall@0langas-plugins
+codex plugin add plugin-evaluation-kimi@0langas-plugins
+codex plugin add agent-handoff@0langas-plugins
 ```
 
 ### Claude Code
 
 ```powershell
 claude plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-claude plugin install webde-access@0langas-personal
-claude plugin install recall@0langas-personal
-claude plugin install plugin-evaluation-kimi@0langas-personal
-claude plugin install agent-handoff@0langas-personal
+claude plugin install webde-access@0langas-plugins
+claude plugin install recall@0langas-plugins
+claude plugin install plugin-evaluation-kimi@0langas-plugins
+claude plugin install agent-handoff@0langas-plugins
 ```
 
 ### Kimi Code

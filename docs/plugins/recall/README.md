@@ -18,14 +18,14 @@ plugins/RECALL/plugins/recall
 
 ```powershell
 codex plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-codex plugin add recall@0langas-personal
+codex plugin add recall@0langas-plugins
 ```
 
 ### Claude Code
 
 ```powershell
 claude plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
-claude plugin install recall@0langas-personal
+claude plugin install recall@0langas-plugins
 ```
 
 ### Kimi Code

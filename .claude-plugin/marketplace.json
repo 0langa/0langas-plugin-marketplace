@@ -1,6 +1,6 @@
 {
-  "name": "0langas-personal",
-  "description": "Personal plugin marketplace for 0langa's Codex, Claude Code, and Kimi Code plugins.",
+  "name": "0langas-plugins",
+  "description": "Plugin marketplace for 0langa's Codex, Claude Code, and Kimi Code plugins.",
   "owner": {
     "name": "0langa"
   },
