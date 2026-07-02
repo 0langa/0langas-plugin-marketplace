@@ -1,0 +1,46 @@
+# WEB.DE Access
+
+Private WEB.DE mailbox connector for Codex, Claude Code, and Kimi Code.
+
+## Repository
+
+https://github.com/0langa/WebDE-Codex-Plugin
+
+## Plugin Root
+
+```text
+plugins/webde-access
+```
+
+## Install
+
+### Codex
+
+```powershell
+codex plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
+codex plugin add webde-access@0langas-personal
+```
+
+### Claude Code
+
+```powershell
+claude plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
+claude plugin install webde-access@0langas-personal
+```
+
+### Kimi Code
+
+```text
+/plugins marketplace C:\Users\Julius\source\repos\0langas-plugin-marketplace\kimi-marketplace.json
+```
+
+Direct install fallback:
+
+```text
+/plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\webde-access
+/reload
+```
+
+## Notes
+
+Keep mailbox credentials in local environment files or provider secret storage. Do not commit `.env` or exported mailbox data into this marketplace.

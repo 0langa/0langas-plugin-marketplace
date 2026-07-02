@@ -1,4 +1,108 @@
 {
-  "plugins": []
+  "plugins": [
+    {
+      "name": "webde-access",
+      "displayName": "WEB.DE Access",
+      "description": "Private WEB.DE mailbox connector for reading, drafting, sending, and managing mail.",
+      "repository": "https://github.com/0langa/WebDE-Codex-Plugin",
+      "version": "0.2.0",
+      "author": "Local developer",
+      "license": "MIT",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "pluginRoot": "plugins/webde-access",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add webde-access@0langas-personal",
+        "claude-code": "claude plugin install webde-access@0langas-personal",
+        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\webde-access"
+      }
+    },
+    {
+      "name": "recall",
+      "displayName": "RECALL",
+      "description": "Local-first project memory shared across Codex, Claude Code, and Kimi Code.",
+      "repository": "https://github.com/0langa/RECALL",
+      "version": "1.0.0",
+      "author": "RECALL contributors",
+      "license": "Apache-2.0",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "pluginRoot": "plugins/RECALL/plugins/recall",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add recall@0langas-personal",
+        "claude-code": "claude plugin install recall@0langas-personal",
+        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\RECALL\\plugins\\recall"
+      }
+    },
+    {
+      "name": "plugin-evaluation-kimi",
+      "displayName": "Plugin Evaluation Kimi",
+      "description": "Three-layer quality evaluation for agent plugins and skills using Kimi by default.",
+      "repository": "https://github.com/0langa/plugin-evaluation-kimi",
+      "version": "0.1.0",
+      "author": "PluginEval contributors",
+      "license": "MIT",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "pluginRoot": "plugins/plugin-evaluation-kimi",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add plugin-evaluation-kimi@0langas-personal",
+        "claude-code": "claude plugin install plugin-evaluation-kimi@0langas-personal",
+        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\plugin-evaluation-kimi"
+      }
+    },
+    {
+      "name": "agent-handoff",
+      "displayName": "Agent Continuity",
+      "description": "Cross-agent handoff plugin for Codex, Claude Code, and Kimi Code.",
+      "repository": "https://github.com/0langa/agent-handoff-cck",
+      "version": "0.1.0",
+      "author": "0langa",
+      "license": "MIT",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "pluginRoot": "plugins/agent-handoff",
+      "installCommands": {
+        "codex": "codex plugin add agent-handoff@0langas-personal",
+        "claude-code": "claude plugin install agent-handoff@0langas-personal",
+        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\agent-handoff"
+      }
+    }
+  ]
 }
-

@@ -1,0 +1,25 @@
+{
+  "version": "2",
+  "plugins": [
+    {
+      "id": "webde-access",
+      "displayName": "WEB.DE Access",
+      "source": "./plugins/webde-access"
+    },
+    {
+      "id": "recall",
+      "displayName": "RECALL",
+      "source": "./plugins/RECALL/plugins/recall"
+    },
+    {
+      "id": "plugin-evaluation-kimi",
+      "displayName": "Plugin Evaluation Kimi",
+      "source": "./plugins/plugin-evaluation-kimi"
+    },
+    {
+      "id": "agent-handoff",
+      "displayName": "Agent Continuity",
+      "source": "./plugins/agent-handoff"
+    }
+  ]
+}

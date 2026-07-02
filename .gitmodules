@@ -1,0 +1,12 @@
+[submodule "plugins/plugin-evaluation-kimi"]
+	path = plugins/plugin-evaluation-kimi
+	url = https://github.com/0langa/plugin-evaluation-kimi.git
+[submodule "plugins/webde-access"]
+	path = plugins/webde-access
+	url = https://github.com/0langa/WebDE-Codex-Plugin.git
+[submodule "plugins/RECALL"]
+	path = plugins/RECALL
+	url = https://github.com/0langa/RECALL.git
+[submodule "plugins/agent-handoff"]
+	path = plugins/agent-handoff
+	url = https://github.com/0langa/agent-handoff-cck.git
