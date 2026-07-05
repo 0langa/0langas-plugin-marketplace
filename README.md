@@ -32,6 +32,10 @@ Source plugins live under `plugins/` as git submodules. Per-plugin notes live un
 - [recall](docs/plugins/recall/README.md)
 - [plugin-evaluation-kimi](docs/plugins/plugin-evaluation-kimi/README.md)
 - [agent-handoff](docs/plugins/agent-handoff/README.md)
+- [customization-control](docs/plugins/customization-control/README.md)
+- [plugin-forge](docs/plugins/plugin-forge/README.md)
+- [usage-pulse](docs/plugins/usage-pulse/README.md)
+- [computer-custom](docs/plugins/computer-custom/README.md)
 
 ## Install From This Marketplace
 
@@ -43,6 +47,10 @@ codex plugin add webde-access@0langas-plugins
 codex plugin add recall@0langas-plugins
 codex plugin add plugin-evaluation-kimi@0langas-plugins
 codex plugin add agent-handoff@0langas-plugins
+codex plugin add customization-control@0langas-plugins
+codex plugin add plugin-forge@0langas-plugins
+codex plugin add usage-pulse@0langas-plugins
+codex plugin add computer-custom@0langas-plugins
 ```
 
 ### Claude Code
@@ -53,6 +61,9 @@ claude plugin install webde-access@0langas-plugins
 claude plugin install recall@0langas-plugins
 claude plugin install plugin-evaluation-kimi@0langas-plugins
 claude plugin install agent-handoff@0langas-plugins
+claude plugin install customization-control@0langas-plugins
+claude plugin install plugin-forge@0langas-plugins
+claude plugin install usage-pulse@0langas-plugins
 ```
 
 ### Kimi Code
@@ -70,5 +81,8 @@ Direct install commands are also supported:
 /plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\RECALL\plugins\recall
 /plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\plugin-evaluation-kimi
 /plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\agent-handoff
+/plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\customization-control
+/plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\plugin-forge
+/plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\usage-pulse
 /reload
 ```

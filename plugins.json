@@ -129,6 +129,77 @@
         "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
         "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\customization-control"
       }
+    },
+    {
+      "name": "plugin-forge",
+      "displayName": "Plugin Forge",
+      "description": "Multi-provider plugin lifecycle automation for manifest generation, installs, versions, and marketplace state.",
+      "repository": "https://github.com/0langa/plugin-forge",
+      "version": "0.1.0",
+      "author": "0langa",
+      "license": "MIT",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "pluginRoot": "plugins/plugin-forge",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add plugin-forge@0langas-plugins",
+        "claude-code": "claude plugin install plugin-forge@0langas-plugins",
+        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\plugin-forge"
+      }
+    },
+    {
+      "name": "usage-pulse",
+      "displayName": "Usage Pulse",
+      "description": "Local passive usage telemetry for Codex, Claude Code, and Kimi Code sessions.",
+      "repository": "https://github.com/0langa/usage-pulse",
+      "version": "0.1.0",
+      "author": "0langa",
+      "license": "MIT",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "pluginRoot": "plugins/usage-pulse",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add usage-pulse@0langas-plugins",
+        "claude-code": "claude plugin install usage-pulse@0langas-plugins",
+        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\usage-pulse"
+      }
+    },
+    {
+      "name": "computer-custom",
+      "displayName": "Computer Custom",
+      "description": "Policy-controlled Windows Computer Use wrapper for technical Codex users.",
+      "repository": "https://github.com/0langa/computer-custom",
+      "version": "0.1.0",
+      "author": "0langa",
+      "license": "MIT",
+      "providers": [
+        "codex"
+      ],
+      "pluginRoot": "plugins/computer-custom/dist/computer-custom",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add computer-custom@0langas-plugins"
+      }
     }
   ]
 }

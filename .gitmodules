@@ -13,3 +13,12 @@
 [submodule "plugins/customization-control"]
 	path = plugins/customization-control
 	url = https://github.com/0langa/customization-control.git
+[submodule "plugins/plugin-forge"]
+	path = plugins/plugin-forge
+	url = https://github.com/0langa/plugin-forge.git
+[submodule "plugins/usage-pulse"]
+	path = plugins/usage-pulse
+	url = https://github.com/0langa/usage-pulse.git
+[submodule "plugins/computer-custom"]
+	path = plugins/computer-custom
+	url = https://github.com/0langa/computer-custom.git

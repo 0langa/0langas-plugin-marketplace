@@ -25,6 +25,16 @@
       "id": "customization-control",
       "displayName": "Customization Control",
       "source": "./plugins/customization-control"
+    },
+    {
+      "id": "plugin-forge",
+      "displayName": "Plugin Forge",
+      "source": "./plugins/plugin-forge"
+    },
+    {
+      "id": "usage-pulse",
+      "displayName": "Usage Pulse",
+      "source": "./plugins/usage-pulse"
     }
   ]
 }
