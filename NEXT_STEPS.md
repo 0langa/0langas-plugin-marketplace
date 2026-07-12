@@ -17,7 +17,7 @@ Updated: 2026-07-12
 
 ## Operator setup
 
-Configure repository secret `MARKETPLACE_SUBMODULE_TOKEN` with read-only access to all private plugin repositories. GitHub Actions needs it to clone private submodules.
+Optionally configure repository secret `MARKETPLACE_SUBMODULE_TOKEN` with read-only access to all private plugin repositories. CI is useful without it and adds full manifest/asset validation when it is present.
 
 ## Optional follow-up
 

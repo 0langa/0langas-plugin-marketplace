@@ -1,5 +1,7 @@
 [CmdletBinding()]
-param()
+param(
+    [switch]$CatalogOnly
+)
 
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
@@ -80,9 +82,6 @@ $kimiNames = @($kimiMarketplace.plugins.id)
 foreach ($plugin in $registry.plugins) {
     $name = [string]$plugin.name
     $providers = @($plugin.providers)
-    $root = Resolve-PluginRoot ("./" + ([string]$plugin.pluginRoot).Replace("\", "/")) $name
-    if ($null -eq $root) { continue }
-
     $providerContracts = @(
         @{ Provider = "codex"; Marketplace = $codexNames; Manifest = ".codex-plugin/plugin.json" },
         @{ Provider = "claude-code"; Marketplace = $claudeNames; Manifest = ".claude-plugin/plugin.json" },
@@ -95,6 +94,15 @@ foreach ($plugin in $registry.plugins) {
         if ($declared -ne $listed) {
             Add-ValidationError "$name provider '$($contract.Provider)' disagrees with marketplace membership"
         }
+    }
+
+    if ($CatalogOnly) { continue }
+
+    $root = Resolve-PluginRoot ("./" + ([string]$plugin.pluginRoot).Replace("\", "/")) $name
+    if ($null -eq $root) { continue }
+
+    foreach ($contract in $providerContracts) {
+        $declared = $providers -contains $contract.Provider
         if (-not $declared) { continue }
 
         $manifest = Read-PluginManifest $root $contract.Manifest $name
@@ -128,15 +136,17 @@ foreach ($plugin in $registry.plugins) {
     }
 }
 
-foreach ($entry in $codexMarketplace.plugins) {
-    $source = if ($entry.source -is [string]) { [string]$entry.source } else { [string]$entry.source.path }
-    $null = Resolve-PluginRoot $source ([string]$entry.name)
-}
-foreach ($entry in $claudeMarketplace.plugins) {
-    $null = Resolve-PluginRoot ([string]$entry.source) ([string]$entry.name)
-}
-foreach ($entry in $kimiMarketplace.plugins) {
-    $null = Resolve-PluginRoot ([string]$entry.source) ([string]$entry.id)
+if (-not $CatalogOnly) {
+    foreach ($entry in $codexMarketplace.plugins) {
+        $source = if ($entry.source -is [string]) { [string]$entry.source } else { [string]$entry.source.path }
+        $null = Resolve-PluginRoot $source ([string]$entry.name)
+    }
+    foreach ($entry in $claudeMarketplace.plugins) {
+        $null = Resolve-PluginRoot ([string]$entry.source) ([string]$entry.name)
+    }
+    foreach ($entry in $kimiMarketplace.plugins) {
+        $null = Resolve-PluginRoot ([string]$entry.source) ([string]$entry.id)
+    }
 }
 
 $portableFiles = @("README.md", "plugins.json") + @(
@@ -170,7 +180,8 @@ foreach ($path in $trackedFiles) {
 
 $submoduleStatus = @(git -C $repoRoot submodule status --recursive)
 foreach ($line in $submoduleStatus) {
-    if ($line -match '^[-+U]') {
+    $invalidPrefix = if ($CatalogOnly) { '^[+U]' } else { '^[-+U]' }
+    if ($line -match $invalidPrefix) {
         Add-ValidationError "Submodule state is not pinned cleanly: $($line.Substring(0, [Math]::Min($line.Length, 80)))"
     }
 }
@@ -180,4 +191,5 @@ if ($errors.Count -gt 0) {
     throw "Marketplace validation failed with $($errors.Count) error(s)."
 }
 
-Write-Host "Marketplace validation passed: $(@($registry.plugins).Count) plugins, 3 provider catalogs, no high-confidence secrets."
+$scope = if ($CatalogOnly) { "catalog-only" } else { "full" }
+Write-Host "Marketplace validation passed ($scope): $(@($registry.plugins).Count) plugins, 3 provider catalogs, no high-confidence secrets."

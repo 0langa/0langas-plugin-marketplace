@@ -39,9 +39,10 @@ Source plugins live under `plugins/` as git submodules. Per-plugin notes live un
 
 Validation checks catalog uniqueness, provider parity, submodule roots, manifest
 versions, declared assets, portable install examples, and high-confidence secret
-signatures. GitHub Actions runs the same check. Because plugin repositories are
-private submodules, configure a least-privileged repository secret named
-`MARKETPLACE_SUBMODULE_TOKEN` with read access to those repositories.
+signatures. Without extra credentials, GitHub Actions checks catalog parity,
+portability, pinned gitlinks, and secret hygiene. Configure a least-privileged
+`MARKETPLACE_SUBMODULE_TOKEN` with read access to the private plugin repositories
+to add full manifest and asset validation.
 
 ## Plugins
 
