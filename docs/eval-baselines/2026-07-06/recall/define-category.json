@@ -1,0 +1,301 @@
+{
+  "plugin_path": "..\\RECALL\\plugins\\recall\\skills\\define-category",
+  "timestamp": "2026-07-06T22:27:32.797212+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9344907216494845,
+      "sub_scores": {
+        "frontmatter_quality": 0.9199999999999999,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.9298969072164949,
+        "ecosystem_coherence": 0.99,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "define-category",
+        "line_count": 142
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.9102272727272727,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 1,
+        "output_quality": 0.9,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Create a durable RECALL category for API compatibility decisions and make it show up a bit more often in retrieval.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "The memory system auto-created a category called release-notes. Refine its description and retrieval weight.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Define a reusable memory category for flaky test investigations with examples and non-examples.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Lower the retrieval priority for my old research notes category so it is more background context.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "I keep saving architecture tradeoffs; add a proper category for that repeated memory type.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Save this fact: the staging deploy uses port 8443.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Show me how many memories are in each category and identify noisy records.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Retrieve memories about previous API migration decisions.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Add a one-off tag called q3-demo to this memory.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Organize my saved memories into project notes and meeting notes.",
+              "should_trigger": false,
+              "would_trigger": true
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 1,
+          "reasoning": "The skill has a clear public contract: accept a category-design request and return one normalized category definition with description and weight. It explicitly separates its ownership from saving memories, reviewing memory quality, retrieval, one-off tagging, and backend implementation details. The workflow is composable, deterministic, and bounded, with concrete adapter commands, edge cases, and output format.",
+          "evidence": [
+            "Defines durable taxonomy as the only owned surface, excluding ordinary tagging, memory writing, cleanup, and retrieval.",
+            "Specifies normalized name, description, and positive retrieval weight as inputs and JSON as output.",
+            "Directs Codex to use the public adapter rather than lower-level backend scripts.",
+            "Includes boundary checks for duplicates, sensitive names, empty names, invalid weights, and over-broad or too-narrow categories."
+          ]
+        },
+        "output_quality": {
+          "score": 0.9,
+          "simulations": [
+            {
+              "task": "User asks: 'Create a reusable category for API contracts with stronger retrieval.'",
+              "expected_output": "Codex would normalize the name to api_contracts, choose a concise inclusion description, assign a weight such as 1.3 or 1.4, run define-category, and return JSON with action, category, description, and weight.",
+              "quality_notes": "The instructions are complete and should produce a useful answer. The only minor dependency is that locating the plugin root may require environment-specific judgment."
+            },
+            {
+              "task": "User asks: 'The auto-created category eval-findings is vague; refine it.'",
+              "expected_output": "Codex would preserve the normalized category name eval_findings, refine only description and weight, and explain that this is a refinement rather than a new category.",
+              "quality_notes": "The auto-created category rule is explicit, preventing unwanted renaming or duplicate category creation."
+            },
+            {
+              "task": "User asks: 'Make a category called Bob personal password notes.'",
+              "expected_output": "Codex would reject the sensitive/personal category label and suggest a non-sensitive abstraction if a durable retrieval purpose exists.",
+              "quality_notes": "The safety guidance is clear enough to avoid persisting sensitive names or descriptions, though it could specify the exact rejection JSON shape for this case."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around RECALL category definition and retrieval weighting. It covers the obvious related cases of creation, refinement, duplicate avoidance, examples, non-examples, update rules, and invalid inputs without taking over save, review, or retrieval workflows. It is slightly broader than the minimal core because it includes adapter-location execution guidance and related workflow boundaries, but those additions support practical use rather than diluting the domain."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 18193,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1162,
+          "reasoning_output_tokens": 313
+        },
+        "duration_ms": 48588
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8961320860354158,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 1.0,
+          "wilson_lower": 0.9286499658256813,
+          "wilson_upper": 1.0,
+          "n_activated": 50,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9498,
+          "std_dev": 0.012245815611873294,
+          "cv": 0.012893046548613703,
+          "bootstrap_lower": 0.9462,
+          "bootstrap_upper": 0.9531999999999999
+        },
+        "failure_rate": {
+          "p_fail": 0.0,
+          "cp_lower": 0.0,
+          "cp_upper": 0.07658106661496282,
+          "n_errored": 0
+        },
+        "token_efficiency": {
+          "median": 17937.5,
+          "iqr": 41.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 50,
+        "n_errored": 0,
+        "error_samples": []
+      }
+    }
+  ],
+  "composite": {
+    "score": 89.17320741604983,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.9652727272727273,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.24131818181818182
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.2
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.92988,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.139482
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4132875143184422,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.02479725085910653
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.05
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.9900000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.0198
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

@@ -1,0 +1,302 @@
+{
+  "plugin_path": "..\\computer-custom\\dist\\computer-custom\\skills\\computer-custom",
+  "timestamp": "2026-07-06T06:31:46.069586+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "kimi",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.508915,
+      "sub_scores": {
+        "frontmatter_quality": 0.36000000000000004,
+        "orchestration_wiring": 0.75,
+        "progressive_disclosure": 0.2,
+        "structural_completeness": 0.4,
+        "token_efficiency": 1.0,
+        "ecosystem_coherence": 0.5,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "MISSING_TRIGGER",
+          "description": "Skill description lacks a recognised trigger phrase (e.g. \"Use when …\", \"This skill should be used when …\", \"Use after …\", \"Auto-loads when …\"). Without one, the model cannot determine when to invoke the skill.",
+          "severity": 0.15
+        }
+      ],
+      "metadata": {
+        "skill_name": "computer-custom",
+        "line_count": 54
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.825,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.75,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Set up Computer Custom for this Codex session",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Use Computer Use but block access to C:\\Windows\\System32",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Add a policy layer to Computer Use with audit logging",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Configure protected paths for computer use",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Enable the computer-custom wrapper before using Computer Use",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Write a Python script to sort a list",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain quantum computing",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Deploy this app to Azure",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Fix this TypeScript bug",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a React component",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused, reusable workflow with clear inputs (COMPUTER_CUSTOM_POLICY, optional COMPUTER_CUSTOM_OFFICIAL_CLIENT), explicit setup steps for Codex via Node REPL, and clear outputs (sky API, globalThis.computerCustomAudit, blocked/reason messages). It does not act as an autonomous supervisor or mix unrelated coordination. It loses a quarter point because the workflow depends on an external official Computer Use plugin being installed and runtime wiring, making it slightly less composable than a pure self-contained tool, and because it documents Claude Code behavior inside a Codex skill, which is relevant but adds provider surface area.",
+          "evidence": [
+            "Explicit Node REPL setup snippet with exact import path and globalThis.sky initialization.",
+            "Clear policy rules: read-only discovery passes through, protected paths hard-blocked, risky actions require confirmation, audit entries redact secrets.",
+            "Usage rules specify listing apps first, using sky API after setup, and reporting exact method/reason on policy errors.",
+            "No unrelated control plane or autonomous supervisor behavior."
+          ]
+        },
+        "output_quality": {
+          "score": 0.75,
+          "simulations": [
+            {
+              "task": "Set up Computer Custom in a Codex session and list available apps.",
+              "expected_output": "Codex runs the provided Node REPL snippet, imports setupComputerCustomRuntime, initializes globalThis.sky, calls sky.list_apps(), and returns the JSON list of apps. Audit entries begin accumulating in globalThis.computerCustomAudit.",
+              "quality_notes": "The skill provides exact, copy-pasteable code and a clear sequence, so the response should be correct and complete. It assumes the official Computer Use plugin is installed locally."
+            },
+            {
+              "task": "Use Computer Use to click a risky UI element after policy setup.",
+              "expected_output": "Codex attempts the click, the wrapper intercepts it as a risky action, prompts for the exact phrase 'I UNDERSTAND', and either proceeds after confirmation or stops with a clear message that Computer Custom could not confirm the risky action.",
+              "quality_notes": "Instructions specify both the confirmation phrase and the fallback when confirmation UI is unavailable, leading to a predictable, safe response. The response quality depends on the wrapper having been set up earlier in the conversation."
+            },
+            {
+              "task": "Attempt to read a file under a protected system path.",
+              "expected_output": "Codex attempts the read, the policy layer hard-blocks it, and Codex reports the exact method attempted and the matched deny reason as required by the usage rules.",
+              "quality_notes": "The policy and usage-rule sections give unambiguous guidance, so the response should correctly identify the block and reason without exposing sensitive data."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill covers one coherent domain: a policy wrapper around Computer Use. It includes the policy rules, Codex setup, Claude Code hook notes, and usage rules, which is a reasonable breadth for the domain. It is neither bloated nor a thin stub. It falls short of perfect calibration because it carries provider-specific wiring for two providers rather than a single composable surface, but that dual-provider coverage is intentional and well-contained."
+        },
+        "backend": "kimi",
+        "usage": {},
+        "duration_ms": 111335
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.9906507246798778,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 1.0,
+          "wilson_lower": 0.9286499658256813,
+          "wilson_upper": 1.0,
+          "n_activated": 50,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9299999999999999,
+          "std_dev": 0.028982753492378853,
+          "cv": 0.031164251067074034,
+          "bootstrap_lower": 0.922,
+          "bootstrap_upper": 0.9381999999999999
+        },
+        "failure_rate": {
+          "p_fail": 0.0,
+          "cp_lower": 0.0,
+          "cp_upper": 0.07658106661496282,
+          "n_errored": 0
+        },
+        "token_efficiency": {
+          "median": 0.0,
+          "iqr": 0.0,
+          "outlier_count": 0,
+          "efficiency_norm": 1.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 50,
+        "n_errored": 0,
+        "error_samples": []
+      }
+    }
+  ],
+  "composite": {
+    "score": 72.38418367346938,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.95,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.904,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.226
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7499999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.858,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.12869999999999998
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.20000000000000004,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.020000000000000004
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.06
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.05
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.4,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.012
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.01
+      }
+    ],
+    "badge": "silver",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

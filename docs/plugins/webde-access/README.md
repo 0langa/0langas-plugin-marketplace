@@ -17,27 +17,27 @@ plugins/webde-access
 ### Codex
 
 ```powershell
-codex plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
+codex plugin marketplace add .
 codex plugin add webde-access@0langas-plugins
 ```
 
 ### Claude Code
 
 ```powershell
-claude plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
+claude plugin marketplace add .
 claude plugin install webde-access@0langas-plugins
 ```
 
 ### Kimi Code
 
 ```text
-/plugins marketplace C:\Users\Julius\source\repos\0langas-plugin-marketplace\kimi-marketplace.json
+/plugins marketplace C:\path\to\0langas-plugin-marketplace\kimi-marketplace.json
 ```
 
 Direct install fallback:
 
 ```text
-/plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\webde-access
+/plugins install C:\path\to\0langas-plugin-marketplace\plugins\webde-access
 /reload
 ```
 

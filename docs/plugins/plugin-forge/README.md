@@ -17,5 +17,5 @@ claude plugin install plugin-forge@0langas-plugins
 ```
 
 ```text
-/plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\plugin-forge
+/plugins install C:\path\to\0langas-plugin-marketplace\plugins\plugin-forge
 ```

@@ -1,0 +1,307 @@
+{
+  "plugin_path": "..\\usage-pulse\\skills\\usage-report",
+  "timestamp": "2026-07-06T17:07:31.866964+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9043914893617022,
+      "sub_scores": {
+        "frontmatter_quality": 0.91,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.8500000000000001,
+        "token_efficiency": 0.902127659574468,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "pulse:usage-report",
+        "line_count": 146
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.845,
+      "sub_scores": {
+        "triggering_accuracy": 1,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.83,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "How much did I use today in Usage Pulse?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Show my top Codex tools this week from Usage Pulse.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Compare my local usage this week with last week.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Export my Usage Pulse counters since Monday.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Break down usage for this repo by provider and project for June.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "What does Usage Pulse capture and where does it store the data?",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Install the Usage Pulse plugin and configure provider hooks.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Estimate my OpenAI API bill from last month's token usage.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a dashboard UI for viewing analytics.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Delete all files in my temp directory.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill gives a clear reusable workflow: map user intent to exactly one MCP tool, state date interpretation, present summary first, and use compact tables. Inputs, outputs, constraints, and failure handling are explicit. It is slightly less than excellent because reporting, exporting, wiping local data, and provider install-state troubleshooting are bundled together, which adds some control-plane behavior beyond pure reporting.",
+          "evidence": [
+            "Explicit MCP selection table maps daily status, sessions, ranges, top lists, comparisons, exports, and wipes to named tools.",
+            "Output format specifies summary-first responses and table schemas for provider totals, project grouping, leaderboards, and comparisons.",
+            "Constraints prevent cost inference, cloud billing requests, prompt hash exposure, excess tool calls, and unwanted memory writes.",
+            "The wipe operation and reinstall troubleshooting are adjacent but not central to usage reporting."
+          ]
+        },
+        "output_quality": {
+          "score": 0.83,
+          "simulations": [
+            {
+              "task": "User asks: 'How much did I use today?'",
+              "expected_output": "Codex should call pulse.today, put the MCP summary first, then show a provider/session table with Provider, Sessions, Prompts, Est. input tokens, and Tool calls. It should include the token estimate note only if the user asks about tokens or cost.",
+              "quality_notes": "The instructions are sufficient and likely produce a concise, useful response. Date handling is straightforward because 'today' resolves from current date."
+            },
+            {
+              "task": "User asks: 'Compare Codex usage this week with last week.'",
+              "expected_output": "Codex should call pulse.compare(window=\"7d\") or an equivalent current-vs-prior week comparison, then show current window, previous window, and change in a Window | Sessions | Prompts | Tool calls | Change table.",
+              "quality_notes": "The skill gives the right tool and table shape. One ambiguity remains: 'this week' could mean calendar week rather than rolling 7 days, while the example uses window=\"7d\". The instruction to state interpreted ranges mitigates this."
+            },
+            {
+              "task": "User asks: 'What did this cost me last month?'",
+              "expected_output": "Codex should not infer cost or ask for cloud billing data. It should explain that Usage Pulse does not estimate dollar cost, possibly offer local usage counters for the month via pulse.range if useful, and end with the required note about token estimates and no dollar-cost estimate.",
+              "quality_notes": "The cost constraint is clear. The 'call exactly one MCP tool for the first answer' rule could create tension if the right answer is mainly a refusal of cost estimation, but a local monthly usage range would still be useful if framed correctly."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "Well-scoped overall: it covers local Usage Pulse reporting, date ranges, grouping, comparisons, exports, empty data, and MCP failure handling. It avoids cloud billing and cost estimation, which keeps the domain bounded. The inclusion of wipe and provider install-state troubleshooting stretches the reporting scope slightly, but not enough to make it bloated."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17575,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1318,
+          "reasoning_output_tokens": 442
+        },
+        "duration_ms": 29739
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8350537840824411,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.9,
+          "wilson_lower": 0.7863950966521162,
+          "wilson_upper": 0.956524876008429,
+          "n_activated": 45,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9444444444444444,
+          "std_dev": 0.015571420481204285,
+          "cv": 0.01648738639186336,
+          "bootstrap_lower": 0.9395555555555556,
+          "bootstrap_upper": 0.9486666666666667
+        },
+        "failure_rate": {
+          "p_fail": 0.1,
+          "cp_lower": 0.033275093589831155,
+          "cp_upper": 0.21813536656495572,
+          "n_errored": 5
+        },
+        "token_efficiency": {
+          "median": 17366.0,
+          "iqr": 45.0,
+          "outlier_count": 2,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 45,
+        "n_errored": 5,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170336fea16e85e-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703373ff7cd284-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170337ade08bbc1-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170337bbfa8d370-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033828eddfc05-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703389cc6bd2ea-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703380ad15dbad-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033847af8d259-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170338aded4dc70-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033935f88d411-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033974921f551-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170339fcdcdd3bc-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033cdd81d9007-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033d21ada815a-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033d948f7989c-FRA)"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 81.8603813865972,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.9265000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.23162500000000003
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8986666666666667,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.1348
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4009456264775414,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.024056737588652483
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.9,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.045000000000000005
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.8500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.025500000000000002
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

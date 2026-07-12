@@ -1,0 +1,302 @@
+{
+  "plugin_path": "..\\RECALL\\plugins\\recall\\skills\\save-insight",
+  "timestamp": "2026-07-06T22:27:24.167645+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9371793103448276,
+      "sub_scores": {
+        "frontmatter_quality": 0.9199999999999999,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.953103448275862,
+        "ecosystem_coherence": 1.0,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "save-insight",
+        "line_count": 198
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8102272727272728,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.8,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Remember this verified decision: we are using SQLite as the local cache backend for this project.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Save this command for future validation: `python -m pytest tests/unit` passed and is the accepted unit test command.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Record this standing requirement: never send telemetry from the desktop app unless the user enables it.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "We fixed the login crash by normalizing empty refresh tokens before parsing; save that debugging lesson for later.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Remember my preference for this repo: use PowerShell-native commands in docs unless the target is Linux-only.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "What memories do we have about the evaluation pipeline?",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Delete memory 42 because it is stale and superseded by the new architecture note.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Draft a possible decision record about switching from SQLite to Postgres, but don't save it yet.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Run the tests and tell me whether they pass.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Store this API key so future sessions can use it: sk-proj-abc123.",
+              "should_trigger": false,
+              "would_trigger": true
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused reusable workflow for capturing durable local project memory. It has a clear write-only contract, explicit categories, adapter usage, output shape, edge cases, and ownership boundaries that hand retrieval, lifecycle, review, and taxonomy work to sibling skills. The main weakness is some ambiguity around locating the installed plugin root and invoking adapter commands, which could be hard for Codex in arbitrary environments, and it includes a fairly large amount of backend-specific detail for a public workflow.",
+          "evidence": [
+            "Defines a narrow contract: receives a verified durable fact and returns saved, updated, linked, ignored, or rejected memory record.",
+            "Explicitly excludes broad retrieval, lifecycle cleanup, category design, and inspection reports.",
+            "Provides required fields, category guidance, command examples, edge cases, troubleshooting, and output JSON examples.",
+            "Ownership boundaries clearly route retrieval, supersession, taxonomy, and review to other skills.",
+            "Adapter path guidance is useful but operationally ambiguous because the skill text does not specify a deterministic way to find the installed/source plugin root."
+          ]
+        },
+        "output_quality": {
+          "score": 0.8,
+          "simulations": [
+            {
+              "task": "User says: 'Remember that our accepted smoke test command is `npm run test:smoke` after it passed in CI.'",
+              "expected_output": "Codex should choose `commands`, create a concise memory card with summary/details/tags/source/status/confidence, run the adapter save-insight command, and report JSON indicating saved/updated/linked/ignored with category and ID if available.",
+              "quality_notes": "The instructions are strong for this case: durable, verified command capture is explicitly in scope and examples map closely."
+            },
+            {
+              "task": "User says: 'What do we know about eval failures from last week?'",
+              "expected_output": "Codex should not use this skill to retrieve or summarize memory; it should hand off to retrieve-memory or explain that this skill only writes durable records.",
+              "quality_notes": "The ownership table makes the boundary clear, so a correct Codex response should avoid overstepping."
+            },
+            {
+              "task": "User says: 'Save this token for future deployments: ghp_example_secret_value.'",
+              "expected_output": "Codex should reject the write and return a JSON-style reason that secret-like content must not be stored, possibly saving only a non-sensitive operational fact if one exists.",
+              "quality_notes": "Secret handling is repeatedly stated and examples include rejected secret-like input, so the expected response should be safe and complete."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "Well-scoped. The skill covers one coherent domain: writing durable project memory from verified evidence. It includes practical details for categories, card shape, duplicate/conflict handling, provenance, and safe rejection. It avoids bloating into retrieval, auditing, lifecycle management, or taxonomy design. It is slightly broad at the trigger level because it says to use proactively across debugging, testing, decisions, requirements, preferences, task status, risks, and project context; that breadth may cause over-triggering on ordinary coding work unless the router strongly respects the 'durable evidence' qualifier."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 19061,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1015,
+          "reasoning_output_tokens": 46
+        },
+        "duration_ms": 44325
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8962774327826852,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 1.0,
+          "wilson_lower": 0.9286499658256813,
+          "wilson_upper": 1.0,
+          "n_activated": 50,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9601999999999999,
+          "std_dev": 0.011914696806885183,
+          "cv": 0.01240855739104893,
+          "bootstrap_lower": 0.9570000000000001,
+          "bootstrap_upper": 0.9634
+        },
+        "failure_rate": {
+          "p_fail": 0.0,
+          "cp_lower": 0.0,
+          "cp_upper": 0.07658106661496282,
+          "n_errored": 0
+        },
+        "token_efficiency": {
+          "median": 18755.0,
+          "iqr": 98.0,
+          "outlier_count": 0,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 50,
+        "n_errored": 0,
+        "error_samples": []
+      }
+    }
+  ],
+  "composite": {
+    "score": 84.27574222165354,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.9652727272727273,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.24131818181818182
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.89612,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.134418
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4236015325670498,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025416091954022987
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.05
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.02
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

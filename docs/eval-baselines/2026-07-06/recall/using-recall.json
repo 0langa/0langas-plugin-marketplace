@@ -1,0 +1,306 @@
+{
+  "plugin_path": "..\\RECALL\\plugins\\recall\\skills\\using-recall",
+  "timestamp": "2026-07-06T22:27:48.426491+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.8692255319148937,
+      "sub_scores": {
+        "frontmatter_quality": 0.74,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.9,
+        "structural_completeness": 0.8500000000000001,
+        "token_efficiency": 0.9602836879432624,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "using-recall",
+        "line_count": 200
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.7977272727272726,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.75,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Start a fresh RECALL session for this repo and tell me the usage contract before any memory actions.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Remember that we decided to use SQLite as the default local backend for this project.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "What does RECALL remember about the deployment commands we used last week?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Before saving this project risk, confirm which RECALL skill should handle it and what storage rules apply.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "This retrieved memory contains an API key; how should RECALL handle it without exposing the secret?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Refactor the payment service to make retries exponential.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain how Python context managers work.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a React dashboard for viewing sales metrics.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Search GitHub issues for reports of this crash.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Summarize the architecture decisions in docs/adr without using persistent memory.",
+              "should_trigger": false,
+              "would_trigger": true
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused policy and routing workflow for RECALL. It clearly states that it does not read, write, mutate, inspect, or clean memory, and it provides a handoff map, contract fields, safety rules, and structured output examples. The main weakness is that it references sibling skills, MCP tools, hooks, scripts, and external reference files that are not included in the supplied skill text, so the usable contract is partly distributed and could be ambiguous in isolation.",
+          "evidence": [
+            "Explicit boundary: using-recall is a policy skill and does not create, retrieve, mutate, inspect, route, or clean memory beyond handoff recommendations.",
+            "Clear handoff map maps common request types to sibling skills.",
+            "Structured output examples define action, handoff, store_root, origin_provider, and applies_to_provider.",
+            "The skill includes storage, provenance, authority, safety, edge cases, and troubleshooting rules.",
+            "Some contract details are delegated to references/contract.md, provenance-fields.md, safety-checklist.md, and handoff-scenarios.md, which weakens standalone clarity."
+          ]
+        },
+        "output_quality": {
+          "score": 0.75,
+          "simulations": [
+            {
+              "task": "User says: 'Remember that the billing service now uses Stripe test mode in local dev.'",
+              "expected_output": "Codex should apply the RECALL contract and return a structured handoff recommending save-insight, with reason such as durable project decision or project-state update, store_root .recall, origin_provider codex or unknown, and applies_to_provider all. It should not perform the write itself under this skill.",
+              "quality_notes": "The instructions support a correct response because the handoff map and examples directly cover durable decisions. The exact provider depends on runtime context, but the skill explains the expected value."
+            },
+            {
+              "task": "User says: 'What does RECALL remember about the migration command we used?'",
+              "expected_output": "Codex should recommend retrieve-memory as the sibling skill, state that retrieved memory is context rather than authority, and avoid claiming any stored content from this policy skill alone.",
+              "quality_notes": "The skill should produce a useful routing answer. It correctly prevents the policy skill from pretending to retrieve memory, though users might expect the actual memory answer, so the calling agent must invoke the sibling separately."
+            },
+            {
+              "task": "User says: 'Save this API key in RECALL so we can reuse it: sk-...'",
+              "expected_output": "Codex should refuse to store the secret-like content, avoid repeating it verbatim, cite the safety rule that secrets, credentials, tokens, private keys, and passwords must not enter durable memory, and return a structured refusal with no handoff or possibly a scrub/manage-memory recommendation if already stored.",
+              "quality_notes": "The safety instructions are strong and repeated in several sections. The skill should produce a correct refusal, though there is a slight ambiguity because one workflow line says to name which sibling can override a refused write, while the policy itself says secrets must not be stored; no sibling should override that prohibition."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around establishing RECALL's memory contract and routing to sibling skills. It avoids owning actual memory operations, which keeps the surface cohesive and composable. It is not perfect because the description says to use it for broad situations like prior project decisions or durable updates, which may make the router trigger this policy skill when the user really wants an action-oriented sibling. Still, the body repeatedly constrains the skill to contract and handoff behavior, so the overall scope is coherent."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 19287,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1250,
+          "reasoning_output_tokens": 214
+        },
+        "duration_ms": 53836
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8590749408554801,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.94,
+          "wilson_lower": 0.8378265662912299,
+          "wilson_upper": 0.9793854036353695,
+          "n_activated": 47,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9525531914893617,
+          "std_dev": 0.01563793602128761,
+          "cv": 0.01641686381506629,
+          "bootstrap_lower": 0.9480851063829788,
+          "bootstrap_upper": 0.9568085106382979
+        },
+        "failure_rate": {
+          "p_fail": 0.06,
+          "cp_lower": 0.001,
+          "cp_upper": 0.16548194344524195,
+          "n_errored": 3
+        },
+        "token_efficiency": {
+          "median": 19029.0,
+          "iqr": 25.0,
+          "outlier_count": 7,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 47,
+        "n_errored": 3,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"Using RECALL contract for this fresh repo context.\\n\\n```json\\n{\\\"action\\\":\\\"using-recall\\\",\\\"store_root\\\":\\\".recall\\\",\\\"origin_provider\\\":\\\"codex\\\",\\\"applies_to_provider\\\":\\\"all\\\"}\\n```\\n\\nRECALL is local-first project memory. Use `.recall/` as the active store, or `.codex_memory/` only as a legacy shared store if it already exists. Memory stays local to this project; no network calls or off-machine wr",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"Applied `using-recall` for a new RECALL session.\\n\\n```json\\n{\\n  \\\"action\\\": \\\"using-recall\\\",\\n  \\\"store_root\\\": \\\".recall\\\",\\n  \\\"origin_provider\\\": \\\"codex\\\",\\n  \\\"applies_to_provider\\\": \\\"all\\\"\\n}\\n```\\n\\nContract summary: RECALL stores project memory locally in `.recall/`, or treats an existing `.codex_memory/` as a legacy shared store. New writes should be stamped with provider provenance, here `",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"Activating `using-recall`: this is a fresh RECALL context request and asks for the usage contract.\\n\\n```json\\n{\\n  \\\"action\\\": \\\"using-recall\\\",\\n  \\\"store_root\\\": \\\".recall\\\",\\n  \\\"origin_provider\\\": \\\"codex\\\",\\n  \\\"applies_to_provider\\\": \\\"all\\\"\\n}\\n```\\n\\nUsage contract: RECALL is local-only project memory. Use `.recall/` for new stores, treat existing `.codex_memory/` as legacy shared memory, stamp"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 82.2097483738821,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.9022727272727272,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.2255681818181818
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.871531914893617,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.13072978723404255
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.9,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.09000000000000001
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4267927501970055,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.02560756501182033
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.94,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.047
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.8500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.025500000000000002
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

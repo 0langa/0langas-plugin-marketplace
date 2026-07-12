@@ -1,0 +1,307 @@
+{
+  "plugin_path": "..\\RECALL\\plugins\\recall\\skills\\review-memory",
+  "timestamp": "2026-07-06T22:27:12.184359+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9156,
+      "sub_scores": {
+        "frontmatter_quality": 0.86,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.9333333333333333,
+        "ecosystem_coherence": 0.99,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "review-memory",
+        "line_count": 158
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8052272727272727,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.78,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "What does RECALL currently remember for this project? Show me the main IDs and categories.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Audit my RECALL memory for stale or noisy entries before I clean it up.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "List active RECALL memories from the requirements category and include their IDs.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Before I prune anything, gather the memory IDs that look like archive candidates.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Check whether the recent heavy tool-use session polluted RECALL with low-value command memories.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Delete memory 42 from RECALL now.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Save this implementation decision as a new durable memory.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Search memory for the database migration topic I mentioned last week.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Summarize the current repository architecture from the source files.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Audit this code review for noisy comments and conflicting suggestions.",
+              "should_trigger": false,
+              "would_trigger": true
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused inspection workflow with a clear non-mutating contract, concrete command path, expected inputs, filters, result handling, and handoff boundaries to manage-memory. It is composable and mostly explicit. The main weakness is some ambiguity around locating the installed/source plugin root and reliance on related sibling skills that are referenced but not specified here.",
+          "evidence": [
+            "Defines inspection-only ownership and explicitly forbids mutation or new-memory capture.",
+            "Specifies public adapter commands and warns not to use lower-level backend scripts.",
+            "Provides inputs, filters, workflow steps, output format, troubleshooting, and handoff guidance.",
+            "Contract is slightly dependent on external sibling skills and plugin-root resolution, which may require context not included in the skill text."
+          ]
+        },
+        "output_quality": {
+          "score": 0.78,
+          "simulations": [
+            {
+              "task": "User asks: 'What does RECALL currently know about this project?'",
+              "expected_output": "Codex would run review-memory with a default limit, then return a compact summary with scope, counts, key IDs, and follow-up recommendations without dumping all records.",
+              "quality_notes": "The instructions are sufficient and likely produce a useful answer. The only gap is that the skill does not define the exact parser or shape of adapter output, so formatting depends on the script."
+            },
+            {
+              "task": "User asks: 'Is memory noisy after the last tool-heavy session?'",
+              "expected_output": "Codex would use audit-memory, identify low-value automatic memories or noisy command patterns, report relevant IDs and counts, and recommend archive-noise rather than destructive pruning.",
+              "quality_notes": "Strong fit. The skill gives the right command, interpretation frame, and non-destructive recommendation."
+            },
+            {
+              "task": "User asks: 'Delete stale memory entries and resolve conflicts.'",
+              "expected_output": "Codex would not mutate directly under this skill. It would first inspect/gather candidate IDs, then hand mutation work to manage-memory.",
+              "quality_notes": "Boundary handling is clear, but complete execution depends on the unavailable manage-memory skill. As standalone instructions, it can correctly stop at inspection and handoff."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "Well-scoped. It covers one coherent domain: inspecting and auditing local RECALL memory. It includes broad reviews, filters, quality checks, ID gathering, and cleanup recommendations without taking over mutation or retrieval-by-topic work. It is not perfect because it includes several related routes and lifecycle command names, which slightly expands the surface beyond pure review, but the core boundary remains clear."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 18189,
+          "cached_input_tokens": 2432,
+          "output_tokens": 885,
+          "reasoning_output_tokens": 73
+        },
+        "duration_ms": 41979
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8233440417791174,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.88,
+          "wilson_lower": 0.7619492111337642,
+          "wilson_upper": 0.9438247628937535,
+          "n_activated": 44,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9556818181818182,
+          "std_dev": 0.014832048726372477,
+          "cv": 0.015519860736275603,
+          "bootstrap_lower": 0.9513636363636363,
+          "bootstrap_upper": 0.9597727272727272
+        },
+        "failure_rate": {
+          "p_fail": 0.12,
+          "cp_lower": 0.045335320775225285,
+          "cp_upper": 0.24310131689353945,
+          "n_errored": 6
+        },
+        "token_efficiency": {
+          "median": 17938.5,
+          "iqr": 31.0,
+          "outlier_count": 3,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 44,
+        "n_errored": 6,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I would activate `review-memory`: this is inspection-only prep before mutation and asks for cleanup candidates.\\n\\nRepresentative response:\\n```json\\n{\\n  \\\"mode\\\": \\\"audit-memory\\\",\\n  \\\"scope\\\": \\\"existing RECALL memory state before mutation\\\",\\n  \\\"command\\\": \\\"python ./scripts/recall_skill.py audit-memory --limit 20\\\",\\n  \\\"shown\\\": 20,\\n  \\\"top_ids\\\": [],\\n  \\\"recommendation\\\": \\\"Report counts, noi",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I would use `review-memory`, specifically `audit-memory --limit 20`, because this is inspection-only maintenance prep: identify candidate memory IDs and reasons without mutating anything.\\n\\nRepresentative response:\\n\\n```json\\n{\\n  \\\"mode\\\": \\\"audit-memory\\\",\\n  \\\"scope\\\": \\\"maintenance candidates\\\",\\n  \\\"shown\\\": 5,\\n  \\\"candidates\\\": [\\n    {\\\"id\\\": 12, \\\"reason\\\": \\\"stale candidate; appears contradi",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.94,\"response\":\"Using `review-memory` for inspection-only ID gathering. I would run a focused review/search of RECALL memory for `GitHub token`, `GITHUB_TOKEN`, `credential`, `secret`, and related terms, without mutating records.\\n\\nRepresentative result:\\n```json\\n{\\n  \\\"mode\\\": \\\"review-memory\\\",\\n  \\\"scope\\\": \\\"memories mentioning GitHub tokens or credential handling\\\",\\n  \\\"shown\\\": 4,\\n  \\\"top_ids\\\": [7, 12, 19, 2",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.97,\"response\":\"I’d use `review-memory` in audit mode because the request is inspection-only and focused on vague/noisy/non-durable RECALL records.\\n\\nRepresentative response:\\n```json\\n{\\n  \\\"mode\\\": \\\"audit-memory\\\",\\n  \\\"scope\\\": \\\"vague, noisy, or low-durability RECALL memories\\\",\\n  \\\"command\\\": \\\"python ./scripts/recall_skill.py audit-memory --limit 20\\\",\\n  \\\"shown\\\": 20,\\n  \\\"top_ids\\\": [12, 18, 24],\\n  \\\"recom",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.97,\"response\":\"I would activate `review-memory` and run an audit-style inspection, because the request is about memory quality and cleanup candidates, not mutation.\\n\\nRepresentative response:\\n\\n```json\\n{\\n  \\\"mode\\\": \\\"audit-memory\\\",\\n  \\\"scope\\\": \\\"RECALL memories that look vague, noisy, or not durable enough to keep\\\",\\n  \\\"command\\\": \\\"python ./scripts/recall_skill.py audit-memory --limit 20\\\",\\n  \\\"shown\\\": 20"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 81.35902391259535,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.8842727272727273,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.22106818181818183
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8854090909090909,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.13281136363636364
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4148148148148148,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.024888888888888887
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.88,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.044000000000000004
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.9900000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.0198
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

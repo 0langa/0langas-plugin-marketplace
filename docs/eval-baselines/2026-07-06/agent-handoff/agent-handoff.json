@@ -1,0 +1,308 @@
+{
+  "plugin_path": "..\\agent-handoff\\skills\\agent-handoff",
+  "timestamp": "2026-07-06T17:07:24.312931+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.6752263157894737,
+      "sub_scores": {
+        "frontmatter_quality": 0.5599999999999999,
+        "orchestration_wiring": 0.85,
+        "progressive_disclosure": 0.65,
+        "structural_completeness": 0.30000000000000004,
+        "token_efficiency": 0.9947368421052631,
+        "ecosystem_coherence": 0.5,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "agent-handoff",
+        "line_count": 111
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.7949999999999999,
+      "sub_scores": {
+        "triggering_accuracy": 0.8333333333333333,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.83,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Hand off this current coding session to Claude Code with the next steps and blockers.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Create a Codex handoff for a new chat before I switch contexts.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Resume the latest handoff in this repository and continue from the recorded next step.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Verify this handoff is complete before I move the work to Kimi Code.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Export a continuation prompt for Kimi so I can pick up this task there.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Continue implementing the auth middleware where we left off in this same chat.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Export the coverage report as CSV after running tests.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Verify that the deployment endpoint returns HTTP 200.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Open a new chat UI component in the React sidebar.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Checkpoint the database transaction after each batch insert.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 0.7142857142857143,
+          "recall": 1.0,
+          "f1": 0.8333333333333333
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a focused workflow around cross-agent handoff and gives clear tool preference, required repo_root handling, common flows, provider normalization, files, and safety rules. It is composable and mostly explicit about inputs and outputs. The main weakness is that activation language and trigger words are broader than the actual contract, so ordinary continue/export/verify/checkpoint tasks may be routed into this workflow even when no handoff is intended.",
+          "evidence": [
+            "Explicitly prefers MCP tools and requires repo_root on every MCP call.",
+            "Provides concrete flows for handoff, resume, status, and close.",
+            "Defines provider aliases and handoff file locations.",
+            "Includes safety rules for secrets and connector data.",
+            "Trigger words include broad terms like continue, verify, export, checkpoint, and new chat without requiring cross-agent or handoff context."
+          ]
+        },
+        "output_quality": {
+          "score": 0.83,
+          "simulations": [
+            {
+              "task": "User asks: 'Hand this task off to Kimi Code before I switch agents.'",
+              "expected_output": "Codex should summarize the session, call handoff_capture with repo_root and target_provider='kimi-code', verify strictly, export the Kimi continuation prompt, then report the export path and next step.",
+              "quality_notes": "The instructions are complete and likely produce a correct, useful response. Safety and provider normalization are covered."
+            },
+            {
+              "task": "User asks: 'Resume the latest handoff.'",
+              "expected_output": "Codex should call handoff_resume with repo_root, read the returned continuation summary and active.md, then continue from recorded next steps while respecting warnings and safety notes.",
+              "quality_notes": "The workflow is clear, but it assumes MCP access and does not specify what to do if active.md conflicts with the tool-returned summary."
+            },
+            {
+              "task": "User asks: 'Export the logs to a file.'",
+              "expected_output": "The skill should not apply because this is not an agent handoff or continuation request.",
+              "quality_notes": "The supplied trigger words include 'export', so router behavior may incorrectly activate this skill. If activated, the instructions do not provide a graceful disambiguation step for non-handoff exports."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill covers one coherent domain: capturing, verifying, exporting, resuming, checking, and closing cross-agent coding-session handoffs. That is a useful and well-bounded workflow. It is slightly over-scoped at the trigger layer because generic actions such as export, continue, verify, checkpoint, and new chat are listed without requiring handoff context."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17885,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1277,
+          "reasoning_output_tokens": 457
+        },
+        "duration_ms": 43861
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8112396935038303,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.86,
+          "wilson_lower": 0.738135428014719,
+          "wilson_upper": 0.9304925473797714,
+          "n_activated": 43,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9425581395348838,
+          "std_dev": 0.014956218782152083,
+          "cv": 0.015867688320565992,
+          "bootstrap_lower": 0.938139534883721,
+          "bootstrap_upper": 0.9467441860465117
+        },
+        "failure_rate": {
+          "p_fail": 0.14,
+          "cp_lower": 0.05819170038460613,
+          "cp_upper": 0.2673960027322132,
+          "n_errored": 7
+        },
+        "token_efficiency": {
+          "median": 17646.0,
+          "iqr": 26.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 43,
+        "n_errored": 7,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.92,\"response\":\"I’ll create a Codex handoff for a new chat, verify it, then export a Codex continuation prompt. I’ll use the active repository root explicitly for the handoff tools.\\n\\nRepresentative response:\\n\\nCreated and verified the handoff for a fresh Codex thread. Paste this prompt into the new Codex chat:\\n\\n```text\\nContinue the coding task from the handoff in this repository. Read `.handoff/active.md` first, ",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033842bb6d370-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033887b024da1-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170338f7c30f7ae-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033867d14d2ca-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170338a9818d288-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703392dbe93654-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170338879f8b71e-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170338ca808d362-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033937bd0f415-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170339c2e286e1d-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033a0db35d2a0-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17033a76e3bd2a5-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 74.76937568172924,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.8083333333333333,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.20208333333333334
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7625,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.1525
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8975348837209303,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.13463023255813952
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.65,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "D",
+        "evidence": [],
+        "weighted_score": 0.065
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4421052631578948,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.026526315789473686
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.86,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.043000000000000003
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.3000000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.009000000000000003
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.01
+      }
+    ],
+    "badge": "silver",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

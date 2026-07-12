@@ -1,0 +1,24 @@
+name: Validate marketplace
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out marketplace and private submodules
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          token: ${{ secrets.MARKETPLACE_SUBMODULE_TOKEN || github.token }}
+          persist-credentials: false
+
+      - name: Validate catalogs, manifests, assets, and secret hygiene
+        shell: pwsh
+        run: ./scripts/validate-marketplace.ps1

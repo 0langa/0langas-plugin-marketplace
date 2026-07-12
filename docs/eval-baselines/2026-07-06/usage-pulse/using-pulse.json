@@ -1,0 +1,306 @@
+{
+  "plugin_path": "..\\usage-pulse\\skills\\using-pulse",
+  "timestamp": "2026-07-06T17:07:18.124848+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.8976615384615385,
+      "sub_scores": {
+        "frontmatter_quality": 0.91,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.7500000000000001,
+        "token_efficiency": 0.9384615384615385,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "pulse:using-pulse",
+        "line_count": 152
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8227272727272728,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.85,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "What does Usage Pulse track, and where does it store the data?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Does Usage Pulse store prompt bodies or API keys?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Check whether Usage Pulse is installed correctly for Codex, Claude Code, and Kimi Code.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "My Usage Pulse data looks stale. What files should I inspect?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Why are the Usage Pulse MCP tools missing in Codex?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Show my usage today in Usage Pulse.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Export last month’s Usage Pulse data to CSV.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "How much did I spend on OpenAI API calls yesterday?",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Debug why my GitHub Actions telemetry is missing.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain how to configure Application Insights counters for my web app.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill has a focused operating contract: explain Usage Pulse, inspect local storage/install state, and diagnose stale or missing local telemetry. It also clearly delegates concrete reports to pulse:usage-report, which improves composability. The only orchestration weakness is that it lists report MCP tools while saying to switch skills for actual reports, which may confuse ownership for queries like 'usage today'.",
+          "evidence": [
+            "Defines Usage Pulse’s purpose and explicitly excludes billing analytics.",
+            "Provides storage paths, captured/excluded data, install model, output formats, and troubleshooting steps.",
+            "Includes a clear handoff: 'For an actual usage report, switch to pulse:usage-report.'"
+          ]
+        },
+        "output_quality": {
+          "score": 0.85,
+          "simulations": [
+            {
+              "task": "User asks: 'What does Usage Pulse track?'",
+              "expected_output": "A concise explanation that Usage Pulse records local hook-driven counters, with captured fields such as provider, model id, cwd/git branch, session timestamps, prompt count, estimated input tokens, tool counts, file access counts, MCP/tool calls, web search counters, subagent events, hook fires, and compaction events. It should also state that prompt text, cloud billing records, dollar cost, remote telemetry, and credentials are not captured.",
+              "quality_notes": "The skill gives enough structured content to answer completely and safely, including privacy boundaries."
+            },
+            {
+              "task": "User asks: 'Where is my Usage Pulse data and why is it empty?'",
+              "expected_output": "The response should point to ~/.usage-pulse/pulse.db and mention ~/.usage-pulse/errors.log and ~/.usage-pulse/install-receipt.json as related files. It should explain that if no rows exist, no matching local usage has been captured yet, and suggest checking hooks/errors/install state.",
+              "quality_notes": "The troubleshooting section directly supports this. The answer would be useful without overreaching into unsupported billing or remote telemetry claims."
+            },
+            {
+              "task": "User asks: 'Show my usage today.'",
+              "expected_output": "The response should switch to pulse:usage-report and call pulse.today rather than trying to produce the report from this skill.",
+              "quality_notes": "The skill states the correct delegation, but the presence of MCP report tool names in this skill may tempt an implementation to handle reports here. Still, the explicit example reduces the risk."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well scoped around explaining and operating Usage Pulse metadata, storage, install checks, and troubleshooting. It avoids becoming a general analytics or billing skill and delegates concrete reports to a separate skill. It is slightly broader than ideal because it includes report tool descriptions despite not owning report generation, but the domain remains coherent."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17692,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1231,
+          "reasoning_output_tokens": 392
+        },
+        "duration_ms": 28750
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.641444783555942,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.58,
+          "wilson_lower": 0.4423319668777783,
+          "wilson_upper": 0.7062520276543307,
+          "n_activated": 29,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9489655172413793,
+          "std_dev": 0.02073558121154882,
+          "cv": 0.02185072148019316,
+          "bootstrap_lower": 0.9413793103448276,
+          "bootstrap_upper": 0.956551724137931
+        },
+        "failure_rate": {
+          "p_fail": 0.42,
+          "cp_lower": 0.28188224109397103,
+          "cp_upper": 0.5679395664044659,
+          "n_errored": 21
+        },
+        "token_efficiency": {
+          "median": 17505.0,
+          "iqr": 51.0,
+          "outlier_count": 0,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 29,
+        "n_errored": 21,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"Usage Pulse stores its local data under:\\n\\n```text\\n~/.usage-pulse/pulse.db\\n~/.usage-pulse/errors.log\\n~/.usage-pulse/install-receipt.json\\n```\\n\\nThe main local database is `~/.usage-pulse/pulse.db`. The receipt/config-style install metadata is in `~/.usage-pulse/install-receipt.json`.\"}",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.95,\"response\":\"Usage Pulse stores its local files under your Windows user profile:\\n\\n```text\\n%USERPROFILE%\\\\.usage-pulse\\\\pulse.db\\n%USERPROFILE%\\\\.usage-pulse\\\\errors.log\\n%USERPROFILE%\\\\.usage-pulse\\\\install-receipt.json\\n```\\n\\nTo inspect the logs in PowerShell:\\n\\n```powershell\\nGet-Content \\\"$env:USERPROFILE\\\\.usage-pulse\\\\errors.log\\\"\\nGet-Content \\\"$env:USERPROFILE\\\\.usage-pulse\\\\install-receipt.json\\\"\\n```\\n",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I’d use `pulse:using-pulse` here because this is troubleshooting missing recent local Usage Pulse data.\\n\\nFirst I’d check whether Usage Pulse has captured any recent rows, then inspect the local collector state:\\n\\n```text\\n~/.usage-pulse/pulse.db\\n~/.usage-pulse/errors.log\\n~/.usage-pulse/install-receipt.json\\n```\\n\\nIf the dashboard has no recent runs, likely causes are: no matching provider session ",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.95,\"response\":\"Usage Pulse storage paths to check:\\n\\n```text\\n~/.usage-pulse/pulse.db\\n~/.usage-pulse/errors.log\\n~/.usage-pulse/install-receipt.json\\n```\\n\\nI would inspect those local paths and report each as `exists` or `missing`. If `pulse.db` is missing or empty, no local Usage Pulse data has been captured yet. If troubleshooting hooks or stale data, `errors.log` and `install-receipt.json` are the next files to ",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.92,\"response\":\"I’d use `pulse:using-pulse` for this because the request is about stale local Usage Pulse data after a provider change.\\n\\nI would check the provider-specific install state and local error log first:\\n\\n```text\\nProvider | Expected install state | Status\\nClaude   | Claude skills-directory plugin | check skills plugin load\\nCodex    | usage-pulse@personal enabled | check Codex config / personal marketpl"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 74.7067060607701,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.7117727272727272,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C-",
+        "evidence": [],
+        "weighted_score": 0.1779431818181818
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.9093793103448276,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.13640689655172414
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4170940170940171,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025025641025641025
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.5800000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.029000000000000005
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.7500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.022500000000000003
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "silver",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

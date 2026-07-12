@@ -1,0 +1,313 @@
+{
+  "plugin_path": "..\\customization-control\\skills\\marketplace-manager",
+  "timestamp": "2026-07-06T17:20:07.806039+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.5206370338983051,
+      "sub_scores": {
+        "frontmatter_quality": 0.41,
+        "orchestration_wiring": 0.75,
+        "progressive_disclosure": 0.2,
+        "structural_completeness": 0.4,
+        "token_efficiency": 0.9593220338983051,
+        "ecosystem_coherence": 0.5,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "MISSING_TRIGGER",
+          "description": "Skill description lacks a recognised trigger phrase (e.g. \"Use when …\", \"This skill should be used when …\", \"Use after …\", \"Auto-loads when …\"). Without one, the model cannot determine when to invoke the skill.",
+          "severity": 0.15
+        }
+      ],
+      "metadata": {
+        "skill_name": "marketplace-manager",
+        "line_count": 78
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.7977272727272726,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.75,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Audit my Codex plugin marketplace.json files and remove stale entries that point to missing plugin directories.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "A plugin appears twice in the picker. Check marketplace.json for duplicate entries and fix it after showing me the plan.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Refresh the metadata for an already-ported plugin in my personal marketplace from its plugin.json manifest.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "An audit flagged invalid plugin marketplace entries. Validate the marketplace and report what needs changing.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Reinstall this existing plugin cleanly and update its marketplace entry so it appears once.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Convert this Claude plugin into a Codex plugin and add it to the marketplace.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a brand new plugin and register it in marketplace.json.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Debug why my VS Code extension command appears twice in the command palette.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Publish my app to an online SaaS marketplace and write product copy.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Validate package.json dependencies and update mismatched npm versions.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a focused workflow: locate marketplace files, validate entries, present a plan, apply changes after confirmation, and verify results. It has clear safety constraints such as backups, JSON validation, no new plugin additions, and refusing unknown roots. The main weakness is that some operational details are ambiguous: known roots are not fully defined, Codex plugin config discovery is underspecified, reinstall behavior is broad, and the required marketplace-policy.json reference may be unavailable or unclear in context.",
+          "evidence": [
+            "Explicit workflow with plan/apply/verify stages.",
+            "Clear scope boundary: already-ported plugins only; never convert formats.",
+            "Safety rules require confirmation, backups, parse validation, and refusal outside known roots.",
+            "Ambiguity remains around 'equivalent' manifests, provider match rules, and reinstall source selection."
+          ]
+        },
+        "output_quality": {
+          "score": 0.75,
+          "simulations": [
+            {
+              "task": "User says a plugin appears twice in the picker and asks Codex to fix the marketplace.",
+              "expected_output": "Codex should locate marketplace.json files, detect duplicate plugin names, identify which entry points to a valid or newer manifest, present proposed removals, back up the marketplace file after confirmation, edit JSON, validate parsing, and verify the plugin appears once.",
+              "quality_notes": "The instructions are likely to produce a useful and safe response. The duplicate resolution rule is reasonable, though 'newest version' and tie-breaking are not fully specified."
+            },
+            {
+              "task": "User asks to refresh metadata for an existing plugin entry whose manifest version changed.",
+              "expected_output": "Codex should read the marketplace policy, find the entry, compare it to the manifest, update allowed metadata while preserving user customizations, back up before editing, validate JSON, and report any version mismatch without auto-fixing it.",
+              "quality_notes": "Mostly complete. There is tension between 'refresh entry' updating entry fields and 'report but do not auto-fix version mismatches'; a careful agent would need to avoid changing version fields automatically."
+            },
+            {
+              "task": "User asks to add a new unregistered plugin to marketplace.json.",
+              "expected_output": "Codex should refuse or redirect because the skill explicitly says never add new plugins and only manages existing entries for already-ported plugins.",
+              "quality_notes": "The safety boundary is clear and should produce the correct refusal. However, the trigger wording may still cause the skill to activate for this request, so the skill must handle it by refusing rather than proceeding."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill covers a coherent maintenance domain: marketplace entry validation, stale reference removal, metadata refresh, uniqueness checks, and clean reinstall for existing plugins. It is neither a trivial wrapper nor a broad plugin-management supervisor. Its scope is slightly stretched by reinstall behavior and provider-format validation, which could require knowledge beyond marketplace entry maintenance, but the 'already-ported only' and 'never add new plugins' boundaries keep it mostly well-calibrated."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17392,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1267,
+          "reasoning_output_tokens": 341
+        },
+        "duration_ms": 30473
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.4756178837705838,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.3,
+          "wilson_lower": 0.1910338908960936,
+          "wilson_upper": 0.4375061227736339,
+          "n_activated": 15,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.942,
+          "std_dev": 0.013759844960366831,
+          "cv": 0.014607054098053962,
+          "bootstrap_lower": 0.9353333333333332,
+          "bootstrap_upper": 0.9493333333333334
+        },
+        "failure_rate": {
+          "p_fail": 0.7,
+          "cp_lower": 0.553917672394636,
+          "cp_upper": 0.8213821510476627,
+          "n_errored": 35
+        },
+        "token_efficiency": {
+          "median": 17145.0,
+          "iqr": 27.0,
+          "outlier_count": 0,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 15,
+        "n_errored": 35,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043e7fafed362-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ef5f105d7c-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043f71ce107da-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ea2f099f14-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043eeed1d7093-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043f5de836c21-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ebe875b7cb-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043f1e9f2d39e-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043fb7da5dbfa-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1704401accadcc9-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170440648d20d18-FRA)",
+          "RuntimeError: Codex evaluation failed: You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:51 PM.; {'message': \"You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 11:51 PM.\"}"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 55.21197424347241,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.95,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.46877272727272723,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.11719318181818181
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7499999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8652,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.12977999999999998
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.20000000000000004,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.020000000000000004
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.42636534839924667,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025581920903954797
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.30000000000000004,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.015000000000000003
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.4,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.012
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.01
+      }
+    ],
+    "badge": "no_badge",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

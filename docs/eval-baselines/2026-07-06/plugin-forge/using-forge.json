@@ -1,0 +1,308 @@
+{
+  "plugin_path": "..\\plugin-forge\\skills\\using-forge",
+  "timestamp": "2026-07-06T17:12:37.725634+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9195297709923664,
+      "sub_scores": {
+        "frontmatter_quality": 0.9199999999999999,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.9236641221374046,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "using-forge",
+        "line_count": 194
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.845,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.83,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "This repo has a forge.yaml. Check whether the generated Codex and Claude plugin manifests have drifted.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "I added a new hook to hooks/hooks.json; compile provider files and validate it across Claude, Codex, and Kimi.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Install this Forge-managed plugin locally for development in all supported providers.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Run a Forge audit and tell me whether this plugin is installed everywhere.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "The bundled MCP server for this plugin is missing in Codex. Use the local Forge runner to debug it.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Release this plugin: bump the version, tag it, push it, and publish it to the marketplace.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Import this hand-made Claude plugin into Forge; there is no forge.yaml yet.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a new React settings page for my plugin UI.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Review this Python package for security vulnerabilities.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain how to configure global Codex MCP servers for a non-plugin project.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused workflow for maintaining Forge-managed plugin repositories. It defines activation conditions, source-of-truth rules, preferred Forge commands, safety constraints, verification steps, and expected user-facing output. The main weakness is that it references other skills and provider-specific documentation without defining handoff mechanics or exact availability assumptions, so ownership is mostly clear but not perfectly self-contained.",
+          "evidence": [
+            "Explicit activation files include forge.yaml, provider manifests, hooks/hooks.json, and .mcp.json.",
+            "Tool selection maps common user intents to forge.status, forge.compile, forge.sync_check, forge.install, forge.audit_installed, forge.hook_test, and forge.mcp_dev.",
+            "Operating rules clearly say to read forge.yaml before editing generated provider manifests and to run compile plus sync-check after forge.yaml changes.",
+            "Safety rules prohibit direct edits to provider install/config files in several high-risk cases.",
+            "Release and import work are explicitly handed to release-plugin and import-existing rather than being mixed into this workflow."
+          ]
+        },
+        "output_quality": {
+          "score": 0.83,
+          "simulations": [
+            {
+              "task": "User asks: \"I added a hook, make sure all providers are updated.\"",
+              "expected_output": "Codex would run forge.compile, forge.sync_check(fix=true), repo tests, and synthetic hook validation when available, then report changed files and verification results compactly.",
+              "quality_notes": "The instructions are strong for this task: the example, tool map, operating rules, and checklist all align. Minor ambiguity remains around selecting the hook event when the user does not specify one."
+            },
+            {
+              "task": "User asks: \"Is this plugin installed everywhere?\"",
+              "expected_output": "Codex would run forge.status and forge.audit_installed, then summarize installed providers, missing providers, and drift state in the prescribed compact format.",
+              "quality_notes": "This should produce a correct and useful response. The output format is concise, and the tool selection is unambiguous."
+            },
+            {
+              "task": "User asks: \"Make this plugin safe for Kimi too.\"",
+              "expected_output": "Codex would inspect kimi.plugin.json, verify MCP and hook paths stay inside the plugin root, install or validate via Forge, and run kimi doctor after install, while avoiding direct Kimi config.toml hook edits.",
+              "quality_notes": "The safety intent is good, but this task is less complete because it asks Codex to check official Kimi docs without specifying exact sources, commands, or expected pass/fail criteria beyond kimi doctor and path containment."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "Well-scoped. The skill covers one coherent domain: Forge-managed plugin maintenance across Claude, Codex, and Kimi surfaces. It includes drift checks, manifest generation, installs, hook/MCP validation, audit, and safety rules without absorbing release or import workflows. It is slightly broad because it spans multiple providers and operational modes, but the decision matrix and related-skill boundaries keep it cohesive."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 18051,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1031,
+          "reasoning_output_tokens": 107
+        },
+        "duration_ms": 27977
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.7401903931910504,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.74,
+          "wilson_lower": 0.6044657801100008,
+          "wilson_upper": 0.8412862034863262,
+          "n_activated": 37,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9627027027027026,
+          "std_dev": 0.012225062570701245,
+          "cv": 0.012698689363165245,
+          "bootstrap_lower": 0.9589189189189188,
+          "bootstrap_upper": 0.9664864864864864
+        },
+        "failure_rate": {
+          "p_fail": 0.26,
+          "cp_lower": 0.14630058440624508,
+          "cp_upper": 0.4034476793646575,
+          "n_errored": 13
+        },
+        "token_efficiency": {
+          "median": 17802.0,
+          "iqr": 40.0,
+          "outlier_count": 2,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 37,
+        "n_errored": 13,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a0d6c51dc96-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a12af8c77d1-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a1ddaf38fe8-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a324fc4db07-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a36a916dcc2-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3cded69036-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a311eecd34a-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a35ba07d3c1-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3c3ecfe537-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a442d2abb3e-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a483ee9dbf3-FRA)",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b335d9e35e0-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b385c77dc54-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b3e6beb4d31-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 79.16574352043271,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.832,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.208
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.9096216216216215,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.13644324324324322
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.41051738761662426,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.024631043256997456
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.7399999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.037
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "silver",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

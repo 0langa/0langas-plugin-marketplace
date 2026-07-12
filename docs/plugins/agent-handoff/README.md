@@ -13,7 +13,7 @@ https://github.com/0langa/agent-handoff-cck
 Install from the marketplace repo once submodules are initialized:
 
 ```powershell
-codex plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
+codex plugin marketplace add .
 codex plugin add agent-handoff@0langas-plugins
 ```
 
@@ -22,7 +22,7 @@ codex plugin add agent-handoff@0langas-plugins
 Install from the marketplace repo once submodules are initialized:
 
 ```powershell
-claude plugin marketplace add C:\Users\Julius\source\repos\0langas-plugin-marketplace
+claude plugin marketplace add .
 claude plugin install agent-handoff@0langas-plugins
 ```
 
@@ -31,13 +31,13 @@ claude plugin install agent-handoff@0langas-plugins
 Browse this custom marketplace inside Kimi Code:
 
 ```text
-/plugins marketplace C:\Users\Julius\source\repos\0langas-plugin-marketplace\kimi-marketplace.json
+/plugins marketplace C:\path\to\0langas-plugin-marketplace\kimi-marketplace.json
 ```
 
 Or install the source plugin checkout directly:
 
 ```text
-/plugins install C:\Users\Julius\source\repos\0langas-plugin-marketplace\plugins\agent-handoff
+/plugins install C:\path\to\0langas-plugin-marketplace\plugins\agent-handoff
 /reload
 ```
 
@@ -59,6 +59,6 @@ uv run agent-handoff --help
 Validated on July 2, 2026:
 
 - `uv run pytest`: 44 passed
-- `claude plugin validate C:\Users\Julius\source\repos\agent-handoff-cck`: passed
+- `claude plugin validate C:\path\to\agent-handoff-cck`: passed
 - CLI provider flows for `codex`, `claude-code`, and `kimi-code`: passed
 - Cross-provider flow `codex -> claude-code -> kimi-code`: passed

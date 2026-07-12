@@ -1,0 +1,308 @@
+{
+  "plugin_path": "..\\plugin-forge\\skills\\release-plugin",
+  "timestamp": "2026-07-06T17:12:45.426645+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9123130434782609,
+      "sub_scores": {
+        "frontmatter_quality": 0.9199999999999999,
+        "orchestration_wiring": 0.9,
+        "progressive_disclosure": 0.9,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.9434782608695652,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "release-plugin",
+        "line_count": 255
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.845,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.83,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Cut a patch release for this Forge-managed plugin and push the tag.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Release v1.4.0 of this Codex plugin and regenerate provider manifests.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Publish the new MCP tool plugin to the marketplace once tests pass.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Ship Kimi support for this plugin and tag the release.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Hotfix this Claude plugin and create the GitHub release.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Create a new Codex plugin scaffold with a .codex-plugin manifest.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Import this existing Claude extension into Forge management.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Run the test suite for this plugin and report failures without publishing anything.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Fix the MCP server startup error in this plugin.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Update the README for this plugin with installation instructions.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a focused release workflow with clear preconditions, ordered commands, safety stops, rollback behavior, and a compact output contract. It is mostly composable because it delegates non-release cases to related workflows and avoids hand-editing manifests. The main weakness is that it assumes several forge commands and adjacent workflows exist without defining their interface, and it slightly expands into eval improvement and provider install repair, which may exceed a pure release workflow.",
+          "evidence": [
+            "Clear release contract: version bump, manifest regeneration, marketplace registration, commit, tag, push, and optional GitHub release.",
+            "Preconditions distinguish Forge-managed plugin repos, dirty trees, drift, non-Forge imports, and single-skill releases.",
+            "Safety rules cover no-verify, force-pushing tags, failing tests, provider manifests, and global install state.",
+            "Output format is explicit for both success and blocked cases.",
+            "Some orchestration depends on undefined tools or workflows such as forge.status, PluginEval, skill-center workflow, using-forge, and import-existing."
+          ]
+        },
+        "output_quality": {
+          "score": 0.83,
+          "simulations": [
+            {
+              "task": "User says: 'release v2.1.0 of this Forge plugin'.",
+              "expected_output": "Codex should verify Forge repo status, clean tree, sync drift, bump exactly to 2.1.0, compile, test, run relevant smoke checks, register marketplace metadata, stage only release files, commit, tag v2.1.0, push branch and tag, optionally create a GitHub release, then return the compact release report.",
+              "quality_notes": "The instructions are strong for this task: explicit version handling, full release sequence, safety checks, and final sanity pass are all covered."
+            },
+            {
+              "task": "User says: 'publish this plugin after PluginEval is over 90'.",
+              "expected_output": "Codex should run PluginEval, improve skill docs if needed or block if the threshold is not met, then execute the release workflow only after the gate passes.",
+              "quality_notes": "The skill identifies the eval gate, but it does not define how PluginEval is invoked, how to interpret scores, or how far Codex should go in improving skills before releasing. Useful, but somewhat underspecified."
+            },
+            {
+              "task": "User says: 'cut a release', but the repo has unrelated dirty files and an existing remote tag for the inferred version.",
+              "expected_output": "Codex should stop before release, list the blocking dirty unrelated files and existing remote tag, and report that no tag or push was created.",
+              "quality_notes": "The edge cases and safety section handle this well. It clearly prevents staging unrelated work or force-pushing tags without approval."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around releasing Forge-managed plugins across Claude, Codex, and Kimi surfaces. It covers the obvious release lifecycle: preflight, versioning, compile, tests, marketplace metadata, commit, tag, push, release notes, rollback, and provider-specific checks. It is not perfectly calibrated because it reaches into adjacent domains such as importing non-Forge repos, improving skills after eval failure, provider install repair, and marketplace repo state, but those are plausible release blockers rather than unrelated features."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 18403,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1006,
+          "reasoning_output_tokens": 63
+        },
+        "duration_ms": 26724
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.7530882034515337,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.76,
+          "wilson_lower": 0.6258705062480763,
+          "wilson_upper": 0.8570274759812779,
+          "n_activated": 38,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9597368421052631,
+          "std_dev": 0.00931519474759361,
+          "cv": 0.009705988494887775,
+          "bootstrap_lower": 0.9568421052631578,
+          "bootstrap_upper": 0.9626315789473684
+        },
+        "failure_rate": {
+          "p_fail": 0.24,
+          "cp_lower": 0.13060991621324453,
+          "cp_upper": 0.38169074865908686,
+          "n_errored": 12
+        },
+        "token_efficiency": {
+          "median": 18185.0,
+          "iqr": 33.0,
+          "outlier_count": 0,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 38,
+        "n_errored": 12,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a0d488e4d49-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a133f03989c-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a1d6c00dc4b-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a2d0fc8dcc2-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a31ef7bf6a5-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3919b02580-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a365ca5d2be-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3cfe85d282-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a43bbc59188-FRA)",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a396e20d25e-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3da9f8d34d-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a450ee28ed5-FRA)",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b40cb6e39e0-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b44e8155d78-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b4c9f1d71a9-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 80.36589143666619,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.844,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.211
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7687499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15375
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.9078421052631578,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.13617631578947367
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.9,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.09000000000000001
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.41932367149758454,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025159420289855072
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.7600000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.038000000000000006
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

@@ -5,8 +5,8 @@
       "displayName": "Web.de Access",
       "description": "Private Web.de mailbox connector for reading, drafting, sending, and managing mail.",
       "repository": "https://github.com/0langa/Web.de-Access",
-      "version": "0.2.1",
-      "author": "Local developer",
+      "version": "0.2.2",
+      "author": "0langa",
       "license": "MIT",
       "providers": [
         "codex",
@@ -22,8 +22,8 @@
       "installCommands": {
         "codex": "codex plugin add webde-access@0langas-plugins",
         "claude-code": "claude plugin install webde-access@0langas-plugins",
-        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
-        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\webde-access"
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\webde-access"
       }
     },
     {
@@ -31,7 +31,7 @@
       "displayName": "RECALL",
       "description": "Local-first project memory shared across Codex, Claude Code, and Kimi Code.",
       "repository": "https://github.com/0langa/RECALL",
-      "version": "1.5.0",
+      "version": "1.5.2",
       "author": "RECALL contributors",
       "license": "Apache-2.0",
       "providers": [
@@ -48,8 +48,8 @@
       "installCommands": {
         "codex": "codex plugin add recall@0langas-plugins",
         "claude-code": "claude plugin install recall@0langas-plugins",
-        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
-        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\RECALL\\plugins\\recall"
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\RECALL\\plugins\\recall"
       }
     },
     {
@@ -57,7 +57,7 @@
       "displayName": "Plugin Evaluation Kimi",
       "description": "Three-layer quality evaluation for agent plugins and skills using Kimi by default.",
       "repository": "https://github.com/0langa/plugin-evaluation-kimi",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "PluginEval contributors",
       "license": "MIT",
       "providers": [
@@ -74,8 +74,8 @@
       "installCommands": {
         "codex": "codex plugin add plugin-evaluation-kimi@0langas-plugins",
         "claude-code": "claude plugin install plugin-evaluation-kimi@0langas-plugins",
-        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
-        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\plugin-evaluation-kimi"
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\plugin-evaluation-kimi"
       }
     },
     {
@@ -83,7 +83,7 @@
       "displayName": "Agent Handoff",
       "description": "Cross-agent handoff plugin for Codex, Claude Code, and Kimi Code.",
       "repository": "https://github.com/0langa/agent-handoff-cck",
-      "version": "0.2.0",
+      "version": "0.2.2",
       "author": "0langa",
       "license": "MIT",
       "providers": [
@@ -100,8 +100,8 @@
       "installCommands": {
         "codex": "codex plugin add agent-handoff@0langas-plugins",
         "claude-code": "claude plugin install agent-handoff@0langas-plugins",
-        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
-        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\agent-handoff"
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\agent-handoff"
       }
     },
     {
@@ -109,7 +109,7 @@
       "displayName": "Customization Control",
       "description": "Audit, deduplicate, repair, sync, and manage agent customizations across Codex, Claude Code, and Kimi Code.",
       "repository": "https://github.com/0langa/customization-control",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "0langa",
       "license": "MIT",
       "providers": [
@@ -126,8 +126,8 @@
       "installCommands": {
         "codex": "codex plugin add customization-control@0langas-plugins",
         "claude-code": "claude plugin install customization-control@0langas-plugins",
-        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
-        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\customization-control"
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\customization-control"
       }
     },
     {
@@ -135,7 +135,7 @@
       "displayName": "Plugin Forge",
       "description": "Multi-provider plugin lifecycle automation for manifest generation, installs, versions, and marketplace state.",
       "repository": "https://github.com/0langa/plugin-forge",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": "0langa",
       "license": "MIT",
       "providers": [
@@ -152,8 +152,8 @@
       "installCommands": {
         "codex": "codex plugin add plugin-forge@0langas-plugins",
         "claude-code": "claude plugin install plugin-forge@0langas-plugins",
-        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
-        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\plugin-forge"
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\plugin-forge"
       }
     },
     {
@@ -161,7 +161,7 @@
       "displayName": "Usage Pulse",
       "description": "Local passive usage telemetry for Codex, Claude Code, and Kimi Code sessions.",
       "repository": "https://github.com/0langa/usage-pulse",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "0langa",
       "license": "MIT",
       "providers": [
@@ -178,8 +178,8 @@
       "installCommands": {
         "codex": "codex plugin add usage-pulse@0langas-plugins",
         "claude-code": "claude plugin install usage-pulse@0langas-plugins",
-        "kimi-code-marketplace": "/plugins marketplace C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\kimi-marketplace.json",
-        "kimi-code": "/plugins install C:\\Users\\Julius\\source\\repos\\0langas-plugin-marketplace\\plugins\\usage-pulse"
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\usage-pulse"
       }
     },
     {
@@ -187,18 +187,21 @@
       "displayName": "Computer Custom",
       "description": "Policy-controlled Windows Computer Use wrapper for technical Codex users.",
       "repository": "https://github.com/0langa/computer-custom",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "0langa",
       "license": "MIT",
       "providers": [
-        "codex"
+        "codex",
+        "claude-code"
       ],
       "pluginRoot": "plugins/computer-custom/dist/computer-custom",
       "installPaths": {
-        "codex": ".codex-plugin/plugin.json"
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json"
       },
       "installCommands": {
-        "codex": "codex plugin add computer-custom@0langas-plugins"
+        "codex": "codex plugin add computer-custom@0langas-plugins",
+        "claude-code": "claude plugin install computer-custom@0langas-plugins"
       }
     }
   ]

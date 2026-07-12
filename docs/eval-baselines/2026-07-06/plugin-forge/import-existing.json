@@ -1,0 +1,309 @@
+{
+  "plugin_path": "..\\plugin-forge\\skills\\import-existing",
+  "timestamp": "2026-07-06T17:15:02.704997+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.917148031496063,
+      "sub_scores": {
+        "frontmatter_quality": 0.9199999999999999,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.9,
+        "token_efficiency": 0.952755905511811,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "import-existing",
+        "line_count": 178
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8424999999999998,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.82,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Import this hand-built plugin repo into Forge and create the initial forge.yaml without changing behavior.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "This plugin has Claude and Codex manifests but no forge.yaml. Convert it to a Forge-managed repo.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Retrofit the existing Kimi, Claude, and Codex plugin manifests so Forge can own them going forward.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Onboard usage-pulse to Forge while preserving its MCP server config and hooks.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "forge.yaml is missing from this plugin repo. Detect the existing surfaces and import it safely.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Run forge.sync_check and fix drift in this already Forge-managed plugin.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Release this plugin to the marketplace after validation.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a brand new Codex plugin scaffold with a manifest and starter skill.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Add a new hook script to this Forge plugin and update the manifest.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain how MCP server configs work in Claude plugins.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a focused workflow for importing an existing plugin repo into Forge, with clear preconditions, ordered commands, preservation rules, validation, blocked-state output, and final report fields. It is composable with related skills by explicitly deferring post-import work to using-forge and release-plugin. The main weakness is that some inputs and tool ownership are assumed rather than fully specified: forge.status, forge.import_repo, and forge.sync_check are named as callable operations, but the skill does not define whether they are CLI commands, MCP tools, or local APIs. It also includes a few broader troubleshooting/provider-doc instructions that slightly extend beyond the core import contract.",
+          "evidence": [
+            "Clear trigger description for importing, retrofitting, converting, onboarding, and missing forge.yaml cases.",
+            "Preconditions say to confirm this is a plugin repo and avoid re-importing when forge.yaml exists.",
+            "Import Steps give a concrete sequence from status through dry-run import, write import, sync check, hooks, gitignore, and tests.",
+            "Preservation Rules explicitly constrain behavior: do not regenerate manifests, erase fields, bump versions, commit, or rewrite installers prematurely.",
+            "Output Format and Import Report Fields define the expected user-facing result.",
+            "Ambiguity remains around the execution interface for forge.status, forge.import_repo, and forge.sync_check."
+          ]
+        },
+        "output_quality": {
+          "score": 0.82,
+          "simulations": [
+            {
+              "task": "User asks: 'make this hand-built plugin a forge plugin' in a repo with .codex-plugin/plugin.json, skills/, hooks/, and no forge.yaml.",
+              "expected_output": "Codex would confirm plugin indicators, run forge.status, run a dry-run import, inspect detected name/providers/surfaces, write forge.yaml, run forge.sync_check, install hooks, add .forge_state/ to .gitignore if needed, run tests, and return a compact import report listing plugin name, Codex provider, skills, hooks, drift, and next install command.",
+              "quality_notes": "The instructions are likely to produce a correct, complete response for the primary use case. Preservation and validation are emphasized, and the final report is well specified. Minor risk: adding to .gitignore conflicts with a strict 'without changing behavior' framing, though it is reasonable repository metadata."
+            },
+            {
+              "task": "User asks: 'this repo already has forge.yaml; import it again because manifests drifted'.",
+              "expected_output": "Codex should refuse to import again, state that forge.yaml already exists, and use using-forge plus forge.sync_check instead.",
+              "quality_notes": "The precondition handles this cleanly. The blocked/alternate-path behavior is explicit enough to prevent duplicate import damage."
+            },
+            {
+              "task": "User asks: 'import a Kimi-heavy plugin with custom mcpServers, hooks, and hand-tuned unknown manifest fields'.",
+              "expected_output": "Codex would detect Kimi manifest, .mcp.json, hooks, preserve unknown fields under provider extras, potentially use scratch render check, compare generated output against current manifests, run sync_check and MCP/hook validation, and report preserved extras and drift.",
+              "quality_notes": "The skill gives useful domain-specific safeguards for a risky migration. It should produce a useful response, but success depends on Forge's importer exposing enough detail. The instruction to check official provider docs if docs conflict is outside the supplied skill-only context and could be unavailable or overreach in constrained environments."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around one coherent domain: importing existing plugin repositories into Forge while preserving behavior. It covers the obvious related surfaces for plugin import: manifests, skills, hooks, MCP, commands, agents, provider extras, git hooks, drift checks, tests, and risky scratch render validation. It avoids taking over normal post-import maintenance or release flows. It is slightly broad in troubleshooting, especially provider-doc conflict handling and Kimi install-state checks, but these remain adjacent to import correctness rather than unrelated control-plane behavior."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17912,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1181,
+          "reasoning_output_tokens": 58
+        },
+        "duration_ms": 30907
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.6549056830965326,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.6,
+          "wilson_lower": 0.4618118910275937,
+          "wilson_upper": 0.7239181021375425,
+          "n_activated": 30,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9383333333333334,
+          "std_dev": 0.015933891203622798,
+          "cv": 0.016981056344891082,
+          "bootstrap_lower": 0.9326666666666666,
+          "bootstrap_upper": 0.9436666666666667
+        },
+        "failure_rate": {
+          "p_fail": 0.4,
+          "cp_lower": 0.2640783951323587,
+          "cp_upper": 0.548205972875638,
+          "n_errored": 20
+        },
+        "token_efficiency": {
+          "median": 17741.5,
+          "iqr": 54.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 30,
+        "n_errored": 20,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.94,\"response\":\"I’d activate `import-existing` because the request is explicitly to import an old Claude plugin into the new Forge workflow.\\n\\nRepresentative response:\\n\\nI’ll treat this as an existing plugin import and preserve current behavior during the first Forge conversion. I’ll first confirm the repo has plugin surfaces such as `.claude-plugin/plugin.json`, `skills/`, `hooks/`, or `.mcp.json`; if `forge.yaml` a",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I’ll use the `import-existing` flow because this is an existing plugin repo missing `forge.yaml`.\\n\\nRepresentative response:\\n\\n```text\\nforge.status\\nforge.import_repo(write=false)\\n# inspect detected plugin name, provider manifests, skills, hooks, MCP, commands, extras\\nforge.import_repo(write=true)\\nforge.sync_check\\npython -m plugin_forge.git_hooks install .\\npytest\\n```\\n\\nThen I’d return:\\n\\n```t",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.95,\"response\":\"I would activate `import-existing` because the request is to onboard an existing Codex plugin to Forge.\\n\\nRepresentative response:\\n\\nI’ll import the existing plugin without regenerating manifests or changing behavior. I’ll first confirm plugin surfaces, run `forge.status`, perform a dry-run import with `forge.import_repo(write=false)`, inspect the detected Codex manifest and any skills/hooks/MCP/comma",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a041dc65d50-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a0d79ee18d3-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a159ca5d406-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a0b7f8c814d-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a109872dc48-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a193d708ed3-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 75.94967593336547,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.748,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.187
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.891,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.13365
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4234470691163605,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.02540682414698163
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.6,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "D-",
+        "evidence": [],
+        "weighted_score": 0.03
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.027
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "silver",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

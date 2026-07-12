@@ -1,0 +1,333 @@
+{
+  "plugin_path": "..\\customization-control\\skills\\customization-dedupe",
+  "timestamp": "2026-07-06T17:20:23.191069+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.5063673913043478,
+      "sub_scores": {
+        "frontmatter_quality": 0.41,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.5,
+        "structural_completeness": 0.49999999999999994,
+        "token_efficiency": 0.9884057971014493,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "MISSING_TRIGGER",
+          "description": "Skill description lacks a recognised trigger phrase (e.g. \"Use when …\", \"This skill should be used when …\", \"Use after …\", \"Auto-loads when …\"). Without one, the model cannot determine when to invoke the skill.",
+          "severity": 0.15
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'muteman' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'muteman' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'muteman' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'addon-archive' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        }
+      ],
+      "metadata": {
+        "skill_name": "customization-dedupe",
+        "line_count": 100
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8374999999999999,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.8,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "The @ picker is showing the same muteman skill twice. Can you clean up the duplicate install safely?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Audit reported duplicate-copy entries across ~/.codex/skills and ~/.agents/skills. Build a dry-run cleanup plan.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "I have stale-cache plugin entries cluttering the picker; quarantine anything safe to remove after confirmation.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Deduplicate my agent customizations and make sure Codex still sees the right skills afterward.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Compare overlapping skill roots and remove redundant copies without deleting conflicts.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Deduplicate rows in this CSV file by email address.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Find duplicate images in my Downloads folder and delete the extras.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a new Codex skill for generating release notes.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Install the addon-archive skill into my local Codex configuration.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Review this plugin.json manifest for schema errors.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a focused workflow for safely deduplicating agent customization installs. It has a clear sequence: inventory, planning, dry-run, confirmed execution, and validation. It also specifies safety boundaries, classification rules, canonical selection, and output format. The main weakness is that it references external policy and scripts without fully defining their contract, and it mixes provider-specific paths for Claude, Codex, and legacy roots in a way that may require additional local knowledge.",
+          "evidence": [
+            "Workflow is explicit and confirmation-gated: receive inventory, build plan, dry-run, execute, validate.",
+            "Safety rules are concrete: never delete canonical/provider-link/conflict/unknown entries, quarantine before removal, refuse outside known roots.",
+            "Dry-run table format and classification logic are specified.",
+            "Some dependencies are implicit or external: dedupe-policy.json and customization_control.py are required but not included in the supplied text."
+          ]
+        },
+        "output_quality": {
+          "score": 0.8,
+          "simulations": [
+            {
+              "task": "User says the @ picker shows duplicate skills and asks Codex to clean them up.",
+              "expected_output": "Codex should inventory known customization roots, hash primary files, classify duplicates, present a dry-run table, ask for confirmation, quarantine confirmed duplicate-copy or rebuildable stale-cache items, remove originals, then validate provider discovery and symlinks.",
+              "quality_notes": "The instructions should produce a safe and useful response. The confirmation and quarantine requirements are strong. Completeness depends on access to the referenced scripts or policy file."
+            },
+            {
+              "task": "User provides audit JSON showing one identical skill in ~/.codex/skills and ~/.agents/skills, plus one conflicting plugin copy.",
+              "expected_output": "Codex should choose the canonical copy using the precedence list, mark the identical legacy copy as duplicate-copy with quarantine+remove, mark the differing plugin as conflict and SKIP, then present the plan before mutating anything.",
+              "quality_notes": "This is well covered by the classification and canonical-selection rules. The skill correctly avoids deleting conflicts."
+            },
+            {
+              "task": "User asks to remove stale plugin cache entries that clutter the picker on Windows.",
+              "expected_output": "Codex should use PowerShell-safe file operations with resolved absolute paths, quarantine rebuildable stale-cache entries only after confirmation, update a quarantine manifest, remove confirmed originals, and validate there are no broken symlinks or missing provider entries.",
+              "quality_notes": "The Windows path is addressed, including avoiding string-built rm commands. However, stale-cache detection and rebuildability criteria are not defined in the supplied text, so Codex may need to infer or ask clarifying questions."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around one coherent domain: safe deduplication of agent customizations across overlapping roots and picker-visible cache clutter. It includes enough adjacent tasks to be useful, such as inventory, quarantine, manifesting, and post-removal validation. It is not bloated into general file deduplication. The only scope issue is mild underspecification around stale-cache handling and external policy/script dependencies."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17775,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1135,
+          "reasoning_output_tokens": 206
+        },
+        "duration_ms": 25083
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.46355983732426015,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.28,
+          "wilson_lower": 0.17474014357680362,
+          "wilson_upper": 0.4166538714598967,
+          "n_activated": 14,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9457142857142857,
+          "std_dev": 0.013997084244475275,
+          "cv": 0.014800542252466303,
+          "bootstrap_lower": 0.9385714285714286,
+          "bootstrap_upper": 0.9528571428571428
+        },
+        "failure_rate": {
+          "p_fail": 0.72,
+          "cp_lower": 0.5750946405524415,
+          "cp_upper": 0.8376893932398717,
+          "n_errored": 36
+        },
+        "token_efficiency": {
+          "median": 17623.5,
+          "iqr": 136.0,
+          "outlier_count": 0,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 14,
+        "n_errored": 36,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ddee211182-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043e21adf1808-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043e90853b240-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043e88d69dbf2-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043edefe2d3a5-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043f90a8ecef6-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043f74af53630-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043fcef9018eb-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044055f43d22b-FRA)",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044062dbcdcc0-FRA)",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044999d2bbb71-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a170449eda6fcef6-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044a72b07dbdf-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 47.41812043140237,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.75,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.4795,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.119875
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8874285714285715,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.1331142857142857
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.05
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4392914653784219,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.026357487922705314
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.28,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.014000000000000002
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.49999999999999994,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.014999999999999998
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "no_badge",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

@@ -1,0 +1,307 @@
+{
+  "plugin_path": "..\\webde-access\\skills\\webde-access",
+  "timestamp": "2026-07-06T17:12:44.415044+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.7445290322580645,
+      "sub_scores": {
+        "frontmatter_quality": 0.6199999999999999,
+        "orchestration_wiring": 0.8,
+        "progressive_disclosure": 0.65,
+        "structural_completeness": 0.8,
+        "token_efficiency": 0.956989247311828,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "webde-access",
+        "line_count": 120
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8374999999999999,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.8,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Search my WEB.DE inbox for unread messages from Anna this week and summarize the results.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Download the PDF attachment from UID 1482 in my Web.de INBOX.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Draft a WEB.DE reply to this message and let me review it before sending.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Move these three Web.de messages to Papierkorb and mark them unread.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Check whether my WEB.DE IMAP and SMTP connection still works.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Search my Gmail inbox for unread invoices.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Help me build a React email client UI mockup.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "What are WEB.DE's current cloud storage prices?",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain how SMTP works in general.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a DNS SPF record for my domain email setup.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a focused mailbox workflow with clear sequencing: verify connection, list folders when unknown, search before read, draft before send when review is needed, and constrain mutations to requested mailbox/UIDs. It has a clear safety contract around sending, destructive actions, credentials, and attachments. It is slightly short of excellent because it references external tool names and reference files without specifying schemas, expected outputs, or how to handle tool absence within the visible text.",
+          "evidence": [
+            "Clear trigger: private Web.de mailbox access for reading, searching, drafting, sending, attachment handling, and mailbox/message management.",
+            "Workflow steps map user intents to specific tools and include guardrails for sending and mutations.",
+            "Safety section gives concrete constraints for private mailbox access, destructive operations, attachment handling, and credentials.",
+            "Some ownership and output details are implicit in referenced files rather than fully captured in the supplied skill text."
+          ]
+        },
+        "output_quality": {
+          "score": 0.8,
+          "simulations": [
+            {
+              "task": "User asks: \"Find unread messages in my Web.de inbox from tax office and summarize them.\"",
+              "expected_output": "Codex would check connection if needed, list mailboxes if the inbox name is uncertain, search unread INBOX messages by sender/text, read matching messages, then summarize parsed bodies without exposing credentials or raw large content.",
+              "quality_notes": "The workflow is sufficient and safe for this task. It encourages search before read and live mailbox-name validation."
+            },
+            {
+              "task": "User asks: \"Reply-all to UID 344 in INBOX saying I can attend.\"",
+              "expected_output": "Codex would use reply_webde_email with mailbox INBOX, UID 344, text content, and replyAll true, because the user explicitly requested sending a reply-all.",
+              "quality_notes": "The instructions correctly distinguish sending from drafting and allow send only when explicit. A stronger skill might require confirmation for high-risk recipients or ambiguous wording, but this task is clear."
+            },
+            {
+              "task": "User asks: \"Delete all spam permanently.\"",
+              "expected_output": "Codex should treat this as destructive and ambiguous unless exact mailbox and UIDs are known; it should summarize intended action or prefer moving to Papierkorb unless permanent deletion is explicit and target messages are enumerated.",
+              "quality_notes": "The safety guidance is useful, but the workflow does not fully define bulk-operation confirmation, limits, or how to resolve 'all' safely. Response would likely be cautious but may need more explicit policy. "
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around one coherent domain: WEB.DE mailbox access through IMAP/SMTP and related message management. It covers the obvious mailbox tasks, including search, read, drafts, send/reply/forward, attachments, exports, quota, and folder management. It is not bloated into unrelated WEB.DE account services. The only scope weakness is that it includes broad mailbox administration and troubleshooting while pushing some operational details into references, so the supplied text alone is not perfectly self-contained."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17845,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1134,
+          "reasoning_output_tokens": 244
+        },
+        "duration_ms": 27594
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.7510090041664219,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.76,
+          "wilson_lower": 0.6258705062480763,
+          "wilson_upper": 0.8570274759812779,
+          "n_activated": 38,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9502631578947368,
+          "std_dev": 0.015809198206184812,
+          "cv": 0.01663665277859382,
+          "bootstrap_lower": 0.9452631578947369,
+          "bootstrap_upper": 0.955
+        },
+        "failure_rate": {
+          "p_fail": 0.24,
+          "cp_lower": 0.13060991621324453,
+          "cp_upper": 0.38169074865908686,
+          "n_errored": 12
+        },
+        "token_efficiency": {
+          "median": 17575.5,
+          "iqr": 40.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 38,
+        "n_errored": 12,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a110dbb804d-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a1929f7dba3-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a235f23a19f-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a2f5ac1dbe0-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a341f2ed9d7-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3b5a781ad0-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a2cf93b4e32-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a33ae6edcc1-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3a9c6f2587-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a32ee62d35a-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a3788e0dcac-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703a412fcfd3b9-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b35ba6adbfc-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b3d8ab5ce9d-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1703b44ee1037e6-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 75.71871402777296,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.7989999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.19974999999999998
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7562499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15125
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8901578947368421,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.13352368421052632
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.65,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "D",
+        "evidence": [],
+        "weighted_score": 0.065
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4253285543608124,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025519713261648744
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.7600000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.038000000000000006
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.8,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.024
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "silver",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

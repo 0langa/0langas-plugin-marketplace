@@ -1,0 +1,314 @@
+{
+  "plugin_path": "..\\customization-control\\skills\\customization-audit",
+  "timestamp": "2026-07-06T17:20:28.255206+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.5967899999999999,
+      "sub_scores": {
+        "frontmatter_quality": 0.41,
+        "orchestration_wiring": 0.9,
+        "progressive_disclosure": 0.5,
+        "structural_completeness": 0.4,
+        "token_efficiency": 1.0,
+        "ecosystem_coherence": 0.5,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "MISSING_TRIGGER",
+          "description": "Skill description lacks a recognised trigger phrase (e.g. \"Use when …\", \"This skill should be used when …\", \"Use after …\", \"Auto-loads when …\"). Without one, the model cannot determine when to invoke the skill.",
+          "severity": 0.15
+        }
+      ],
+      "metadata": {
+        "skill_name": "customization-audit",
+        "line_count": 113
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.7902272727272728,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.72,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Audit all of my Codex, Claude Code, and Kimi Code customizations and tell me what is installed where.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Scan my agent customization roots for duplicate skills, broken symlinks, and stale plugin caches.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "The @ picker is showing duplicate skills. Can you inventory my setup and explain why?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Check which MCP servers, plugins, marketplaces, and skills are installed across my agent tools.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Before I clean up my customizations, produce a read-only report of conflicts and unknown installs.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Create a new Codex skill for working with CSV files.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Fix this failing pytest test in my application repository.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Deduplicate my Codex skills and delete stale cache copies.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Install the Playwright skill from a GitHub repository.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain how MCP servers work conceptually.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a coherent read-only audit workflow with explicit phases, expected report sections, classification categories, and routing guidance. Its contract is mostly clear: inventory, classify, report, and ask before mutation. The main weakness is that it positions itself as an entrypoint that may invoke other skills, which adds some control-plane behavior and makes ownership less clean than a pure audit skill. It also depends on external helper scripts and reference files without fully defining fallback behavior for every customization type.",
+          "evidence": [
+            "Clear workflow: Inventory, Classify, Report, Route.",
+            "Explicit read-only safety boundary and mutation confirmation requirement.",
+            "Structured output requirements include summary, issues, recommendations, counts, and paths.",
+            "Routes to narrower skills, but that makes it partly an orchestrator rather than only an audit workflow.",
+            "Uses Claude-specific environment variable names in a Codex skill, which may create execution ambiguity."
+          ]
+        },
+        "output_quality": {
+          "score": 0.72,
+          "simulations": [
+            {
+              "task": "User asks: 'Why do I see duplicate skills in the @ picker? Please audit my setup.'",
+              "expected_output": "A markdown audit report listing total customizations by provider/type, duplicate or conflicting skill names, resolved absolute paths, hashes or hash comparison results, and recommendations to run the dedupe or sync skill as appropriate.",
+              "quality_notes": "The instructions should produce a useful result because this exact trigger is covered and the duplicate-copy versus conflict policy is concrete. Quality depends on helper availability and accurate known-roots.json content."
+            },
+            {
+              "task": "User asks: 'Inventory all installed Codex plugins, caches, MCP servers, and config files.'",
+              "expected_output": "A read-only inventory report with plugin/cache/MCP/config entries, absolute paths, symlink status, provider classification, and issue flags such as stale-cache or unknown.",
+              "quality_notes": "The report format is clear, but the skill gives much more detail for skills/plugins than for MCP servers, config files, or marketplace entries. Manual fallback may be incomplete for those categories."
+            },
+            {
+              "task": "User asks: 'Clean up duplicate customizations and repair broken links.'",
+              "expected_output": "The skill should first run a read-only audit, identify duplicate-copy, stale-cache, and broken-link issues, then ask before invoking dedupe or repair skills that mutate files.",
+              "quality_notes": "The safety model is good because it forbids mutation and requires confirmation before invoking mutating skills. However, the skill router may select this audit entrypoint even when the user's primary intent is direct repair, adding an extra step that may be useful but not always desired."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The scope is broad but coherent: auditing agent customizations across multiple coding agents and related roots. It covers the obvious audit objects: skills, plugins, commands, MCP servers, configs, symlinks, caches, marketplaces, duplicates, conflicts, and broken links. It is not too thin and has clear unique value. It falls short of perfect calibration because it tries to be both inventory tool and routing entrypoint, and some included domains such as marketplaces and MCP servers are named but not specified as deeply as skills and plugins."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17919,
+          "cached_input_tokens": 15232,
+          "output_tokens": 1456,
+          "reasoning_output_tokens": 497
+        },
+        "duration_ms": 31154
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.5009440716263545,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.34,
+          "wilson_lower": 0.22436769635061063,
+          "wilson_upper": 0.47846431458517147,
+          "n_activated": 17,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9558823529411764,
+          "std_dev": 0.009737026680733432,
+          "cv": 0.010186427912151897,
+          "bootstrap_lower": 0.9505882352941176,
+          "bootstrap_upper": 0.96
+        },
+        "failure_rate": {
+          "p_fail": 0.66,
+          "cp_lower": 0.5123475110565329,
+          "cp_upper": 0.7879452864173234,
+          "n_errored": 33
+        },
+        "token_efficiency": {
+          "median": 17703.0,
+          "iqr": 46.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 17,
+        "n_errored": 33,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043de18cbd391-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043e51a57d27d-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ec1fea3633-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044a11b0fd34c-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044a628e2f626-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044b3b8fedbe8-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044a11aebfe50-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044a8d84d3821-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044b44fc339d6-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044aaeb68d9d7-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044b45d69d29d-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044bc5aaacd05-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044c28ba9d259-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044ca6cbde860-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044d1bb6dd295-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 59.310948697660876,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.95,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.49277272727272725,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.12319318181818181
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7687499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15375
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8615294117647059,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.12922941176470587
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.05
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4444444444444445,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.02666666666666667
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.3399999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.016999999999999998
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.4,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.012
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.01
+      }
+    ],
+    "badge": "no_badge",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

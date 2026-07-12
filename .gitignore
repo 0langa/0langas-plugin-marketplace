@@ -1,0 +1,13 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+
+# Generated local state
+**/__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db

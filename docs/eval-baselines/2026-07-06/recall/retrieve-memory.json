@@ -1,0 +1,307 @@
+{
+  "plugin_path": "..\\RECALL\\plugins\\recall\\skills\\retrieve-memory",
+  "timestamp": "2026-07-06T22:27:31.514477+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9364,
+      "sub_scores": {
+        "frontmatter_quality": 0.9199999999999999,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.9444444444444444,
+        "ecosystem_coherence": 1.0,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "retrieve-memory",
+        "line_count": 158
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8102272727272728,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.8,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "I'm picking up an old repo after a context reset. Check what RECALL remembers about the current build and test commands before changing code.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "We already debugged this flaky login test last month. Retrieve any project memory about that failure before investigating again.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Before implementing the storage migration, look up prior decisions in local memory so we don't repeat the design debate.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "What does RECALL remember about the known fragile areas in this project?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Use local memory to get a compact context packet for the retrieval sufficiency gate task.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Save this new discovery about the API timeout workaround into RECALL for future sessions.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "List every memory card, count categories, and audit stale entries in RECALL.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Update the lifecycle status of the old auth memory from active to superseded.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Search the web for the latest OpenAI API pricing and summarize it.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Run the unit tests and fix any failures you find in the current repository.",
+              "should_trigger": false,
+              "would_trigger": true
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused retrieval workflow with a clear contract: take a focused lookup need, query local RECALL memory, return compact provenance-bearing context, and avoid mutation. It defines boundaries against review, save, and manage workflows, includes stale/conflict handling, and gives concrete command patterns. It falls short of excellent because it mixes public skill behavior with adapter/plugin-root execution details and references several sibling skills that may or may not be installed, which slightly complicates composability.",
+          "evidence": [
+            "Defines a non-mutating retrieval contract and explicitly says memory is below repository truth and newer user instructions.",
+            "Provides required and optional inputs plus a compact JSON output shape with IDs, categories, statuses, sources, flags, and health summary.",
+            "Includes clear sufficiency checks and handoff boundaries for no results, stale indexes, inventory requests, corrections, and lifecycle changes.",
+            "Some execution-path details about installed plugin root versus active project repository are operationally useful but blur skill workflow with packaging concerns."
+          ]
+        },
+        "output_quality": {
+          "score": 0.8,
+          "simulations": [
+            {
+              "task": "User asks: 'We debugged this failing export test before. Check memory before you investigate.'",
+              "expected_output": "Codex would form a focused query such as 'failing export test debug history', retrieve with a likely debug_history category and --summary, inspect flags and health, then use current records only as leads while verifying against repo files. It would state insufficient or partial memory when appropriate.",
+              "quality_notes": "The instructions would produce a correct and useful response because they specify query formation, category filtering, summary use, health flags, and repository truth precedence."
+            },
+            {
+              "task": "User asks: 'What does RECALL remember about this project?'",
+              "expected_output": "Codex should not run broad unbounded retrieval. It should hand off to review-memory because the request is inventory-oriented rather than a focused lookup.",
+              "quality_notes": "The boundary is explicit in both Workflow and Handoff Boundaries, so output should be complete and appropriately scoped if the router or agent follows sibling handoff guidance."
+            },
+            {
+              "task": "User asks: 'Retrieve the current storage decision,' but results include one current record and one conflicting current record.",
+              "expected_output": "Codex should label the conflict, avoid blending the claims, and use review-memory or manage-memory for conflict inspection before answering as if one decision is authoritative.",
+              "quality_notes": "The conflict behavior is well specified, including health flags and sufficiency checks. The only gap is that the skill assumes availability of sibling skills and does not define a fallback if they are absent."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill covers one coherent domain: retrieving local project memory as context. It avoids creation, mutation, archive, lifecycle management, and inventory review, which keeps the surface area cohesive. It is slightly broad in trigger wording because 'debugging a known failure' and 'testing with verified commands' could catch ordinary coding tasks where memory is only marginally relevant, but the internal boundaries are strong."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 18454,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1018,
+          "reasoning_output_tokens": 61
+        },
+        "duration_ms": 43264
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8010198976198167,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.84,
+          "wilson_lower": 0.7148551903823402,
+          "wilson_upper": 0.916626786379123,
+          "n_activated": 42,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9697619047619047,
+          "std_dev": 0.009633299201973299,
+          "cv": 0.009933674600610816,
+          "bootstrap_lower": 0.9669047619047619,
+          "bootstrap_upper": 0.9726190476190476
+        },
+        "failure_rate": {
+          "p_fail": 0.16,
+          "cp_lower": 0.07170076718712463,
+          "cp_upper": 0.29112630688285424,
+          "n_errored": 8
+        },
+        "token_efficiency": {
+          "median": 18199.5,
+          "iqr": 22.0,
+          "outlier_count": 2,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 42,
+        "n_errored": 8,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"I’ll use `retrieve-memory` first because this is a repeated known failure and prior auth-regression context is explicitly relevant. I’d run a focused RECALL lookup such as:\\n\\n```bash\\npython <plugin-root>/scripts/recall_skill.py retrieve-memory \\\"auth regression failing test suite last week investigation\\\" --category debug_history --category risks --category decisions --summary --root <project-root>\\n`",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I would activate `retrieve-memory` because the request explicitly asks to check project memory before writing tests, with a focused lookup need around verified commands and prior coverage gaps.\\n\\nRepresentative response:\\n\\n```json\\n{\\\"query\\\":\\\"approved test command and prior coverage gaps for cache invalidation change\\\",\\\"results\\\":[{\\\"id\\\":12,\\\"category\\\":\\\"commands\\\",\\\"score\\\":1.02,\\\"flag\\\":\\\"curre",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I’ll use `retrieve-memory` because this is a known flaky Playwright failure and prior confirmed diagnosis is directly relevant. I’d run a focused RECALL lookup such as:\\n\\n```bash\\npython ./scripts/recall_skill.py retrieve-memory \\\"flaky Playwright test confirmed failure mode\\\" --category debug_history --category commands --category risks --summary\\n```\\n\\nThen I’d treat any `current` result as context ",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"I’ll use `retrieve-memory` first because this work depends on a prior project decision. I’d run a focused lookup such as:\\n\\n```bash\\npython <plugin-root>/scripts/recall_skill.py retrieve-memory \\\"CLI exit code behavior decision\\\" --category decisions --summary --root <project-root>\\n```\\n\\nThen I’d treat any recalled decision as context, verify it against the current CLI code/tests before editing, and ",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"I’ll activate `retrieve-memory` because this is a known flaky Playwright failure and the user explicitly wants prior confirmed diagnosis reused. I’d run a focused lookup such as:\\n\\n```bash\\npython ./scripts/recall_skill.py retrieve-memory \\\"flaky Playwright test confirmed failure mode\\\" --category debug_history --category commands --summary\\n```\\n\\nThen I’d use only current/validated memory as context,"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 81.07468759509575,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.8692727272727272,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.2173181818181818
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.9018571428571429,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.13527857142857144
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.41975308641975306,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025185185185185182
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.84,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.042
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.02
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

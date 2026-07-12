@@ -1,0 +1,313 @@
+{
+  "plugin_path": "..\\customization-control\\skills\\windows-customization-guard",
+  "timestamp": "2026-07-06T17:20:30.208189+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.5753240425531915,
+      "sub_scores": {
+        "frontmatter_quality": 0.41,
+        "orchestration_wiring": 0.8,
+        "progressive_disclosure": 0.5,
+        "structural_completeness": 0.45,
+        "token_efficiency": 0.948936170212766,
+        "ecosystem_coherence": 0.5,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "MISSING_TRIGGER",
+          "description": "Skill description lacks a recognised trigger phrase (e.g. \"Use when …\", \"This skill should be used when …\", \"Use after …\", \"Auto-loads when …\"). Without one, the model cannot determine when to invoke the skill.",
+          "severity": 0.15
+        }
+      ],
+      "metadata": {
+        "skill_name": "windows-customization-guard",
+        "line_count": 118
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.7977272727272726,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.75,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "On Windows, update my Codex customizations and remove any stale symlinked skill folders safely.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "A customization install failed because a Windows junction points to the wrong skill directory. Diagnose and fix the path handling.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Before deleting old entries under ~/.agents and ~/.codex, validate that the resolved paths are inside approved roots on Windows.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Port this agent customization workflow to PowerShell and make sure destructive file operations handle long paths and reparse points.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Debug why Test-Path returns false for a broken symlink in my Windows agent customization directory.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Create a new Python package with pytest and ruff configuration.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Summarize this PDF and extract the tables into CSV files.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "On macOS, install these Codex skills and clean up old folders.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Write a GitHub Actions workflow for publishing npm packages.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain the difference between Windows junctions and symbolic links generally, without changing any files or customizations.",
+              "should_trigger": false,
+              "would_trigger": true
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused reusable guardrail layer for Windows customization operations. It defines concrete path-resolution, boundary-checking, symlink/junction, PowerShell, and quarantine rules. Its contract is mostly clear: other customization skills should apply it before risky Windows file operations. The main weakness is orchestration ambiguity around 'activated automatically by other skills' and 'approved roots from known-roots.json' without specifying how those skills pass roots in or where ownership of enforcement lives.",
+          "evidence": [
+            "States it is a safety layer for customization operations on Windows and should be applied by other skills.",
+            "Provides explicit checks before destructive operations, including approved roots and absolute path resolution.",
+            "Includes actionable PowerShell snippets for boundary checking, reparse point detection, and error handling.",
+            "Does not fully specify input/output contract for calling skills, such as expected root source, manifest schema, or failure reporting format."
+          ]
+        },
+        "output_quality": {
+          "score": 0.75,
+          "simulations": [
+            {
+              "task": "Install a skill on Windows, replacing an existing junction under ~/.codex/skills.",
+              "expected_output": "Codex should resolve the link and target to absolute paths, verify both are within approved roots, detect whether the existing entry is a reparse point, remove only the junction if safe, then create a directory junction using quoted paths.",
+              "quality_notes": "The instructions are likely to produce a safe and useful response because they cover junction preference, path resolution, boundary checks, and Remove-Item behavior. They do not specify exact rollback behavior if mklink fails."
+            },
+            {
+              "task": "Clean up stale customization folders on Windows, including long nested paths.",
+              "expected_output": "Codex should expand ~ explicitly, normalize separators, use GetFullPath or Resolve-Path, check approved roots before deletion, handle paths over 260 characters with long-path support or prefixes, and use Remove-Item with ErrorAction Stop.",
+              "quality_notes": "The skill gives enough operational guidance for a correct cleanup workflow. Long-path guidance is somewhat high level, so exact implementation may vary."
+            },
+            {
+              "task": "Debug a broken Windows symlink in an agent customization directory.",
+              "expected_output": "Codex should use Get-Item -Force rather than relying only on Test-Path, identify the reparse point and target, distinguish junction versus symlink constraints, and recommend junctions for local directories when elevation is unavailable.",
+              "quality_notes": "This is a strong fit. The common pitfalls and link detection sections directly address the issue and should lead to a complete answer."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The scope is coherent and valuable: Windows filesystem safety for customization workflows. It is neither a trivial wrapper nor a broad Windows operations guide. It covers the obvious high-risk areas: absolute path resolution, approved-root checks, symlinks versus junctions, PowerShell-safe deletion, quarantine, and common pitfalls. It is slightly broader than pure guardrails because it includes operational advice for creating links and enabling long paths, but that material remains relevant to the domain."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17819,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1100,
+          "reasoning_output_tokens": 147
+        },
+        "duration_ms": 24175
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.3787231204571536,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.14,
+          "wilson_lower": 0.06950745262022862,
+          "wilson_upper": 0.2618645719852809,
+          "n_activated": 7,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9471428571428572,
+          "std_dev": 0.016659862556700832,
+          "cv": 0.017589598476154725,
+          "bootstrap_lower": 0.9342857142857143,
+          "bootstrap_upper": 0.9585714285714285
+        },
+        "failure_rate": {
+          "p_fail": 0.86,
+          "cp_lower": 0.7326039842280215,
+          "cp_upper": 0.9418081248270921,
+          "n_errored": 43
+        },
+        "token_efficiency": {
+          "median": 17613.0,
+          "iqr": 55.0,
+          "outlier_count": 0,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 7,
+        "n_errored": 43,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"Use the Windows customization guard. For a PowerShell deletion tool, resolve every candidate path to an absolute path, resolve the workspace root once, compare case-insensitively, and block anything outside that root before calling `Remove-Item`.\\n\\n```powershell\\n$workspaceRoot = [System.IO.Path]::GetFullPath($WorkspaceRoot)\\n$target = [System.IO.Path]::GetFullPath($ThemeFolder)\\n\\n$rootWithSlash = $wo",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.95,\"response\":\"Use the Windows customization guard. A safe routine should resolve the target, verify it is inside approved roots before deletion, inspect reparse points with `Get-Item -Force`, and remove the link itself rather than recursing through junction targets.\\n\\n```powershell\\nfunction Remove-SafeWindowsItem {\\n    param(\\n        [Parameter(Mandatory)] [string] $TargetPath,\\n        [Parameter(Mandatory)] [st",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ea4c9cfb79-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ef0d9c365d-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043f71821904e-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043fced5f4f95-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044026c8bdc94-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1704409fa7c3a8e-FRA)",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a1704404997e1905-FRA)"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 55.30269931888201,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.95,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.37277272727272726,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.09319318181818181
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7562499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15125
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8682857142857143,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.13024285714285713
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.05
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4217494089834516,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025304964539007095
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.14,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.007000000000000001
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.45,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.0135
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.01
+      }
+    ],
+    "badge": "no_badge",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

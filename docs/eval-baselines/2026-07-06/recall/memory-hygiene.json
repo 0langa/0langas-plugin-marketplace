@@ -1,0 +1,307 @@
+{
+  "plugin_path": "..\\RECALL\\plugins\\recall\\skills\\memory-hygiene",
+  "timestamp": "2026-07-06T22:27:38.229995+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.8555777777777779,
+      "sub_scores": {
+        "frontmatter_quality": 0.74,
+        "orchestration_wiring": 0.9,
+        "progressive_disclosure": 0.9,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.9530864197530864,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "memory-hygiene",
+        "line_count": 216
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.8177272727272726,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.83,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Should the fact 'Release notes must live in docs/manual-release-notes.md' be saved to Recall memory or somewhere else?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Run a memory hygiene scan and identify stale or duplicate Recall entries without deleting anything.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Plan cleanup for noisy project memories and safely apply only non-destructive changes.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "This candidate memory conflicts with another current-truth claim; reconcile the claim key before mutation.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "A stored Recall card looks like a raw command log and another contains a token-shaped value; decide the safe hygiene actions.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Save this architecture decision into durable project memory.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Delete memory ID 42 permanently.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Show me all Recall memories about deployment.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a new Recall category for build system quirks.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Refactor the login form to use the existing design system components.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a focused workflow for memory routing and non-destructive cleanup, with clear handoffs to adjacent Recall skills. Inputs, commands, outputs, safe actions, and ownership boundaries are explicit. It is slightly less than excellent because it depends on several referenced assets and sibling skills, and the execution path assumes a particular script location/plugin root that may need interpretation by Codex.",
+          "evidence": [
+            "Clear contract table for candidate_fact, claim_key, scope, --safe, --limit, and result.",
+            "Explicit workflow separates route, scan, plan, review, safe apply, and handoff steps.",
+            "Ownership boundaries prevent the skill from writing new memories, hard-deleting, auditing inventory, or defining taxonomy.",
+            "Safe action list distinguishes auto-applicable lifecycle changes from review-only findings."
+          ]
+        },
+        "output_quality": {
+          "score": 0.83,
+          "simulations": [
+            {
+              "task": "User asks whether a candidate fact should go into Recall memory, repo docs, provider config, or current chat only.",
+              "expected_output": "Codex would run or emulate route-memory with the candidate fact, reject secret-shaped content, and return a single target with a reason, handing off to save-insight only if the target is recall_memory.",
+              "quality_notes": "Strong coverage. The skill gives concrete routing targets, command shape, rejection rule for secrets, and examples."
+            },
+            {
+              "task": "User asks to clean up duplicate, stale, and low-value memory entries safely.",
+              "expected_output": "Codex would run hygiene-scan, hygiene-plan, review proposals, then run hygiene-apply --safe only for high-confidence non-destructive actions, leaving near-duplicates, deletions, and ambiguous items for confirmation or manage-memory.",
+              "quality_notes": "Likely complete and safe. The safe/review-only split is detailed and should prevent destructive cleanup mistakes."
+            },
+            {
+              "task": "User says 'delete memory 42' while this skill is active.",
+              "expected_output": "Codex should refuse to perform deletion from memory-hygiene and hand off to manage-memory with delete-memory --confirm DELETE-42.",
+              "quality_notes": "The instruction is correct, but router behavior may be over-inclusive because the skill description mentions cleanup and mutation-adjacent workflows. The internal boundary still gives Codex a usable correction path."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around memory quality policy: routing candidate facts, planning hygiene, applying only safe lifecycle changes, and resolving staleness/conflict policy. It avoids becoming the writer, auditor, taxonomy manager, or destructive mutation tool. The scope is a little broad inside the hygiene domain because it covers routing, cleanup, conflict reconciliation, source refresh, and doc-duplicate detection, but these remain cohesive under memory hygiene."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 19254,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1205,
+          "reasoning_output_tokens": 335
+        },
+        "duration_ms": 49863
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.7846071343618576,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.82,
+          "wilson_lower": 0.6920368054529739,
+          "wilson_upper": 0.902299172675462,
+          "n_activated": 41,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.94,
+          "std_dev": 0.023164312332846354,
+          "cv": 0.024642885460474846,
+          "bootstrap_lower": 0.9321951219512195,
+          "bootstrap_upper": 0.9465853658536586
+        },
+        "failure_rate": {
+          "p_fail": 0.18,
+          "cp_lower": 0.08576207811460243,
+          "cp_upper": 0.31436941163151816,
+          "n_errored": 9
+        },
+        "token_efficiency": {
+          "median": 19027.0,
+          "iqr": 52.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 41,
+        "n_errored": 9,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.95,\"response\":\"I would use `memory-hygiene` for this because the request is specifically about planning non-destructive cleanup of Codex memories.\\n\\nRepresentative response:\\n\\nI’ll plan this as a safe hygiene pass only: scan the active project memory store, identify stale, duplicate, noisy, source-backed, vague, or conflicting records, and return proposals without deleting anything.\\n\\nI would run:\\n\\n```bash\\npytho",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I’d use `memory-hygiene` first because the request is explicitly about deciding which memory IDs are safe candidates before `manage-memory` mutation.\\n\\nRepresentative response:\\n\\nI’ll inspect the project memory store with a hygiene scan/plan and only identify non-destructive candidates. I would run:\\n\\n```bash\\npython ./scripts/recall_skill.py hygiene-scan --limit 80\\npython ./scripts/recall_skill.py ",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I would activate `memory-hygiene` because this is a pre-mutation memory quality review. I’d run a review/plan pass first, not apply changes:\\n\\n```bash\\npython ./scripts/recall_skill.py hygiene-scan --limit 80\\npython ./scripts/recall_skill.py hygiene-plan --scope project --limit 80\\n```\\n\\nThen I’d report proposals grouped by stale, exact duplicate, conflicting, command/log-like, current-chat-only or l",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I’d use `memory-hygiene` for this because the request is specifically about planning non-destructive cleanup of Codex memories.\\n\\nRepresentative response:\\n\\nI’ll plan this as a safe hygiene pass only: scan the active project’s Recall store, identify stale, duplicate, noisy, vague, source-backed, and conflicting records, and separate automatically safe proposals from anything that needs confirmation. I",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I would use `memory-hygiene` for this because the request is about auditing memory quality: low-value reminders, missing source/provenance, and scope/routing issues.\\n\\nRepresentative response:\\n\\n```json\\n{\\n  \\\"action\\\": \\\"hygiene-plan\\\",\\n  \\\"scope\\\": \\\"project\\\",\\n  \\\"checks\\\": [\\n    \\\"low_value_or_raw_reminder\\\",\\n    \\\"missing_source_or_status_provenance\\\",\\n    \\\"project_specific_scope_mismatch\\"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 80.16671629370042,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.8302727272727272,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.2075681818181818
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7687499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15375
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8959999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.1344
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.9,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.09000000000000001
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.42359396433470503,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025415637860082302
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.8200000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.04100000000000001
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

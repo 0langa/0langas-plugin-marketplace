@@ -1,0 +1,312 @@
+{
+  "plugin_path": "skills\\evaluation-methodology",
+  "timestamp": "2026-07-06T06:16:19.853672+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "kimi",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.7160482258064517,
+      "sub_scores": {
+        "frontmatter_quality": 0.77,
+        "orchestration_wiring": 0.85,
+        "progressive_disclosure": 0.85,
+        "structural_completeness": 0.8500000000000001,
+        "token_efficiency": 0.9634408602150537,
+        "ecosystem_coherence": 0.83,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "ORPHAN_REFERENCE",
+          "description": "SKILL.md links to 'references/filename.md' which does not exist. Dead reference links waste context and confuse the model.",
+          "severity": 0.05
+        },
+        {
+          "flag": "ORPHAN_REFERENCE",
+          "description": "SKILL.md links to 'references/filename' which does not exist. Dead reference links waste context and confuse the model.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'agents' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        }
+      ],
+      "metadata": {
+        "skill_name": "evaluation-methodology",
+        "line_count": 551
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.9625,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 1.0,
+        "output_quality": 0.85,
+        "scope_calibration": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "How does PluginEval calculate the final composite score for a skill?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Explain the triggering_accuracy dimension and how it's measured in PluginEval.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "What do the Platinum, Gold, Silver, and Bronze badges mean in PluginEval?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "A skill got a low orchestration_fitness score. How should we improve it?",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Describe the Monte Carlo simulation layer and its scoring formula.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Write a Python function to sort a list of dictionaries by a key.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "How do I deploy a React app to Vercel?",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "What ingredients do I need for chocolate chip cookies?",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Debug this SQL query that returns duplicate rows.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Summarize the latest news about artificial intelligence.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 1.0,
+          "reasoning": "The skill is a pure reference worker with a clear contract. It documents PluginEval methodology, exposes no supervisor or control-plane behavior, and its description gives explicit trigger conditions. It is composable: Codex can invoke it whenever a question touches plugin quality measurement without it trying to manage other skills or workflows.",
+          "evidence": [
+            "Description uses explicit 'Use this skill when...' trigger clause with concrete contexts.",
+            "Body is organized as a reference document, not as an orchestrator or dispatcher.",
+            "No unrelated coordination instructions; no meta-control over other skills or agents.",
+            "Clear input domain: questions about PluginEval scoring, rubrics, formulas, badges, anti-patterns, Elo."
+          ]
+        },
+        "output_quality": {
+          "score": 0.85,
+          "simulations": [
+            {
+              "task": "How is the final composite PluginEval score calculated?",
+              "expected_output": "A response that describes the weighted blend across ten dimensions, the per-dimension layer blend weights (static/judge/Monte Carlo), the composite formula with anti-pattern penalty, and the letter-grade mapping.",
+              "quality_notes": "The skill provides the exact composite formula, dimension weights, layer blend table, and grade ranges, so a response would be correct, complete, and well-structured."
+            },
+            {
+              "task": "What anti-patterns does PluginEval check for and how are they penalized?",
+              "expected_output": "A list of the five anti-patterns (OVER_CONSTRAINED, EMPTY_DESCRIPTION, MISSING_TRIGGER, BLOATED_SKILL, ORPHAN_REFERENCE, DEAD_CROSS_REF), their triggers, problems, fixes, and the multiplicative penalty formula.",
+              "quality_notes": "The skill has a dedicated anti-pattern section with a consistent format for each flag, making the response actionable and easy to scan."
+            },
+            {
+              "task": "A skill received a D grade in triggering_accuracy. How should the author improve it?",
+              "expected_output": "Guidance covering the F1-based triggering metric, importance of a clear description with 'Use this skill when...', concrete trigger scenarios, avoiding MISSING_TRIGGER/EMPTY_DESCRIPTION, and running mental or real test prompts.",
+              "quality_notes": "The skill explains triggering_accuracy and the relevant anti-patterns, but improvement advice is somewhat distributed. The response would be useful and mostly complete, though a dedicated 'how to fix' checklist would make it stronger."
+            }
+          ]
+        },
+        "scope": {
+          "score": 1.0,
+          "assessment": "The skill is perfectly calibrated to the PluginEval evaluation domain. It covers the three evaluation layers, all ten dimensions, the composite formula, grade thresholds, quality badges, anti-pattern flags, and Elo ranking—each of which is directly part of quality methodology. It neither bloats into general plugin development nor leaves obvious evaluation subtopics uncovered, giving it minimal surface area and high cohesion."
+        },
+        "backend": "kimi",
+        "usage": {},
+        "duration_ms": 89260
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.9825062231401601,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 1.0,
+          "wilson_lower": 0.9286499658256813,
+          "wilson_upper": 1.0,
+          "n_activated": 50,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9188,
+          "std_dev": 0.05357760726273616,
+          "cv": 0.058312589532799476,
+          "bootstrap_lower": 0.9022,
+          "bootstrap_upper": 0.9318
+        },
+        "failure_rate": {
+          "p_fail": 0.0,
+          "cp_lower": 0.0,
+          "cp_upper": 0.07658106661496282,
+          "n_errored": 0
+        },
+        "token_efficiency": {
+          "median": 0.0,
+          "iqr": 0.0,
+          "outlier_count": 0,
+          "efficiency_norm": 1.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 50,
+        "n_errored": 0,
+        "error_samples": []
+      }
+    }
+  ],
+  "composite": {
+    "score": 80.44140573110965,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.85,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.9655,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.241375
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.98125,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.19625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8912800000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.133692
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.12
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.85,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.085
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.9837514934289128,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.059025089605734764
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.05
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.8500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.025500000000000002
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.83,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.0166
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

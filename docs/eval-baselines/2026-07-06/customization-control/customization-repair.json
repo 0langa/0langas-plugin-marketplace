@@ -1,0 +1,313 @@
+{
+  "plugin_path": "..\\customization-control\\skills\\customization-repair",
+  "timestamp": "2026-07-06T17:20:00.878794+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.49418999999999996,
+      "sub_scores": {
+        "frontmatter_quality": 0.41,
+        "orchestration_wiring": 0.7,
+        "progressive_disclosure": 0.2,
+        "structural_completeness": 0.2,
+        "token_efficiency": 1.0,
+        "ecosystem_coherence": 0.5,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "MISSING_TRIGGER",
+          "description": "Skill description lacks a recognised trigger phrase (e.g. \"Use when …\", \"This skill should be used when …\", \"Use after …\", \"Auto-loads when …\"). Without one, the model cannot determine when to invoke the skill.",
+          "severity": 0.15
+        }
+      ],
+      "metadata": {
+        "skill_name": "customization-repair",
+        "line_count": 83
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.7977272727272726,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.75,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Audit found broken-link entries in my Codex skill install. Repair them safely.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "A plugin is not loading because its plugin.json has missing required fields. Diagnose and repair what can be repaired.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Fix stale marketplace.json entries pointing at skill directories that no longer exist.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "One of my provider discovery symlinks is dead after moving a skill. Recreate the correct link.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "My custom skill has invalid SKILL.md frontmatter and Codex no longer sees it.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Create a brand new Codex plugin with a manifest and README.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "List all installable skills from the curated skill registry.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Sync my skill-center changes across Codex, Claude Code, and Kimi Code.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Review this plugin.json schema and tell me what each field means.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Delete this customization directory permanently without backup or quarantine.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill defines a clear repair workflow: assess, classify, dry-run, apply safe fixes, confirm unsafe fixes, and validate. It has a strong safety contract around dry-runs, backups, quarantine, absolute paths, and unsafe confirmation. The main weakness is that it depends on an external repair-policy.json without specifying the policy contents or fallback behavior if it is unavailable. It also overlaps slightly with sync behavior for missing provider links, but keeps that overlap bounded to repair contexts.",
+          "evidence": [
+            "Explicit workflow stages define ownership and sequencing from assessment through validation.",
+            "Safe and unsafe repair categories clarify which actions can be automatic and which require confirmation.",
+            "Quarantine and backup requirements make destructive operations auditable.",
+            "The external repair-policy.json dependency is mandatory but underspecified in the supplied text."
+          ]
+        },
+        "output_quality": {
+          "score": 0.75,
+          "simulations": [
+            {
+              "task": "User says an audit found two broken symlinks and one stale marketplace entry.",
+              "expected_output": "Codex should read the repair policy, scan or consume audit results, resolve absolute paths, produce a dry-run separating safe symlink recreation from unsafe marketplace editing, auto-apply safe symlink fixes, ask before marketplace removal, quarantine/back up before removal if approved, and validate links and JSON.",
+              "quality_notes": "The instructions are complete enough to produce a safe and useful response. The only gap is that exact audit input format and policy schema are not defined."
+            },
+            {
+              "task": "User reports a plugin is not loading because plugin.json is invalid.",
+              "expected_output": "Codex should inspect plugin.json, identify specific missing or invalid fields, classify it as unsafe, present findings, and avoid auto-fixing until the user or author decides how to correct the manifest.",
+              "quality_notes": "This is well handled. The skill prevents speculative manifest edits and focuses on diagnosis and confirmation."
+            },
+            {
+              "task": "User asks to remove unknown customization files that look corrupted.",
+              "expected_output": "Codex should classify the items as unknown customizations if they are not recognized, report them only, and refuse to modify them automatically. It should explain that unknown customizations are never modified by this repair workflow.",
+              "quality_notes": "The safety behavior is clear and likely to prevent data loss, though the skill does not define how to recognize approved roots or known customizations."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill is well-scoped around repairing broken customization state: symlinks, manifests, marketplace entries, duplicates, unknown items, quarantine, and validation. It is not merely a wrapper and has useful domain-specific safety policy. It is slightly broader than ideal because it touches sync-like provider link creation and corrupted config without detailing config repair types, but the overall domain remains cohesive."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17479,
+          "cached_input_tokens": 2432,
+          "output_tokens": 923,
+          "reasoning_output_tokens": 48
+        },
+        "duration_ms": 21860
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.5836398447103128,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.48,
+          "wilson_lower": 0.3479691239550571,
+          "wilson_upper": 0.6148848774119157,
+          "n_activated": 24,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9508333333333333,
+          "std_dev": 0.013819269959814143,
+          "cv": 0.01453385096562399,
+          "bootstrap_lower": 0.9454166666666667,
+          "bootstrap_upper": 0.9566666666666667
+        },
+        "failure_rate": {
+          "p_fail": 0.52,
+          "cp_lower": 0.3741519448582558,
+          "cp_upper": 0.6633949103255259,
+          "n_errored": 26
+        },
+        "token_efficiency": {
+          "median": 17243.0,
+          "iqr": 35.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 24,
+        "n_errored": 26,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043ff3bb2db02-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044048de4d2ea-FRA)",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044bd8e0630e2-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044c3efa8e7b4-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044cbafa3d394-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044bf0d2c98ea-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044c61af61c9b-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044ce281bdcbd-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044c06de19f2d-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044c61c7fd266-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044ce1c8fdc84-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044d81c343736-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044dcfce01917-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044e45832d372-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 58.181184291898575,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.95,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.5767727272727272,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.1441931818181818
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7437499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.14875
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8705,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.130575
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.20000000000000004,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.020000000000000004
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4444444444444445,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.02666666666666667
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.48,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.024
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.2,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.006
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.01
+      }
+    ],
+    "badge": "no_badge",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

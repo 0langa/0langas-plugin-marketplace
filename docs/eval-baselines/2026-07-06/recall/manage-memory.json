@@ -1,0 +1,308 @@
+{
+  "plugin_path": "..\\RECALL\\plugins\\recall\\skills\\manage-memory",
+  "timestamp": "2026-07-06T22:27:45.019123+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.9172344827586207,
+      "sub_scores": {
+        "frontmatter_quality": 0.86,
+        "orchestration_wiring": 1.0,
+        "progressive_disclosure": 0.8,
+        "structural_completeness": 0.9500000000000001,
+        "token_efficiency": 0.9448275862068966,
+        "ecosystem_coherence": 1.0,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "skill_name": "manage-memory",
+        "line_count": 198
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.845,
+      "sub_scores": {
+        "triggering_accuracy": 1.0,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.83,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Set RECALL capture to minimal mode for this project.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Memory 12 is obsolete; mark it stale with a note that the API changed.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "The memory index seems corrupted after the last run. Please repair it.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Archive noisy automatic command-history memories after the audit.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Merge memories 18, 19, and 20 because they are duplicates.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "What does RECALL remember about the database migration?",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Remember that we decided to use PostgreSQL for the audit log.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Find the old pytest command from project memory.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Review all memory entries and tell me which ones look low quality.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Create a new durable memory saying the feature flag is now required.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The skill is a focused reusable workflow for RECALL maintenance with clear ownership boundaries, command examples, input shapes, safety rules, and output expectations. It is composable with review-memory, retrieve-memory, and save-insight rather than trying to own all memory behavior. The main weakness is that it references a contract asset and maintenance playbook without including their contents, and it instructs use of related skills for ID discovery, which makes the exact handoff behavior somewhat dependent on external context.",
+          "evidence": [
+            "Defines a narrow domain: existing-memory maintenance, capture lifecycle control, cleanup, doctor, and repair.",
+            "Explicitly excludes ordinary retrieval and new durable memory capture.",
+            "Provides concrete commands through recall_skill.py and warns against lower-level backend files.",
+            "Includes destructive-delete confirmation requirements and prefers archival over deletion.",
+            "Output format is concise and structured around action, IDs, status, and follow-up."
+          ]
+        },
+        "output_quality": {
+          "score": 0.83,
+          "simulations": [
+            {
+              "task": "User says: `Set recall to manual capture mode.`",
+              "expected_output": "Codex should run `python ./scripts/recall_skill.py configure-capture manual` from the plugin root or use the adapter path with `--root <project-root>`, then report that capture mode is manual and list any follow-up if the command reports one.",
+              "quality_notes": "The skill handles this very well. The workflow names valid modes, clarifies hook behavior, and defines a concise result format. One minor gap is that the command examples omit `manual` even though the workflow mentions it."
+            },
+            {
+              "task": "User says: `Delete memory 44; it contains wrong information.`",
+              "expected_output": "Codex should require or verify explicit destructive intent and safety confirmation, prefer archival if deletion is not explicit enough, then run `delete-memory 44 --confirm DELETE-44` only when the user has confirmed deletion. It should summarize the deleted ID and status without repeating sensitive content.",
+              "quality_notes": "The safety posture is strong: deletion requires explicit user intent and a confirmation token, with archival preferred. The instructions could be slightly clearer on whether the phrase `Delete memory 44` alone is sufficient explicit intent or whether Codex must ask for the `DELETE-44` token first."
+            },
+            {
+              "task": "User says: `Clean up the noisy memories from yesterday's review; I don't know the IDs.`",
+              "expected_output": "Codex should start with `review-memory` or `retrieve-memory` to identify relevant IDs or determine whether `archive-noise` is appropriate, then run a non-destructive cleanup such as `archive-noise`, and return changed IDs and status.",
+              "quality_notes": "The skill gives good sequencing for unclear IDs and cleanup after review/audit. It avoids guessing and favors non-destructive archival. The only limitation is that the exact criteria for `archive-noise` versus targeted prune are deferred to external review behavior or the referenced playbook."
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "Well-scoped. It covers one coherent domain: maintenance and lifecycle operations for existing local RECALL memory. It includes capture-mode control, noise cleanup, lifecycle mutation, deletion safety, repair, and legacy migration, while explicitly excluding retrieval-only and new-memory creation. The inclusion of migration is slightly broader than the description emphasizes, but still fits storage maintenance. Overall the surface area is cohesive and useful without becoming a general memory supervisor."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 18860,
+          "cached_input_tokens": 2432,
+          "output_tokens": 1034,
+          "reasoning_output_tokens": 56
+        },
+        "duration_ms": 77577
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.8292397909707653,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.9,
+          "wilson_lower": 0.7863950966521162,
+          "wilson_upper": 0.956524876008429,
+          "n_activated": 45,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9393333333333334,
+          "std_dev": 0.03369141004931539,
+          "cv": 0.03586736343078289,
+          "bootstrap_lower": 0.9293333333333333,
+          "bootstrap_upper": 0.9488888888888888
+        },
+        "failure_rate": {
+          "p_fail": 0.1,
+          "cp_lower": 0.033275093589831155,
+          "cp_upper": 0.21813536656495572,
+          "n_errored": 5
+        },
+        "token_efficiency": {
+          "median": 18599.0,
+          "iqr": 41.0,
+          "outlier_count": 0,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 45,
+        "n_errored": 5,
+        "error_samples": [
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.86,\"response\":\"This should activate `manage-memory` because the request is an existing-memory lifecycle update after review. I would first use the reviewed item IDs from the prior review output; if they are not available in context, I would run `review-memory` to collect them, then mark each accepted item with the appropriate lifecycle command, for example:\\n\\n```json\\n{\\\"intent\\\":\\\"lifecycle\\\",\\\"ids\\\":\\\"from review o",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.92,\"response\":\"I would activate `manage-memory` because this is an explicit RECALL capture-mode change. I’d map “only captures high-confidence memories” to `manual` mode unless the user wanted some automatic capture retained, then run:\\n\\n`python ./scripts/recall_skill.py configure-capture manual`\\n\\nRepresentative result:\\n\\n```json\\n{\\\"action\\\":\\\"configure-capture\\\",\\\"mode\\\":\\\"manual\\\",\\\"status\\\":\\\"updated\\\",\\\"follo",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"I’d activate `manage-memory` because the request explicitly changes RECALL capture behavior.\\n\\nRepresentative response:\\n\\n```json\\n{\\\"action\\\":\\\"configure-capture\\\",\\\"mode\\\":\\\"manual\\\",\\\"status\\\":\\\"capture mode set to manual\\\",\\\"follow_up\\\":\\\"automatic hook capture is disabled until you reconfigure capture mode; explicit skill/MCP saves remain available\\\"}\\n```\\n\\nCommand to run from the plugin root:\\",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.98,\"response\":\"I would use `manage-memory` because this is an explicit RECALL capture-mode maintenance request. Representative result:\\n\\n```json\\n{\\\"action\\\":\\\"configure-capture\\\",\\\"mode\\\":\\\"off\\\",\\\"status\\\":\\\"capture_disabled\\\",\\\"follow_up\\\":\\\"RECALL skill and MCP saves remain available; automatic hook capture, including explicit prompt cues, is disabled for this workspace.\\\"}\\n```\"}",
+          "RuntimeError: Codex returned invalid JSON: {\"activated\":true,\"quality_score\":0.96,\"response\":\"I would use `manage-memory` because this is an explicit RECALL capture-mode maintenance request.\\n\\nRepresentative response:\\n```json\\n{\\\"action\\\":\\\"configure-capture\\\",\\\"mode\\\":\\\"manual\\\",\\\"status\\\":\\\"capture mode set to manual\\\",\\\"follow_up\\\":\\\"Automatic hook capture is disabled except explicit @recall remember this cues and skill/MCP saves; re-enable later with configure-capture standard or minimal.\\"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 82.55463288763781,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 1.0,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.919,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.22975
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7812499999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C+",
+        "evidence": [],
+        "weighted_score": 0.15625
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8956,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B+",
+        "evidence": [],
+        "weighted_score": 0.13434
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.8000000000000002,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B-",
+        "evidence": [],
+        "weighted_score": 0.08000000000000002
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4199233716475096,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025195402298850575
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.9,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A-",
+        "evidence": [],
+        "weighted_score": 0.045000000000000005
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.9500000000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A",
+        "evidence": [],
+        "weighted_score": 0.0285
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 1.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "A+",
+        "evidence": [],
+        "weighted_score": 0.02
+      }
+    ],
+    "badge": "gold",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}

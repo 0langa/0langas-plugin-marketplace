@@ -1,0 +1,339 @@
+{
+  "plugin_path": "..\\customization-control\\skills\\customization-sync",
+  "timestamp": "2026-07-06T17:20:07.983403+00:00",
+  "config": {
+    "depth": "deep",
+    "concurrency": 4,
+    "model_tier": "auto",
+    "provider": "codex",
+    "model": null,
+    "output_format": "json",
+    "verbose": false,
+    "corpus_path": null,
+    "auth": "codex",
+    "judges": 1,
+    "monte_carlo_n": null
+  },
+  "layers": [
+    {
+      "layer": "static",
+      "score": 0.4056779999999999,
+      "sub_scores": {
+        "frontmatter_quality": 0.41,
+        "orchestration_wiring": 0.75,
+        "progressive_disclosure": 0.2,
+        "structural_completeness": 0.5499999999999999,
+        "token_efficiency": 0.976,
+        "ecosystem_coherence": 0.75,
+        "harness_portability": 1.0
+      },
+      "anti_patterns": [
+        {
+          "flag": "MISSING_TRIGGER",
+          "description": "Skill description lacks a recognised trigger phrase (e.g. \"Use when …\", \"This skill should be used when …\", \"Use after …\", \"Auto-loads when …\"). Without one, the model cannot determine when to invoke the skill.",
+          "severity": 0.15
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'skill-name' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'skill-name' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'skill-name' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'skill-name' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        },
+        {
+          "flag": "DEAD_CROSS_REF",
+          "description": "Cross-reference to skill/agent 'muteman' cannot be resolved. Dead links degrade ecosystem coherence.",
+          "severity": 0.05
+        }
+      ],
+      "metadata": {
+        "skill_name": "customization-sync",
+        "line_count": 71
+      }
+    },
+    {
+      "layer": "judge",
+      "score": 0.7977272727272726,
+      "sub_scores": {
+        "triggering_accuracy": 0.9090909090909091,
+        "orchestration_fitness": 0.75,
+        "output_quality": 0.75,
+        "scope_calibration": 0.75
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "triggering": {
+          "predictions": [
+            {
+              "prompt": "Sync my new `muteman` skill into `.codex/skills`, `.claude/skills`, and `.kimi-code/skills` from its canonical repo folder.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Audit this customization repo and repair any broken provider skill links.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "I added a canonical skill directory but Codex does not discover it; create the missing user-level link.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Make sure all provider discovery directories point to the source-of-truth skill folders with symlinks or junctions.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "After my audit, several provider-link entries are missing. Generate a dry-run and then fix them after confirmation.",
+              "should_trigger": true,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Create a brand new Codex skill with a SKILL.md and manifest from scratch.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Install a curated skill from GitHub into my local Codex skills directory.",
+              "should_trigger": false,
+              "would_trigger": true
+            },
+            {
+              "prompt": "Review the Python code in this repository for security issues.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Explain how Claude Code discovers project skills and where they should be stored.",
+              "should_trigger": false,
+              "would_trigger": false
+            },
+            {
+              "prompt": "Delete obsolete skill directories from all providers and remove their canonical source folders.",
+              "should_trigger": false,
+              "would_trigger": false
+            }
+          ],
+          "precision": 0.8333333333333334,
+          "recall": 1,
+          "f1": 0.9090909090909091
+        },
+        "orchestration": {
+          "score": 0.75,
+          "reasoning": "The workflow is focused and reusable: identify canonical sources, check provider links, present a dry-run, apply only after confirmation, and validate. Inputs and outputs are mostly clear through expected path conventions and a dry-run table. The main weakness is that provider selection and canonical-source discovery are underspecified, and it declares Bash while showing PowerShell/cmd behavior without clarifying tool ownership in Codex environments.",
+          "evidence": [
+            "Explicit five-step workflow from discovery through validation.",
+            "Dry-run plan format defines a concrete intermediate output.",
+            "Safety rules define conflict handling and verification behavior.",
+            "Provider link target table gives concrete expected outputs for each supported provider.",
+            "User confirmation before apply is explicit, but discovery rules for canonical sources are not fully specified."
+          ]
+        },
+        "output_quality": {
+          "score": 0.75,
+          "simulations": [
+            {
+              "task": "A user says a canonical skill exists at `repo/muteman` but `.codex/skills/muteman` and `.kimi-code/skills/muteman` are missing.",
+              "expected_output": "Codex would locate the canonical directory, verify it exists, produce a dry-run table showing missing Codex and Kimi project links, ask for confirmation, create relative in-repo links or Windows junctions, and validate they resolve to `repo/muteman`.",
+              "quality_notes": "The instructions are strong enough for a useful response. They specify paths, relative targets, dry-run, confirmation, and validation. Minor ambiguity remains around detecting OS and exactly which shell/tool to use."
+            },
+            {
+              "task": "A user asks to repair a broken `.claude/skills/official-ai-devdocs` link that points to the wrong source.",
+              "expected_output": "Codex would classify the provider link as broken or incorrect, verify the intended canonical source exists, include a repair action in the dry-run, avoid overwriting non-link directories, then replace or repair the link after user confirmation and verify resolution.",
+              "quality_notes": "Good safety posture and output structure. It would likely produce correct behavior, though the skill does not spell out the exact remove-and-recreate procedure for broken links."
+            },
+            {
+              "task": "A user asks to sync every skill in a large customization repo but exclude `experimental-agent`.",
+              "expected_output": "Codex would enumerate canonical skill folders, skip the excluded skill, compare provider discovery directories, report missing, broken, and conflicting entries in the dry-run table, apply confirmed fixes, and validate all intended links.",
+              "quality_notes": "The exclusion rule and workflow cover this scenario, but canonical source identification is broad and may be inconsistent in unusual repo layouts. The skill would benefit from explicit canonical-folder criteria such as presence of `SKILL.md`. "
+            }
+          ]
+        },
+        "scope": {
+          "score": 0.75,
+          "assessment": "The skill covers one coherent domain: keeping canonical skill directories linked into provider discovery locations. It includes project-level and user-level targets, platform-specific link creation, dry-run planning, and safety checks without drifting into skill authoring or installation. It is slightly under-specified for repository layouts and provider-selection policy, but the surface area is cohesive and useful."
+        },
+        "backend": "codex",
+        "usage": {
+          "input_tokens": 17451,
+          "cached_input_tokens": 15232,
+          "output_tokens": 1040,
+          "reasoning_output_tokens": 69
+        },
+        "duration_ms": 25394
+      }
+    },
+    {
+      "layer": "monte_carlo",
+      "score": 0.5965109198938384,
+      "sub_scores": {
+        "triggering": {
+          "activation_rate": 0.5,
+          "wilson_lower": 0.36644286412332855,
+          "wilson_upper": 0.6335571358766714,
+          "n_activated": 25,
+          "n_total": 50
+        },
+        "output_consistency": {
+          "mean_quality": 0.9444,
+          "std_dev": 0.010983624174196766,
+          "cv": 0.011630267020538718,
+          "bootstrap_lower": 0.9403999999999999,
+          "bootstrap_upper": 0.9484
+        },
+        "failure_rate": {
+          "p_fail": 0.5,
+          "cp_lower": 0.355272996957804,
+          "cp_upper": 0.6447270047413574,
+          "n_errored": 25
+        },
+        "token_efficiency": {
+          "median": 17210.0,
+          "iqr": 27.0,
+          "outlier_count": 1,
+          "efficiency_norm": 0.0
+        }
+      },
+      "anti_patterns": [],
+      "metadata": {
+        "n_runs": 50,
+        "n_activated": 25,
+        "n_errored": 25,
+        "error_samples": [
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043dc3cc597e1-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043e0aa4cbb92-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17043e7e9f3d296-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044a5da7ad272-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044aabd196c5f-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044b5ad4dd295-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044c6cc999055-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044cdd8b19f1b-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044d52d58e98c-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044cf4f273554-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044d3ef68d2ce-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044dd4e8cd275-FRA); Recon",
+          "RuntimeError: Codex evaluation failed: Reconnecting... 2/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044d4ebf2d264-FRA); Reconnecting... 3/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044db1a26dc54-FRA); Reconnecting... 4/5 (unexpected status 403 Forbidden: Unknown error, url: wss://chatgpt.com/backend-api/codex/responses, cf-ray: a17044e42d93e5e3-FRA); Recon"
+        ]
+      }
+    }
+  ],
+  "composite": {
+    "score": 44.26541774891775,
+    "ci_lower": null,
+    "ci_upper": null,
+    "anti_pattern_penalty": 0.7,
+    "dimensions": [
+      {
+        "name": "triggering_accuracy",
+        "weight": 0.25,
+        "score": 0.5887727272727272,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.1471931818181818
+      },
+      {
+        "name": "orchestration_fitness",
+        "weight": 0.2,
+        "score": 0.7499999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.15
+      },
+      {
+        "name": "output_quality",
+        "weight": 0.15,
+        "score": 0.8666400000000001,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "B",
+        "evidence": [],
+        "weighted_score": 0.129996
+      },
+      {
+        "name": "scope_calibration",
+        "weight": 0.12,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.09
+      },
+      {
+        "name": "progressive_disclosure",
+        "weight": 0.1,
+        "score": 0.20000000000000004,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.020000000000000004
+      },
+      {
+        "name": "token_efficiency",
+        "weight": 0.06,
+        "score": 0.4337777777777778,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.026026666666666667
+      },
+      {
+        "name": "robustness",
+        "weight": 0.05,
+        "score": 0.5,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.025
+      },
+      {
+        "name": "structural_completeness",
+        "weight": 0.03,
+        "score": 0.5499999999999999,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "F",
+        "evidence": [],
+        "weighted_score": 0.016499999999999997
+      },
+      {
+        "name": "code_template_quality",
+        "weight": 0.02,
+        "score": 0.0,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "—",
+        "evidence": [],
+        "weighted_score": 0.0
+      },
+      {
+        "name": "ecosystem_coherence",
+        "weight": 0.02,
+        "score": 0.75,
+        "ci_lower": null,
+        "ci_upper": null,
+        "grade": "C",
+        "evidence": [],
+        "weighted_score": 0.015
+      }
+    ],
+    "badge": "no_badge",
+    "confidence_label": "Certified"
+  },
+  "elo": null,
+  "model_usage": {},
+  "total_duration_ms": null
+}
