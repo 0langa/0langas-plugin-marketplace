@@ -66,7 +66,7 @@
       "source": "./plugins/computer-custom/dist/computer-custom",
       "displayName": "Computer Custom",
       "description": "Policy-controlled guard for Computer Use: hard-blocked paths/actions, risky-action confirmation, and a redacted audit log.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "repository": "https://github.com/0langa/computer-custom"
     }
   ]

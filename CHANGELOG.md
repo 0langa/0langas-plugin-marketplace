@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-07-13
+
+- Released Computer Custom 0.1.2 with restored Codex runtime compatibility, safer confirmation fallback, and expanded policy/audit tests.
+
 ## 2026-07-12
 
 - Added ChatGPT-hosted Codex and GPT-5.6 compatibility evidence.
