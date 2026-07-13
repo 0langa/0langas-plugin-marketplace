@@ -1,10 +1,28 @@
 # 0langa Plugin Marketplace
 
-Private plugin marketplace for 0langa's Codex, Claude Code, and Kimi Code plugins.
+Plugin marketplace for 0langa's Codex, Claude Code, and Kimi Code plugins.
 
 This repository keeps provider-specific marketplace files in one place while using the source plugin repositories as submodules.
 
-## Setup
+## Install From GitHub
+
+Authenticate Git for the private repositories first, for example with `gh auth login` or a configured Git Credential Manager. Then add the marketplace once.
+
+### Codex
+
+```powershell
+codex plugin marketplace add 0langa/0langas-plugin-marketplace
+```
+
+### Claude Code
+
+```powershell
+claude plugin marketplace add 0langa/0langas-plugin-marketplace
+```
+
+The marketplace catalog uses HTTPS, release-tagged, full-SHA-pinned plugin sources. Client installs do not depend on Git submodules being initialized in the marketplace checkout.
+
+## Development Checkout
 
 ```powershell
 git clone https://github.com/0langa/0langas-plugin-marketplace.git
@@ -12,7 +30,7 @@ cd 0langas-plugin-marketplace
 git submodule update --init --recursive
 ```
 
-Private submodules require GitHub authentication.
+Private submodules require GitHub authentication. They are needed for marketplace development, validation, and local Kimi Code installs, but not for Codex or Claude installs from the GitHub marketplace.
 
 ## Registry
 
@@ -35,6 +53,7 @@ Source plugins live under `plugins/` as git submodules. Per-plugin notes live un
 
 ```powershell
 ./scripts/validate-marketplace.ps1
+./scripts/test-marketplace-e2e.ps1
 ```
 
 Validation checks catalog uniqueness, provider parity, submodule roots, manifest
@@ -55,12 +74,14 @@ to add full manifest and asset validation.
 - [usage-pulse](docs/plugins/usage-pulse/README.md)
 - [computer-custom](docs/plugins/computer-custom/README.md)
 
-## Install From This Marketplace
+Use `-MarketplaceSource 0langa/0langas-plugin-marketplace` to run the E2E test against the published GitHub catalog after a marketplace release. By default it tests the current checkout while fetching every plugin from its pinned GitHub source.
+
+## Install Plugins
 
 ### Codex
 
 ```powershell
-codex plugin marketplace add .
+codex plugin marketplace add 0langa/0langas-plugin-marketplace
 codex plugin add webde-access@0langas-plugins
 codex plugin add recall@0langas-plugins
 codex plugin add plugin-evaluation-kimi@0langas-plugins
@@ -74,7 +95,7 @@ codex plugin add computer-custom@0langas-plugins
 ### Claude Code
 
 ```powershell
-claude plugin marketplace add .
+claude plugin marketplace add 0langa/0langas-plugin-marketplace
 claude plugin install webde-access@0langas-plugins
 claude plugin install recall@0langas-plugins
 claude plugin install plugin-evaluation-kimi@0langas-plugins

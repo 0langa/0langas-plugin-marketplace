@@ -46,6 +46,99 @@ function Resolve-PluginRoot([string]$RelativePath, [string]$PluginName) {
     return $resolved
 }
 
+function Normalize-GitUrl([string]$Value) {
+    $normalized = $Value.Trim()
+    if ($normalized -match '^[^/:]+/[^/]+$') {
+        $normalized = "https://github.com/$normalized"
+    }
+    return $normalized.TrimEnd('/').Replace('.git', '').ToLowerInvariant()
+}
+
+function Get-SubmoduleRoot([string]$PluginRoot, [string]$PluginName) {
+    $parts = @($PluginRoot.Replace('/', '\') -split '\\' | Where-Object { $_ })
+    if ($parts.Count -lt 2 -or $parts[0] -ne 'plugins') {
+        Add-ValidationError "$PluginName pluginRoot is not inside a plugins/<submodule> root: $PluginRoot"
+        return $null
+    }
+    return [IO.Path]::GetFullPath((Join-Path $repoRoot (Join-Path $parts[0] $parts[1])))
+}
+
+function Test-MarketplaceSource([object]$Entry, [object]$Plugin, [string]$Surface) {
+    $name = [string]$Entry.name
+    $source = $Entry.source
+    if ($source -is [string]) {
+        $null = Resolve-PluginRoot ([string]$source) $name
+        return
+    }
+
+    $kind = [string]$source.source
+    if ($kind -eq 'local') {
+        $null = Resolve-PluginRoot ([string]$source.path) $name
+        return
+    }
+
+    $allowedKinds = if ($Surface -eq 'Codex') { @('url', 'git-subdir') } else { @('github', 'url', 'git-subdir') }
+    if ($kind -notin $allowedKinds) {
+        Add-ValidationError "$name has unsupported $Surface marketplace source type '$kind'"
+        return
+    }
+
+    $remote = if ($kind -eq 'github') { [string]$source.repo } else { [string]$source.url }
+    if ([string]::IsNullOrWhiteSpace($remote)) {
+        Add-ValidationError "$name $Surface source '$kind' is missing its repository"
+    }
+    elseif ($remote -match '^https?://[^/]*@') {
+        Add-ValidationError "$name $Surface source embeds credentials in its URL"
+    }
+    elseif ((Normalize-GitUrl $remote) -ne (Normalize-GitUrl ([string]$Plugin.repository))) {
+        Add-ValidationError "$name $Surface source repository does not match plugins.json"
+    }
+
+    $ref = [string]$source.ref
+    $sha = [string]$source.sha
+    if ([string]::IsNullOrWhiteSpace($ref)) {
+        Add-ValidationError "$name $Surface Git source must pin a release ref"
+    }
+    if ($sha -notmatch '^[0-9a-fA-F]{40}$') {
+        Add-ValidationError "$name $Surface Git source must pin a full 40-character SHA"
+        return
+    }
+
+    $submoduleRoot = Get-SubmoduleRoot ([string]$Plugin.pluginRoot) $name
+    if ($null -eq $submoduleRoot -or -not (Test-Path -LiteralPath $submoduleRoot -PathType Container)) {
+        Add-ValidationError "$name local submodule root is unavailable for source-pin validation"
+        return
+    }
+
+    $head = [string](git -C $submoduleRoot rev-parse HEAD 2>$null)
+    if ($LASTEXITCODE -ne 0 -or $head -ne $sha) {
+        Add-ValidationError "$name $Surface source SHA does not match the pinned submodule commit"
+    }
+    $refCommit = [string](git -C $submoduleRoot rev-parse "$ref^{commit}" 2>$null)
+    if ($LASTEXITCODE -ne 0 -or $refCommit -ne $sha) {
+        Add-ValidationError "$name $Surface source ref '$ref' does not resolve to its pinned SHA"
+    }
+
+    $expectedRoot = $submoduleRoot
+    if ($kind -eq 'git-subdir') {
+        $subdir = ([string]$source.path).Replace('/', '\').TrimStart('.', '\')
+        if ([string]::IsNullOrWhiteSpace($subdir) -or $subdir -split '\\' -contains '..') {
+            Add-ValidationError "$name $Surface git-subdir path is missing or unsafe"
+            return
+        }
+        $expectedRoot = [IO.Path]::GetFullPath((Join-Path $submoduleRoot $subdir))
+        if (-not $expectedRoot.StartsWith($submoduleRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
+            Add-ValidationError "$name $Surface git-subdir path escapes its repository"
+            return
+        }
+    }
+
+    $localPluginRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot ([string]$Plugin.pluginRoot)))
+    if (-not $expectedRoot.Equals($localPluginRoot, [StringComparison]::OrdinalIgnoreCase)) {
+        Add-ValidationError "$name $Surface Git source does not resolve to pluginRoot '$($Plugin.pluginRoot)'"
+    }
+}
+
 function Read-PluginManifest([string]$PluginRoot, [string]$RelativePath, [string]$PluginName) {
     $path = Join-Path $PluginRoot $RelativePath
     if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
@@ -138,11 +231,12 @@ foreach ($plugin in $registry.plugins) {
 
 if (-not $CatalogOnly) {
     foreach ($entry in $codexMarketplace.plugins) {
-        $source = if ($entry.source -is [string]) { [string]$entry.source } else { [string]$entry.source.path }
-        $null = Resolve-PluginRoot $source ([string]$entry.name)
+        $plugin = @($registry.plugins | Where-Object name -eq ([string]$entry.name))[0]
+        Test-MarketplaceSource $entry $plugin 'Codex'
     }
     foreach ($entry in $claudeMarketplace.plugins) {
-        $null = Resolve-PluginRoot ([string]$entry.source) ([string]$entry.name)
+        $plugin = @($registry.plugins | Where-Object name -eq ([string]$entry.name))[0]
+        Test-MarketplaceSource $entry $plugin 'Claude'
     }
     foreach ($entry in $kimiMarketplace.plugins) {
         $null = Resolve-PluginRoot ([string]$entry.source) ([string]$entry.id)

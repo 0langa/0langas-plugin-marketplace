@@ -17,14 +17,14 @@ plugins/plugin-evaluation-kimi
 ### Codex
 
 ```powershell
-codex plugin marketplace add .
+codex plugin marketplace add 0langa/0langas-plugin-marketplace
 codex plugin add plugin-evaluation-kimi@0langas-plugins
 ```
 
 ### Claude Code
 
 ```powershell
-claude plugin marketplace add .
+claude plugin marketplace add 0langa/0langas-plugin-marketplace
 claude plugin install plugin-evaluation-kimi@0langas-plugins
 ```
 

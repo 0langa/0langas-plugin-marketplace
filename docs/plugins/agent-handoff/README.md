@@ -10,19 +10,15 @@ https://github.com/0langa/agent-handoff-cck
 
 ### Codex
 
-Install from the marketplace repo once submodules are initialized:
-
 ```powershell
-codex plugin marketplace add .
+codex plugin marketplace add 0langa/0langas-plugin-marketplace
 codex plugin add agent-handoff@0langas-plugins
 ```
 
 ### Claude Code
 
-Install from the marketplace repo once submodules are initialized:
-
 ```powershell
-claude plugin marketplace add .
+claude plugin marketplace add 0langa/0langas-plugin-marketplace
 claude plugin install agent-handoff@0langas-plugins
 ```
 
@@ -56,9 +52,7 @@ uv run agent-handoff --help
 
 ## Validation
 
-Validated on July 2, 2026:
+Validated on July 13, 2026:
 
-- `uv run pytest`: 44 passed
-- `claude plugin validate C:\path\to\agent-handoff-cck`: passed
-- CLI provider flows for `codex`, `claude-code`, and `kimi-code`: passed
-- Cross-provider flow `codex -> claude-code -> kimi-code`: passed
+- `uv run --extra dev pytest -q`: 72 passed
+- Fresh Codex and Claude marketplace install from the pinned Git source: passed

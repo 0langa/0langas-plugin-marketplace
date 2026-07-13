@@ -10,19 +10,15 @@ https://github.com/0langa/customization-control
 
 ### Codex
 
-Install from the marketplace repo once submodules are initialized:
-
 ```powershell
-codex plugin marketplace add .
+codex plugin marketplace add 0langa/0langas-plugin-marketplace
 codex plugin add customization-control@0langas-plugins
 ```
 
 ### Claude Code
 
-Install from the marketplace repo once submodules are initialized:
-
 ```powershell
-claude plugin marketplace add .
+claude plugin marketplace add 0langa/0langas-plugin-marketplace
 claude plugin install customization-control@0langas-plugins
 ```
 
@@ -53,4 +49,4 @@ Or install the source plugin checkout directly:
 
 ## Version
 
-0.1.0
+0.1.2
