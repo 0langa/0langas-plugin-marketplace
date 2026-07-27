@@ -10,12 +10,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Web.de-Access.git",
-        "ref": "v0.2.2",
-        "sha": "aa086384ad8be5f84fcbe5d427d852a495144ea3"
+        "ref": "v0.2.3",
+        "sha": "19bedebe6c9987385df18146c0b93fb88c6716b6"
       },
       "displayName": "Web.de Access",
       "description": "Private Web.de mailbox connector for reading, drafting, sending, and managing mail.",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "repository": "https://github.com/0langa/Web.de-Access"
     },
     {
@@ -24,12 +24,12 @@
         "source": "git-subdir",
         "url": "https://github.com/0langa/RECALL.git",
         "path": "plugins/recall",
-        "ref": "v1.5.2",
-        "sha": "5bc4b9f3057e2ab5ae7addb3b4ea5eff96bccce5"
+        "ref": "v1.5.3",
+        "sha": "48051ccb0049cde6497463a2d056fd81d1c2e228"
       },
       "displayName": "RECALL",
       "description": "Local-first project memory shared across Codex, Claude Code, and Kimi Code.",
-      "version": "1.5.2",
+      "version": "1.5.3",
       "repository": "https://github.com/0langa/RECALL"
     },
     {
@@ -63,12 +63,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/customization-control.git",
-        "ref": "v0.1.2",
-        "sha": "b0efd64a8332099d807e47c0c63ce3e794b16666"
+        "ref": "v0.1.3",
+        "sha": "051b028ea35271ab7d0c20a6d655cdfa31e77ec1"
       },
       "displayName": "Customization Control",
       "description": "Audit, deduplicate, repair, sync, and manage agent customizations across Codex, Claude Code, and Kimi Code.",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "repository": "https://github.com/0langa/customization-control"
     },
     {
@@ -76,12 +76,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/plugin-forge.git",
-        "ref": "v0.2.2",
-        "sha": "650e3b1bc040cca4ac26f9a82ad0c082b609b7c4"
+        "ref": "v0.2.3",
+        "sha": "6749652d56a1a47d0baf9bdbb54937a08980f1d7"
       },
       "displayName": "Plugin Forge",
       "description": "Multi-provider plugin lifecycle automation for manifest generation, installs, versions, and marketplace state.",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "repository": "https://github.com/0langa/plugin-forge"
     },
     {
@@ -89,12 +89,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/usage-pulse.git",
-        "ref": "v0.1.3",
-        "sha": "a117ef24f867ae0cfb99bad8b6189d5546f90f67"
+        "ref": "v0.1.4",
+        "sha": "d1742039fa92ea2e14ae0287b26b3af23b32e79d"
       },
       "displayName": "Usage Pulse",
       "description": "Local passive usage telemetry for Claude Code, Codex, and Kimi Code sessions.",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "repository": "https://github.com/0langa/usage-pulse"
     },
     {
@@ -103,12 +103,12 @@
         "source": "git-subdir",
         "url": "https://github.com/0langa/computer-custom.git",
         "path": "dist/computer-custom",
-        "ref": "v0.1.3",
-        "sha": "b68188ca88565337356fd3c8ef58ccefdab380d9"
+        "ref": "v0.1.4",
+        "sha": "3f984b7f53c32c349c26a8edf5eaa4fd6b919e6f"
       },
       "displayName": "Computer Custom",
       "description": "Policy-controlled guard for Computer Use: hard-blocked paths/actions, risky-action confirmation, and a redacted audit log.",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "repository": "https://github.com/0langa/computer-custom"
     }
   ]

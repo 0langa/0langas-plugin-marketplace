@@ -7,7 +7,7 @@ Marketplace entry for `computer-custom`.
 | Repository | `https://github.com/0langa/computer-custom` |
 | Local source | `plugins/computer-custom/dist/computer-custom` |
 | Providers | Codex, Claude Code |
-| Version | `0.1.3` |
+| Version | `0.1.4` |
 
 ## Install
 

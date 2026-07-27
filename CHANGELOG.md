@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-27
+
+- Released Computer Custom 0.1.4 with reliable official-first bootstrap, live Computer Use guidance, and confirmation-based administrative policy gates.
+- Updated Codex and Claude Code marketplace pins to immutable tag `v0.1.4` and commit `3f984b7f53c32c349c26a8edf5eaa4fd6b919e6f`.
+- Released Web.de Access 0.2.3 with generic credential migration names, redacted smoke output, dependency updates, and public-safety regression coverage.
+- Released Customization Control 0.1.3, removing tracked handoff artifacts containing workstation paths.
+- Released Plugin Forge 0.2.3 with public-data cleanup and reliable direct hook entrypoints.
+- Released Usage Pulse 0.1.4, fixing Codex/Claude MCP startup and direct hook entrypoints.
+- Released RECALL 1.5.3, removing workstation identity from manuals, baselines, and tests.
+- Updated every changed Codex and Claude marketplace entry to immutable release tags and full commit SHAs.
+
 ## 2026-07-13
 
 - Released Plugin Evaluation Kimi 0.1.2, Customization Control 0.1.2, Plugin Forge 0.2.2, Usage Pulse 0.1.3, and Computer Custom 0.1.3.
