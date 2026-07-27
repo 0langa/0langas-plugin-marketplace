@@ -9,8 +9,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Web.de-Access.git",
-        "ref": "v0.2.3",
-        "sha": "19bedebe6c9987385df18146c0b93fb88c6716b6"
+        "ref": "v0.2.4",
+        "sha": "3b6ba902e0773a39fcee430578d4b4a8f4bd1fef"
       },
       "policy": {
         "installation": "AVAILABLE",

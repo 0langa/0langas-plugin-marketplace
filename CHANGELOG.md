@@ -2,6 +2,7 @@
 
 ## 2026-07-27
 
+- Privacy hotfix: Web.de Access 0.2.4 removes the last literal workstation identity marker from public regression code.
 - Hotfix: Plugin Forge 0.2.4 and Usage Pulse 0.1.5 now launch generated MCP servers from cached plugin project roots without host-directory editable installs.
 - Released Computer Custom 0.1.4 with reliable official-first bootstrap, live Computer Use guidance, and confirmation-based administrative policy gates.
 - Updated Codex and Claude Code marketplace pins to immutable tag `v0.1.4` and commit `3f984b7f53c32c349c26a8edf5eaa4fd6b919e6f`.
