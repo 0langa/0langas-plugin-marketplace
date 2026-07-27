@@ -10,12 +10,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Web.de-Access.git",
-        "ref": "v0.2.4",
-        "sha": "3b6ba902e0773a39fcee430578d4b4a8f4bd1fef"
+        "ref": "v0.2.5",
+        "sha": "7acd1484fe91a9342b8c774a417f7a4ebb78d4dc"
       },
       "displayName": "Web.de Access",
       "description": "Private Web.de mailbox connector for reading, drafting, sending, and managing mail.",
-      "version": "0.2.4",
+      "version": "0.2.5",
       "repository": "https://github.com/0langa/Web.de-Access"
     },
     {
@@ -76,12 +76,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/plugin-forge.git",
-        "ref": "v0.2.4",
-        "sha": "b36842c0aa5c264c4572489dfc35227ce6d7f960"
+        "ref": "v0.2.5",
+        "sha": "13248a9f57d9087e966d54565142921dd7fa99ac"
       },
       "displayName": "Plugin Forge",
       "description": "Multi-provider plugin lifecycle automation for manifest generation, installs, versions, and marketplace state.",
-      "version": "0.2.4",
+      "version": "0.2.5",
       "repository": "https://github.com/0langa/plugin-forge"
     },
     {
@@ -89,12 +89,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/usage-pulse.git",
-        "ref": "v0.1.5",
-        "sha": "1e56f8d6994c48c437fc316bfad192aa2af84067"
+        "ref": "v0.1.6",
+        "sha": "af038de5123b0bdbe091998c2cb08e3110b5a3cc"
       },
       "displayName": "Usage Pulse",
       "description": "Local passive usage telemetry for Claude Code, Codex, and Kimi Code sessions.",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "repository": "https://github.com/0langa/usage-pulse"
     },
     {
