@@ -5,7 +5,7 @@
       "displayName": "Web.de Access",
       "description": "Private Web.de mailbox connector for reading, drafting, sending, and managing mail.",
       "repository": "https://github.com/0langa/Web.de-Access",
-      "version": "0.2.6",
+      "version": "0.2.7",
       "author": "0langa",
       "license": "MIT",
       "providers": [

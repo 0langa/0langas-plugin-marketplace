@@ -10,12 +10,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Web.de-Access.git",
-        "ref": "v0.2.6",
-        "sha": "b7176855bf875399cf1eebb78e8385984e186892"
+        "ref": "v0.2.7",
+        "sha": "226140b0f10a24cca521ccb431591f4cad3ce3c3"
       },
       "displayName": "Web.de Access",
       "description": "Private Web.de mailbox connector for reading, drafting, sending, and managing mail.",
-      "version": "0.2.6",
+      "version": "0.2.7",
       "repository": "https://github.com/0langa/Web.de-Access"
     },
     {
