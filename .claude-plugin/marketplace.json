@@ -76,12 +76,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/plugin-forge.git",
-        "ref": "v0.2.3",
-        "sha": "6749652d56a1a47d0baf9bdbb54937a08980f1d7"
+        "ref": "v0.2.4",
+        "sha": "b36842c0aa5c264c4572489dfc35227ce6d7f960"
       },
       "displayName": "Plugin Forge",
       "description": "Multi-provider plugin lifecycle automation for manifest generation, installs, versions, and marketplace state.",
-      "version": "0.2.3",
+      "version": "0.2.4",
       "repository": "https://github.com/0langa/plugin-forge"
     },
     {
@@ -89,12 +89,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/usage-pulse.git",
-        "ref": "v0.1.4",
-        "sha": "d1742039fa92ea2e14ae0287b26b3af23b32e79d"
+        "ref": "v0.1.5",
+        "sha": "1e56f8d6994c48c437fc316bfad192aa2af84067"
       },
       "displayName": "Usage Pulse",
       "description": "Local passive usage telemetry for Claude Code, Codex, and Kimi Code sessions.",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "repository": "https://github.com/0langa/usage-pulse"
     },
     {
