@@ -9,8 +9,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Web.de-Access.git",
-        "ref": "v0.2.4",
-        "sha": "3b6ba902e0773a39fcee430578d4b4a8f4bd1fef"
+        "ref": "v0.2.7",
+        "sha": "226140b0f10a24cca521ccb431591f4cad3ce3c3"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -80,8 +80,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/plugin-forge.git",
-        "ref": "v0.2.4",
-        "sha": "b36842c0aa5c264c4572489dfc35227ce6d7f960"
+        "ref": "v0.2.7",
+        "sha": "45fe4755b2086e14b4ca516ab76874fc0285cdb9"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -94,8 +94,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/usage-pulse.git",
-        "ref": "v0.1.5",
-        "sha": "1e56f8d6994c48c437fc316bfad192aa2af84067"
+        "ref": "v0.1.6",
+        "sha": "af038de5123b0bdbe091998c2cb08e3110b5a3cc"
       },
       "policy": {
         "installation": "AVAILABLE",

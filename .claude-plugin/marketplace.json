@@ -76,12 +76,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/plugin-forge.git",
-        "ref": "v0.2.5",
-        "sha": "13248a9f57d9087e966d54565142921dd7fa99ac"
+        "ref": "v0.2.7",
+        "sha": "45fe4755b2086e14b4ca516ab76874fc0285cdb9"
       },
       "displayName": "Plugin Forge",
       "description": "Multi-provider plugin lifecycle automation for manifest generation, installs, versions, and marketplace state.",
-      "version": "0.2.5",
+      "version": "0.2.7",
       "repository": "https://github.com/0langa/plugin-forge"
     },
     {

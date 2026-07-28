@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-28
+
+- Updated Codex marketplace pins for Web.de Access 0.2.7, Plugin Forge 0.2.7, and Usage Pulse 0.1.6.
+- Updated Claude and registry metadata for Plugin Forge 0.2.7 and refreshed provider documentation.
+- Verified full marketplace validation plus isolated Codex installation of all eight plugins.
+
 ## 2026-07-27
 
 - Privacy hotfix: Web.de Access 0.2.4 removes the last literal workstation identity marker from public regression code.
