@@ -2,6 +2,7 @@
 
 ## 2026-07-29
 
+- Updated Addonry to 0.1.1 with provider-native manual activation, safe MCP root resolution, and identity-based external runtime routing.
 - Added Addonry 0.1.0 for Codex, Claude Code, and Kimi Code, pinned to immutable tag and full commit SHA.
 - Added manual-only Chrome extension workflow with pinned Chrome DevTools MCP and real-Chrome verification.
 

@@ -7,7 +7,7 @@ Marketplace entry for `addonry`.
 | Repository | `https://github.com/0langa/Addonry` |
 | Local source | `plugins/addonry` |
 | Providers | Codex, Claude Code, Kimi Code |
-| Version | `0.1.0` |
+| Version | `0.1.1` |
 
 ## Install
 
@@ -24,6 +24,6 @@ claude plugin install addonry@0langas-plugins
 
 After installation, restart provider session and invoke manually:
 
-- Codex: `$create-chrome-extension ...`
+- Codex: `$addonry:create-chrome-extension ...`
 - Claude Code: `/addonry:create-chrome-extension ...`
-- Kimi Code: `/skill:create-chrome-extension ...`
+- Kimi Code: `/addonry:create-chrome-extension ...`

@@ -4,7 +4,7 @@ Updated: 2026-07-29
 
 ## Completed in current release
 
-- Added Addonry 0.1.0 with Codex, Claude Code, and Kimi Code marketplace entries.
+- Updated Addonry to 0.1.1 with Codex skill activation and Claude Code/Kimi Code namespaced commands.
 - Eight plugin repositories carry marketplace artwork and current Codex metadata.
 - Agent Handoff provider versions agree at 0.2.2.
 - Plugin Forge 0.2.0 fixes hosted MCP status and adds lossless provider-specific hook generation.
