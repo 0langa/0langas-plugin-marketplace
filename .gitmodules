@@ -22,3 +22,6 @@
 [submodule "plugins/computer-custom"]
 	path = plugins/computer-custom
 	url = https://github.com/0langa/computer-custom.git
+[submodule "plugins/addonry"]
+	path = plugins/addonry
+	url = https://github.com/0langa/Addonry.git

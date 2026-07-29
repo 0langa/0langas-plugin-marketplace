@@ -35,6 +35,11 @@
       "id": "usage-pulse",
       "displayName": "Usage Pulse",
       "source": "./plugins/usage-pulse"
+    },
+    {
+      "id": "addonry",
+      "displayName": "Addonry",
+      "source": "./plugins/addonry"
     }
   ]
 }

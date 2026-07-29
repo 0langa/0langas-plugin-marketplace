@@ -183,6 +183,32 @@
       }
     },
     {
+      "name": "addonry",
+      "displayName": "Addonry",
+      "description": "Manual-only tri-client plugin for autonomous end-to-end Chrome extension development.",
+      "repository": "https://github.com/0langa/Addonry",
+      "version": "0.1.0",
+      "author": "0langa",
+      "license": "MIT",
+      "providers": [
+        "codex",
+        "claude-code",
+        "kimi-code"
+      ],
+      "pluginRoot": "plugins/addonry",
+      "installPaths": {
+        "codex": ".codex-plugin/plugin.json",
+        "claude-code": ".claude-plugin/plugin.json",
+        "kimi-code": "kimi.plugin.json"
+      },
+      "installCommands": {
+        "codex": "codex plugin add addonry@0langas-plugins",
+        "claude-code": "claude plugin install addonry@0langas-plugins",
+        "kimi-code-marketplace": "/plugins marketplace C:\\path\\to\\0langas-plugin-marketplace\\kimi-marketplace.json",
+        "kimi-code": "/plugins install C:\\path\\to\\0langas-plugin-marketplace\\plugins\\addonry"
+      }
+    },
+    {
       "name": "computer-custom",
       "displayName": "Computer Custom",
       "description": "Policy-controlled Windows Computer Use wrapper for Codex and Claude Code.",

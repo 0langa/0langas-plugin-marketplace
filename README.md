@@ -56,6 +56,8 @@ Source plugins live under `plugins/` as git submodules. Per-plugin notes live un
 ./scripts/test-marketplace-e2e.ps1
 ```
 
+Use `-IsolationRoot <short-path>` when Windows path limits or disk policy require test homes on another drive.
+
 Validation checks catalog uniqueness, provider parity, submodule roots, manifest
 versions, declared assets, portable install examples, and high-confidence secret
 signatures. Without extra credentials, GitHub Actions checks catalog parity,
@@ -73,6 +75,7 @@ to add full manifest and asset validation.
 - [plugin-forge](docs/plugins/plugin-forge/README.md)
 - [usage-pulse](docs/plugins/usage-pulse/README.md)
 - [computer-custom](docs/plugins/computer-custom/README.md)
+- [addonry](docs/plugins/addonry/README.md)
 
 Use `-MarketplaceSource 0langa/0langas-plugin-marketplace` to run the E2E test against the published GitHub catalog after a marketplace release. By default it tests the current checkout while fetching every plugin from its pinned GitHub source.
 
@@ -90,6 +93,7 @@ codex plugin add customization-control@0langas-plugins
 codex plugin add plugin-forge@0langas-plugins
 codex plugin add usage-pulse@0langas-plugins
 codex plugin add computer-custom@0langas-plugins
+codex plugin add addonry@0langas-plugins
 ```
 
 ### Claude Code
@@ -104,6 +108,7 @@ claude plugin install customization-control@0langas-plugins
 claude plugin install plugin-forge@0langas-plugins
 claude plugin install usage-pulse@0langas-plugins
 claude plugin install computer-custom@0langas-plugins
+claude plugin install addonry@0langas-plugins
 ```
 
 ### Kimi Code
@@ -124,5 +129,6 @@ Direct install commands are also supported:
 /plugins install C:\path\to\0langas-plugin-marketplace\plugins\customization-control
 /plugins install C:\path\to\0langas-plugin-marketplace\plugins\plugin-forge
 /plugins install C:\path\to\0langas-plugin-marketplace\plugins\usage-pulse
+/plugins install C:\path\to\0langas-plugin-marketplace\plugins\addonry
 /reload
 ```

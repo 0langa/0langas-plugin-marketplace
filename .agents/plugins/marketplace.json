@@ -104,6 +104,20 @@
       "category": "Productivity"
     },
     {
+      "name": "addonry",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/0langa/Addonry.git",
+        "ref": "v0.1.0",
+        "sha": "b976303772ddd91343ede195bdd99243ec82f957"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
       "name": "computer-custom",
       "source": {
         "source": "git-subdir",

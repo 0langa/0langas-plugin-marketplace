@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-07-29
+
+- Added Addonry 0.1.0 for Codex, Claude Code, and Kimi Code, pinned to immutable tag and full commit SHA.
+- Added manual-only Chrome extension workflow with pinned Chrome DevTools MCP and real-Chrome verification.
+
 ## 2026-07-28
 
 - Updated Codex marketplace pins for Web.de Access 0.2.7, Plugin Forge 0.2.7, and Usage Pulse 0.1.6.

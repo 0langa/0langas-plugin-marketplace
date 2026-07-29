@@ -3,6 +3,7 @@ param(
     [ValidateSet('all', 'codex', 'claude')]
     [string]$Provider = 'all',
     [string]$MarketplaceSource,
+    [string]$IsolationRoot,
     [switch]$KeepTemp
 )
 
@@ -22,7 +23,8 @@ $plugins = @(
     'customization-control',
     'plugin-forge',
     'usage-pulse',
-    'computer-custom'
+    'computer-custom',
+    'addonry'
 )
 
 function Invoke-Native([string]$Command, [string[]]$Arguments) {
@@ -32,7 +34,14 @@ function Invoke-Native([string]$Command, [string[]]$Arguments) {
     }
 }
 
-$isolationRoot = [IO.Path]::GetFullPath((Join-Path $env:LOCALAPPDATA '0langas-marketplace-e2e')).TrimEnd([IO.Path]::DirectorySeparatorChar)
+$isolationRoot = if ([string]::IsNullOrWhiteSpace($IsolationRoot)) {
+    [IO.Path]::GetFullPath((Join-Path $env:LOCALAPPDATA '0langas-marketplace-e2e'))
+}
+else {
+    [IO.Path]::GetFullPath($IsolationRoot)
+}
+$isolationRoot = $isolationRoot.TrimEnd([IO.Path]::DirectorySeparatorChar)
+New-Item -ItemType Directory -Force -Path $isolationRoot | Out-Null
 $testRoot = [IO.Path]::GetFullPath((Join-Path $isolationRoot ([guid]::NewGuid().ToString('N'))))
 if (-not $testRoot.StartsWith($isolationRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
     throw "Unsafe temporary test root: $testRoot"

@@ -98,6 +98,19 @@
       "repository": "https://github.com/0langa/usage-pulse"
     },
     {
+      "name": "addonry",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/0langa/Addonry.git",
+        "ref": "v0.1.0",
+        "sha": "b976303772ddd91343ede195bdd99243ec82f957"
+      },
+      "displayName": "Addonry",
+      "description": "Manual-only workflow for autonomous end-to-end personal Chrome extension development.",
+      "version": "0.1.0",
+      "repository": "https://github.com/0langa/Addonry"
+    },
+    {
       "name": "computer-custom",
       "source": {
         "source": "git-subdir",
