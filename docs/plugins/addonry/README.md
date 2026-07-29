@@ -7,7 +7,7 @@ Marketplace entry for `addonry`.
 | Repository | `https://github.com/0langa/Addonry` |
 | Local source | `plugins/addonry` |
 | Providers | Codex, Claude Code, Kimi Code |
-| Version | `0.1.1` |
+| Version | `0.1.2` |
 
 ## Install
 
@@ -27,3 +27,4 @@ After installation, restart provider session and invoke manually:
 - Codex: `$addonry:create-chrome-extension ...`
 - Claude Code: `/addonry:create-chrome-extension ...`
 - Kimi Code: `/addonry:create-chrome-extension ...`
+- Kimi Code 0.29.x Windows fallback: `/skill:create-chrome-extension ...`
