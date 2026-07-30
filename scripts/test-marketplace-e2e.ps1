@@ -4,6 +4,17 @@ param(
     [string]$Provider = 'all',
     [string]$MarketplaceSource,
     [string]$IsolationRoot,
+    [string[]]$Plugins = @(
+        'webde-access',
+        'recall',
+        'plugin-evaluation-kimi',
+        'agent-handoff',
+        'customization-control',
+        'plugin-forge',
+        'usage-pulse',
+        'computer-custom',
+        'addonry'
+    ),
     [switch]$KeepTemp
 )
 
@@ -14,18 +25,6 @@ $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 if ([string]::IsNullOrWhiteSpace($MarketplaceSource)) {
     $MarketplaceSource = $repoRoot
 }
-
-$plugins = @(
-    'webde-access',
-    'recall',
-    'plugin-evaluation-kimi',
-    'agent-handoff',
-    'customization-control',
-    'plugin-forge',
-    'usage-pulse',
-    'computer-custom',
-    'addonry'
-)
 
 function Invoke-Native([string]$Command, [string[]]$Arguments) {
     & $Command @Arguments
@@ -51,9 +50,10 @@ New-Item -ItemType Directory -Path $testRoot | Out-Null
 if ($env:GITHUB_TOKEN) {
     $pair = "x-access-token:$env:GITHUB_TOKEN"
     $basic = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($pair))
-    $env:GIT_CONFIG_COUNT = '1'
-    $env:GIT_CONFIG_KEY_0 = 'http.https://github.com/.extraheader'
-    $env:GIT_CONFIG_VALUE_0 = "AUTHORIZATION: basic $basic"
+    $configIndex = if ($env:GIT_CONFIG_COUNT) { [int]$env:GIT_CONFIG_COUNT } else { 0 }
+    Set-Item -Path "Env:GIT_CONFIG_KEY_$configIndex" -Value 'http.https://github.com/.extraheader'
+    Set-Item -Path "Env:GIT_CONFIG_VALUE_$configIndex" -Value "AUTHORIZATION: basic $basic"
+    $env:GIT_CONFIG_COUNT = [string]($configIndex + 1)
 }
 
 try {
@@ -64,7 +64,7 @@ try {
         $env:CODEX_HOME = Join-Path $testRoot 'codex'
         New-Item -ItemType Directory -Path $env:CODEX_HOME | Out-Null
         Invoke-Native 'codex' @('plugin', 'marketplace', 'add', $MarketplaceSource)
-        foreach ($plugin in $plugins) {
+        foreach ($plugin in $Plugins) {
             Invoke-Native 'codex' @('plugin', 'add', "$plugin@0langas-plugins")
         }
         Invoke-Native 'codex' @('plugin', 'list')
@@ -74,7 +74,7 @@ try {
         $env:CLAUDE_CONFIG_DIR = Join-Path $testRoot 'claude'
         New-Item -ItemType Directory -Path $env:CLAUDE_CONFIG_DIR | Out-Null
         Invoke-Native 'claude' @('plugin', 'marketplace', 'add', $MarketplaceSource)
-        foreach ($plugin in $plugins) {
+        foreach ($plugin in $Plugins) {
             Invoke-Native 'claude' @('plugin', 'install', "$plugin@0langas-plugins", '--scope', 'user')
         }
         $claudeListJson = (& claude plugin list --json | Out-String)
