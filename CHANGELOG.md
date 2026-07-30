@@ -2,6 +2,8 @@
 
 ## 2026-07-30
 
+- Updated Addonry to 0.1.4 after branded Chrome 137+ removal of `--load-extension`; install helper now fails closed without changing browser processes.
+- Replaced obsolete normal-Chrome restart/install claims with supported `chrome://extensions` **Load unpacked** guidance and explicit isolated-browser boundaries.
 - Updated Addonry to 0.1.3 with durable personal extension storage and authorized graceful Chrome restart/load automation.
 - Verified normal Chrome session restoration, command-line extension load, isolated real-Chrome extension behavior, and Chrome DevTools MCP startup.
 - Preserved caller Git config overrides and added focused-plugin selection in marketplace E2E so external exFAT clean-room runs remain usable.
