@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-08-01
+
+- Updated Addonry to 0.2.0 with source-bound final-ready evidence, real toolbar-action and activeTab verification, broader security validation, and hardened MCP/provider startup.
+- Pinned Codex and Claude Code marketplace entries to immutable tag `v0.2.0` and commit `0cabdc6b694bf03e54b1c087bba92f75904895ee`; Kimi Code consumes same checked-out submodule.
+
 ## 2026-07-30
 
 - Updated Addonry to 0.1.4 after branded Chrome 137+ removal of `--load-extension`; install helper now fails closed without changing browser processes.

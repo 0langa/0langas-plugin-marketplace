@@ -187,7 +187,7 @@
       "displayName": "Addonry",
       "description": "Manual-only tri-client plugin for autonomous end-to-end Chrome extension development.",
       "repository": "https://github.com/0langa/Addonry",
-      "version": "0.1.4",
+      "version": "0.2.0",
       "author": "0langa",
       "license": "MIT",
       "providers": [

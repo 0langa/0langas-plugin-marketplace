@@ -1,10 +1,10 @@
 # Marketplace release status
 
-Updated: 2026-07-30
+Updated: 2026-08-01
 
 ## Completed in current release
 
-- Updated Addonry to 0.1.4. Branded Chrome 137+ now fails closed before process changes; persistent normal-profile installation reports protected **Load unpacked** action instead of obsolete command-line success.
+- Updated Addonry to 0.2.0. Final claims now require source-matched Chrome registration, tailored real-toolbar E2E, clean browser diagnostics and cleanup, plus Chrome DevTools MCP evidence.
 - Eight plugin repositories carry marketplace artwork and current Codex metadata.
 - Agent Handoff provider versions agree at 0.2.2.
 - Plugin Forge 0.2.0 fixes hosted MCP status and adds lossless provider-specific hook generation.

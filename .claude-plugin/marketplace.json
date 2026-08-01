@@ -102,12 +102,12 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Addonry.git",
-        "ref": "v0.1.4",
-        "sha": "c6fcb404c154c9b08a17cf4d3822fa7aeab75fa7"
+        "ref": "v0.2.0",
+        "sha": "0cabdc6b694bf03e54b1c087bba92f75904895ee"
       },
       "displayName": "Addonry",
       "description": "Manual-only workflow for autonomous end-to-end personal Chrome extension development.",
-      "version": "0.1.4",
+      "version": "0.2.0",
       "repository": "https://github.com/0langa/Addonry"
     },
     {

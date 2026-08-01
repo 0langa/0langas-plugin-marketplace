@@ -108,8 +108,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Addonry.git",
-        "ref": "v0.1.4",
-        "sha": "c6fcb404c154c9b08a17cf4d3822fa7aeab75fa7"
+        "ref": "v0.2.0",
+        "sha": "0cabdc6b694bf03e54b1c087bba92f75904895ee"
       },
       "policy": {
         "installation": "AVAILABLE",
