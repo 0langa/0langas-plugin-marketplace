@@ -4,7 +4,7 @@ Updated: 2026-08-05
 
 ## Completed in current release
 
-- Nine source repositories now have published patch releases: Addonry 0.2.1, Agent Handoff 0.2.3, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.10, RECALL 1.5.4, Usage Pulse 0.1.7, and Web.de Access 0.2.8.
+- Nine source repositories now have published patch releases: Addonry 0.2.1, Agent Handoff 0.2.3, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.11, RECALL 1.5.4, Usage Pulse 0.1.7, and Web.de Access 0.2.8.
 - Codex and Claude Code catalogs pin every source to its release tag and full commit SHA; Kimi Code consumes the same checked-out submodules.
 - Codex, Claude Code, Kimi Code, and provider-neutral catalogs agree on supported plugins and versions.
 - Computer Custom is declared for Codex and Claude Code; Kimi remains unsupported.
