@@ -12,9 +12,9 @@ Marketplace entry for `usage-pulse`.
 ## Install
 
 ```powershell
-codex plugin marketplace add 0langa/0langas-plugin-marketplace
+codex plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 codex plugin add usage-pulse@0langas-plugins
-claude plugin marketplace add 0langa/0langas-plugin-marketplace
+claude plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 claude plugin install usage-pulse@0langas-plugins
 ```
 

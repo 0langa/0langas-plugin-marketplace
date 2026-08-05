@@ -25,6 +25,9 @@ $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 if ([string]::IsNullOrWhiteSpace($MarketplaceSource)) {
     $MarketplaceSource = $repoRoot
 }
+elseif ($MarketplaceSource -match '^[^/:]+/[^/]+$') {
+    $MarketplaceSource = "https://github.com/$MarketplaceSource.git"
+}
 
 function Invoke-Native([string]$Command, [string[]]$Arguments) {
     & $Command @Arguments

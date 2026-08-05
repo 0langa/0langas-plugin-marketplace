@@ -11,13 +11,13 @@ Authenticate Git for the private repositories first, for example with `gh auth l
 ### Codex
 
 ```powershell
-codex plugin marketplace add 0langa/0langas-plugin-marketplace
+codex plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 ```
 
 ### Claude Code
 
 ```powershell
-claude plugin marketplace add 0langa/0langas-plugin-marketplace
+claude plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 ```
 
 The marketplace catalog uses HTTPS, release-tagged, full-SHA-pinned plugin sources. Client installs do not depend on Git submodules being initialized in the marketplace checkout.
@@ -79,14 +79,14 @@ to add full manifest and asset validation.
 - [computer-custom](docs/plugins/computer-custom/README.md)
 - [addonry](docs/plugins/addonry/README.md)
 
-Use `-MarketplaceSource 0langa/0langas-plugin-marketplace` to run the E2E test against the published GitHub catalog after a marketplace release. By default it tests the current checkout while fetching every plugin from its pinned GitHub source.
+Use `-MarketplaceSource https://github.com/0langa/0langas-plugin-marketplace.git` to run the E2E test against the published GitHub catalog after a marketplace release. GitHub shorthand is normalized to HTTPS for Claude Code. By default it tests the current checkout while fetching every plugin from its pinned GitHub source.
 
 ## Install Plugins
 
 ### Codex
 
 ```powershell
-codex plugin marketplace add 0langa/0langas-plugin-marketplace
+codex plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 codex plugin add webde-access@0langas-plugins
 codex plugin add recall@0langas-plugins
 codex plugin add plugin-evaluation-kimi@0langas-plugins
@@ -101,7 +101,7 @@ codex plugin add addonry@0langas-plugins
 ### Claude Code
 
 ```powershell
-claude plugin marketplace add 0langa/0langas-plugin-marketplace
+claude plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 claude plugin install webde-access@0langas-plugins
 claude plugin install recall@0langas-plugins
 claude plugin install plugin-evaluation-kimi@0langas-plugins

@@ -12,11 +12,11 @@ Marketplace entry for `computer-custom`.
 ## Install
 
 ```powershell
-codex plugin marketplace add 0langa/0langas-plugin-marketplace
+codex plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 codex plugin add computer-custom@0langas-plugins
 ```
 
 ```powershell
-claude plugin marketplace add 0langa/0langas-plugin-marketplace
+claude plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 claude plugin install computer-custom@0langas-plugins
 ```

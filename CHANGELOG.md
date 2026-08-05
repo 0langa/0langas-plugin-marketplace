@@ -5,6 +5,7 @@
 - Released Addonry 0.2.1, Agent Handoff 0.2.3, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.8, RECALL 1.5.4, Usage Pulse 0.1.7, and Web.de Access 0.2.8.
 - Pinned every Codex and Claude Code marketplace source to its immutable release tag and full commit SHA; Kimi Code consumes the matching submodule checkouts.
 - Removed 22 empty tracked stderr logs and ignored local RECALL project state.
+- Normalized GitHub shorthand to HTTPS in published E2E tests and install documentation so Claude Code does not fall back to SSH for private marketplace clones.
 
 ## 2026-08-01
 

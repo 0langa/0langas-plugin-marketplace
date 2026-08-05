@@ -12,9 +12,9 @@ Marketplace entry for `plugin-forge`.
 ## Install
 
 ```powershell
-codex plugin marketplace add 0langa/0langas-plugin-marketplace
+codex plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 codex plugin add plugin-forge@0langas-plugins
-claude plugin marketplace add 0langa/0langas-plugin-marketplace
+claude plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 claude plugin install plugin-forge@0langas-plugins
 ```
 

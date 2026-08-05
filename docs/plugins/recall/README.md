@@ -17,14 +17,14 @@ plugins/RECALL/plugins/recall
 ### Codex
 
 ```powershell
-codex plugin marketplace add 0langa/0langas-plugin-marketplace
+codex plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 codex plugin add recall@0langas-plugins
 ```
 
 ### Claude Code
 
 ```powershell
-claude plugin marketplace add 0langa/0langas-plugin-marketplace
+claude plugin marketplace add https://github.com/0langa/0langas-plugin-marketplace.git
 claude plugin install recall@0langas-plugins
 ```
 
