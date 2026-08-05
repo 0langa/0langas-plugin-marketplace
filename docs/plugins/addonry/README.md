@@ -7,7 +7,7 @@ Marketplace entry for `addonry`.
 | Repository | `https://github.com/0langa/Addonry` |
 | Local source | `plugins/addonry` |
 | Providers | Codex, Claude Code, Kimi Code |
-| Version | `0.1.2` |
+| Version | `0.2.1` |
 
 ## Install
 

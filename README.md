@@ -58,6 +58,8 @@ Source plugins live under `plugins/` as git submodules. Per-plugin notes live un
 
 Use `-IsolationRoot <short-path>` when Windows path limits or disk policy require test homes on another drive.
 
+`test-marketplace-e2e.ps1` installs all nine plugins into isolated Codex and Claude Code homes. Kimi Code uses the checked-out local catalog and is verified separately.
+
 Validation checks catalog uniqueness, provider parity, submodule roots, manifest
 versions, declared assets, portable install examples, and high-confidence secret
 signatures. Without extra credentials, GitHub Actions checks catalog parity,
@@ -118,6 +120,8 @@ Browse this custom marketplace inside Kimi Code, then install the plugins from t
 ```text
 /plugins marketplace C:\path\to\0langas-plugin-marketplace\kimi-marketplace.json
 ```
+
+Kimi Code supports eight plugins. Computer Custom is intentionally Codex/Claude-only.
 
 Direct install commands are also supported:
 

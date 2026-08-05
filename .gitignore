@@ -11,3 +11,4 @@
 *.py[cod]
 .DS_Store
 Thumbs.db
+.recall/

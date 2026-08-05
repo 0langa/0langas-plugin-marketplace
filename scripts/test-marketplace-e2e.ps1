@@ -95,7 +95,12 @@ try {
         }
     }
 
-    Write-Host "Marketplace E2E passed for provider '$Provider' using '$MarketplaceSource'."
+    if ($Provider -eq 'all') {
+        Write-Host "Marketplace E2E passed for Codex and Claude Code using '$MarketplaceSource'."
+    }
+    else {
+        Write-Host "Marketplace E2E passed for provider '$Provider' using '$MarketplaceSource'."
+    }
 }
 finally {
     if ($KeepTemp) {

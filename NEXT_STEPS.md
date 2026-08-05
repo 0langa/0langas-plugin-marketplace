@@ -1,20 +1,18 @@
 # Marketplace release status
 
-Updated: 2026-08-01
+Updated: 2026-08-05
 
 ## Completed in current release
 
-- Updated Addonry to 0.2.0. Final claims now require source-matched Chrome registration, tailored real-toolbar E2E, clean browser diagnostics and cleanup, plus Chrome DevTools MCP evidence.
-- Eight plugin repositories carry marketplace artwork and current Codex metadata.
-- Agent Handoff provider versions agree at 0.2.2.
-- Plugin Forge 0.2.0 fixes hosted MCP status and adds lossless provider-specific hook generation.
-- Usage Pulse 0.1.1 round-trips provider hooks through Forge without losing provider identity.
+- Nine source repositories now have published patch releases: Addonry 0.2.1, Agent Handoff 0.2.3, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.8, RECALL 1.5.4, Usage Pulse 0.1.7, and Web.de Access 0.2.8.
+- Codex and Claude Code catalogs pin every source to its release tag and full commit SHA; Kimi Code consumes the same checked-out submodules.
 - Codex, Claude Code, Kimi Code, and provider-neutral catalogs agree on supported plugins and versions.
 - Computer Custom is declared for Codex and Claude Code; Kimi remains unsupported.
 - Install examples use portable paths.
 - Marketplace validator checks manifests, assets, provider parity, versions, submodules, and secret signatures.
 - GitHub Actions runs marketplace validation on pushes and pull requests.
 - 2026-07-06 PluginEval baseline and 2026-07-12 ChatGPT/Codex compatibility evidence are preserved.
+- Removed 22 empty tracked stderr logs and ignored local RECALL project state.
 
 ## Operator setup
 
@@ -22,6 +20,5 @@ Optionally configure repository secret `MARKETPLACE_SUBMODULE_TOKEN` with read-o
 
 ## Optional follow-up
 
+- Reconcile active Codex, Claude Code, and Kimi Code installs from this published marketplace release.
 - Re-run PluginEval after improving low-activation Customization Control skills.
-- Add automated release notes and submodule pointer update tooling to Plugin Forge.
-- Remove obsolete versioned plugin cache directories after no ChatGPT tasks hold them open.
