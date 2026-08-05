@@ -6,6 +6,7 @@
 - Pinned every Codex and Claude Code marketplace source to its immutable release tag and full commit SHA; Kimi Code consumes the matching submodule checkouts.
 - Removed 22 empty tracked stderr logs and ignored local RECALL project state.
 - Normalized GitHub shorthand to HTTPS in published E2E tests and install documentation so Claude Code does not fall back to SSH for private marketplace clones.
+- Reused an inherited GitHub authorization header in E2E instead of appending a duplicate header.
 
 ## 2026-08-01
 

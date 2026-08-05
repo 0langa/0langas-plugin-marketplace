@@ -51,12 +51,24 @@ if (-not $testRoot.StartsWith($isolationRoot + [IO.Path]::DirectorySeparatorChar
 New-Item -ItemType Directory -Path $testRoot | Out-Null
 
 if ($env:GITHUB_TOKEN) {
-    $pair = "x-access-token:$env:GITHUB_TOKEN"
-    $basic = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($pair))
     $configIndex = if ($env:GIT_CONFIG_COUNT) { [int]$env:GIT_CONFIG_COUNT } else { 0 }
-    Set-Item -Path "Env:GIT_CONFIG_KEY_$configIndex" -Value 'http.https://github.com/.extraheader'
-    Set-Item -Path "Env:GIT_CONFIG_VALUE_$configIndex" -Value "AUTHORIZATION: basic $basic"
-    $env:GIT_CONFIG_COUNT = [string]($configIndex + 1)
+    $hasGitHubAuthorization = $false
+    for ($index = 0; $index -lt $configIndex; $index++) {
+        $key = [Environment]::GetEnvironmentVariable("GIT_CONFIG_KEY_$index")
+        $value = [Environment]::GetEnvironmentVariable("GIT_CONFIG_VALUE_$index")
+        if ($key -eq 'http.https://github.com/.extraheader' -and $value -match '^AUTHORIZATION:\s+') {
+            $hasGitHubAuthorization = $true
+            break
+        }
+    }
+
+    if (-not $hasGitHubAuthorization) {
+        $pair = "x-access-token:$env:GITHUB_TOKEN"
+        $basic = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($pair))
+        Set-Item -Path "Env:GIT_CONFIG_KEY_$configIndex" -Value 'http.https://github.com/.extraheader'
+        Set-Item -Path "Env:GIT_CONFIG_VALUE_$configIndex" -Value "AUTHORIZATION: basic $basic"
+        $env:GIT_CONFIG_COUNT = [string]($configIndex + 1)
+    }
 }
 
 try {
