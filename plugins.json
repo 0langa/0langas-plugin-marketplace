@@ -83,7 +83,7 @@
       "displayName": "Agent Handoff",
       "description": "Cross-agent handoff plugin for Codex, Claude Code, and Kimi Code.",
       "repository": "https://github.com/0langa/agent-handoff-cck",
-      "version": "0.2.3",
+      "version": "0.2.4",
       "author": "0langa",
       "license": "MIT",
       "providers": [
@@ -135,7 +135,7 @@
       "displayName": "Plugin Forge",
       "description": "Multi-provider plugin lifecycle automation for manifest generation, installs, versions, and marketplace state.",
       "repository": "https://github.com/0langa/plugin-forge",
-      "version": "0.2.11",
+      "version": "0.2.12",
       "author": "0langa",
       "license": "MIT",
       "providers": [
@@ -161,7 +161,7 @@
       "displayName": "Usage Pulse",
       "description": "Local passive usage telemetry for Codex, Claude Code, and Kimi Code sessions.",
       "repository": "https://github.com/0langa/usage-pulse",
-      "version": "0.1.7",
+      "version": "0.1.8",
       "author": "0langa",
       "license": "MIT",
       "providers": [

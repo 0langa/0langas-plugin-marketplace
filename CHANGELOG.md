@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-08-05 (v1.0.17)
+
+- Released Kimi Code MCP launcher repairs: Agent Handoff 0.2.4, Plugin Forge 0.2.12, and Usage Pulse 0.1.8 resolve the user-level Windows uv.exe before starting their Python MCP servers.
+- Pinned Codex and Claude Code catalogs plus Kimi Code submodules to each repaired immutable tag and full commit SHA.
+
 ## 2026-08-05
 
 - Released Addonry 0.2.1, Agent Handoff 0.2.3, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.11, RECALL 1.5.4, Usage Pulse 0.1.7, and Web.de Access 0.2.8.

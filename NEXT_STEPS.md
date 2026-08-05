@@ -4,7 +4,8 @@ Updated: 2026-08-05
 
 ## Completed in current release
 
-- Nine source repositories now have published patch releases: Addonry 0.2.1, Agent Handoff 0.2.3, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.11, RECALL 1.5.4, Usage Pulse 0.1.7, and Web.de Access 0.2.8.
+- Marketplace v1.0.17 pins Kimi MCP launcher repairs: Agent Handoff 0.2.4, Plugin Forge 0.2.12, and Usage Pulse 0.1.8. The launchers resolve user-level Windows uv.exe when Kimi child PATH omits it.
+- Other source releases remain current: Addonry 0.2.1, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, RECALL 1.5.4, and Web.de Access 0.2.8.
 - Codex and Claude Code catalogs pin every source to its release tag and full commit SHA; Kimi Code consumes the same checked-out submodules.
 - Codex, Claude Code, Kimi Code, and provider-neutral catalogs agree on supported plugins and versions.
 - Computer Custom is declared for Codex and Claude Code; Kimi remains unsupported.
