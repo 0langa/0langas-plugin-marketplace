@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-08-05 (v1.0.18)
+
+- Released Agent Handoff 0.2.5. Its Kimi Code Windows launcher now creates the project environment under Kimi's cache, avoiding stale managed-copy `.venv` links; the release also restores the documented `agent-handoff verify` CLI command.
+- Pinned Codex and Claude Code catalogs plus the Kimi Code submodule to immutable `v0.2.5` / `1f5a4f3ebb33783b676c9f7222f661931dadb477`.
+
 ## 2026-08-05 (v1.0.17)
 
 - Released Kimi Code MCP launcher repairs: Agent Handoff 0.2.4, Plugin Forge 0.2.12, and Usage Pulse 0.1.8 resolve the user-level Windows uv.exe before starting their Python MCP servers.

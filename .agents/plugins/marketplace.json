@@ -52,8 +52,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/agent-handoff-cck.git",
-        "ref": "v0.2.4",
-        "sha": "04bdbcb9051baf157792811ea7e5fe9c712fc43a"
+        "ref": "v0.2.5",
+        "sha": "1f5a4f3ebb33783b676c9f7222f661931dadb477"
       },
       "policy": {
         "installation": "AVAILABLE",
