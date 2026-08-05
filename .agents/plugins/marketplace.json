@@ -78,10 +78,10 @@
     {
       "name": "plugin-forge",
       "source": {
-        "source": "url",
-        "url": "https://github.com/0langa/plugin-forge.git",
-        "ref": "v0.2.8",
-        "sha": "26e3c59d8566add044bd0409da6cfc41bbd3abfc"
+      "source": "url",
+      "url": "https://github.com/0langa/plugin-forge.git",
+      "ref": "v0.2.10",
+      "sha": "888ed8a3de3a5cafb9f14fffca0e5c7e05ac1232"
       },
       "policy": {
         "installation": "AVAILABLE",
