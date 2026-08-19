@@ -24,8 +24,8 @@
         "source": "git-subdir",
         "url": "https://github.com/0langa/RECALL.git",
         "path": "./plugins/recall",
-        "ref": "v1.5.4",
-        "sha": "bc74944c47142f0dc9e151a9ab76630a2e1a99b8"
+        "ref": "v1.5.5",
+        "sha": "c07e9766e5cb079e08787a1145a75749050da7a6"
       },
       "policy": {
         "installation": "AVAILABLE",

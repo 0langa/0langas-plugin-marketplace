@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-19 (v1.0.19)
+
+- Released RECALL 1.5.5. Its Codex manifest now declares the MCP server inline, so a Codex
+  install registers RECALL's tools instead of loading only its skills; users who worked around
+  this with a hand-written `[mcp_servers.recall]` block in `~/.codex/config.toml` should delete
+  it after updating.
+- Pinned the Codex and Claude Code catalogs plus the Kimi Code submodule to immutable `v1.5.5` /
+  `c07e9766e5cb079e08787a1145a75749050da7a6`.
+
 ## 2026-08-05 (v1.0.18)
 
 - Released Agent Handoff 0.2.5. Its Kimi Code Windows launcher now creates the project environment under Kimi's cache, avoiding stale managed-copy `.venv` links; the release also restores the documented `agent-handoff verify` CLI command.
