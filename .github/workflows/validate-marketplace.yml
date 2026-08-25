@@ -11,29 +11,13 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    env:
-      MARKETPLACE_SUBMODULE_TOKEN: ${{ secrets.MARKETPLACE_SUBMODULE_TOKEN }}
     steps:
-      - name: Check out marketplace
-        uses: actions/checkout@v6
-        with:
-          submodules: false
-          persist-credentials: false
-
-      - name: Check out private submodules
-        if: env.MARKETPLACE_SUBMODULE_TOKEN != ''
+      - name: Check out marketplace with submodules
         uses: actions/checkout@v6
         with:
           submodules: recursive
-          token: ${{ secrets.MARKETPLACE_SUBMODULE_TOKEN }}
           persist-credentials: false
 
-      - name: Validate catalogs and secret hygiene
-        if: env.MARKETPLACE_SUBMODULE_TOKEN == ''
-        shell: pwsh
-        run: ./scripts/validate-marketplace.ps1 -CatalogOnly
-
       - name: Validate catalogs, manifests, assets, and secret hygiene
-        if: env.MARKETPLACE_SUBMODULE_TOKEN != ''
         shell: pwsh
         run: ./scripts/validate-marketplace.ps1

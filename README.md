@@ -6,7 +6,7 @@ This repository keeps provider-specific marketplace files in one place while usi
 
 ## Install From GitHub
 
-Authenticate Git for the private repositories first, for example with `gh auth login` or a configured Git Credential Manager. Then add the marketplace once.
+Add the marketplace once.
 
 ### Codex
 
@@ -30,7 +30,7 @@ cd 0langas-plugin-marketplace
 git submodule update --init --recursive
 ```
 
-Private submodules require GitHub authentication. They are needed for marketplace development, validation, and local Kimi Code installs, but not for Codex or Claude installs from the GitHub marketplace.
+All plugin sources are public repositories. Submodules are only needed for marketplace development, validation, and local Kimi Code installs — Codex and Claude Code installs from the GitHub marketplace fetch each plugin from its pinned source directly.
 
 ## Registry
 
@@ -62,10 +62,8 @@ Use `-IsolationRoot <short-path>` when Windows path limits or disk policy requir
 
 Validation checks catalog uniqueness, provider parity, submodule roots, manifest
 versions, declared assets, portable install examples, and high-confidence secret
-signatures. Without extra credentials, GitHub Actions checks catalog parity,
-portability, pinned gitlinks, and secret hygiene. Configure a least-privileged
-`MARKETPLACE_SUBMODULE_TOKEN` with read access to the private plugin repositories
-to add full manifest and asset validation.
+signatures. GitHub Actions runs the same full validation on every push and pull
+request; every plugin source is public, so no submodule token is needed.
 
 ## Plugins
 

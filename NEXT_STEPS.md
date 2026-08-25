@@ -17,7 +17,7 @@ Updated: 2026-08-05
 
 ## Operator setup
 
-Optionally configure repository secret `MARKETPLACE_SUBMODULE_TOKEN` with read-only access to all private plugin repositories. CI is useful without it and adds full manifest/asset validation when it is present.
+No CI secrets are required: all plugin source repositories went public on 2026-08-25, and GitHub Actions checks out submodules anonymously for full manifest/asset validation. `MARKETPLACE_SUBMODULE_TOKEN` is obsolete; delete it from repository secrets if it is still configured.
 
 ## Optional follow-up
 
