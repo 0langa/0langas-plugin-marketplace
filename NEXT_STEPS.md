@@ -1,11 +1,11 @@
 # Marketplace release status
 
-Updated: 2026-08-05
+Updated: 2026-08-27
 
 ## Completed in current release
 
-- Marketplace v1.0.18 pins Agent Handoff 0.2.5, Plugin Forge 0.2.12, and Usage Pulse 0.1.8. Agent Handoff now creates its Kimi runtime environment under Kimi's cache, avoiding stale managed-copy `.venv` links; all launchers resolve user-level Windows uv.exe when Kimi child PATH omits it.
-- Other source releases remain current: Addonry 0.2.1, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, RECALL 1.5.4, and Web.de Access 0.2.8.
+- Marketplace v1.0.20 pins Addonry 0.3.0 with shared Chrome and Firefox Manifest V3 targeting, acceptance-driven repair loops, source-bound browser proof, and deterministic local packaging.
+- Other source releases remain current: Agent Handoff 0.2.5, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.12, RECALL 1.5.5, Usage Pulse 0.1.8, and Web.de Access 0.2.8.
 - Codex and Claude Code catalogs pin every source to its release tag and full commit SHA; Kimi Code consumes the same checked-out submodules.
 - Codex, Claude Code, Kimi Code, and provider-neutral catalogs agree on supported plugins and versions.
 - Computer Custom is declared for Codex and Claude Code; Kimi remains unsupported.

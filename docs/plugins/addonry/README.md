@@ -7,7 +7,9 @@ Marketplace entry for `addonry`.
 | Repository | `https://github.com/0langa/Addonry` |
 | Local source | `plugins/addonry` |
 | Providers | Codex, Claude Code, Kimi Code |
-| Version | `0.2.1` |
+| Version | `0.3.0` |
+
+Addonry supports Chrome, Firefox, and shared dual-browser Manifest V3 projects, acceptance-driven repair loops, real-browser proof, and deterministic local packaging.
 
 ## Install
 

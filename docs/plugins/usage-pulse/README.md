@@ -7,7 +7,7 @@ Marketplace entry for `usage-pulse`.
 | Repository | `https://github.com/0langa/usage-pulse` |
 | Local source | `plugins/usage-pulse` |
 | Providers | Codex, Claude Code, Kimi Code |
-| Version | `0.1.7` |
+| Version | `0.1.8` |
 
 ## Install
 

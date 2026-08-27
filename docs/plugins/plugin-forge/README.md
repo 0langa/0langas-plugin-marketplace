@@ -7,7 +7,7 @@ Marketplace entry for `plugin-forge`.
 | Repository | `https://github.com/0langa/plugin-forge` |
 | Local source | `plugins/plugin-forge` |
 | Providers | Codex, Claude Code, Kimi Code |
-| Version | `0.2.11` |
+| Version | `0.2.12` |
 
 ## Install
 

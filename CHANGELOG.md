@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-27 (v1.0.20)
+
+- Released Addonry 0.3.0 with shared Chrome and Firefox Manifest V3 targeting, acceptance-driven repair loops, source-bound browser proof, and deterministic local packaging.
+- Pinned Codex and Claude Code catalogs plus the Kimi Code submodule to immutable `v0.3.0` / `9600198104e411c9284c873d6c36ccf51a737a3e`.
+- Reconciled stale Plugin Forge and Usage Pulse documentation with their already-published 0.2.12 and 0.1.8 catalog versions.
+
 ## 2026-08-19 (v1.0.19)
 
 - Released RECALL 1.5.5. Its Codex manifest now declares the MCP server inline, so a Codex
