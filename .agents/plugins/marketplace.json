@@ -9,8 +9,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Web.de-Access.git",
-        "ref": "v0.2.8",
-        "sha": "3a697eacfde9ba132e2ccae77e6eb12fb5456674"
+        "ref": "v0.2.9",
+        "sha": "fd0419e6ceb0233d4f62ae785643cac684b614a6"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -66,8 +66,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/customization-control.git",
-        "ref": "v0.1.4",
-        "sha": "fd1ef879646d35d0b66ffb7370e1093d5e6d19f4"
+        "ref": "v0.1.5",
+        "sha": "6dc8caf232fe1dfb956a5d734e83d0c283828809"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -78,10 +78,10 @@
     {
       "name": "plugin-forge",
       "source": {
-      "source": "url",
-      "url": "https://github.com/0langa/plugin-forge.git",
-      "ref": "v0.2.12",
-      "sha": "e3d0dcb083f206b8ed1f9da26607df2d7df1b223"
+        "source": "url",
+        "url": "https://github.com/0langa/plugin-forge.git",
+        "ref": "v0.2.13",
+        "sha": "72e72c4a00e4cc50740fc9e8c218a20b92eb1703"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -94,8 +94,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/usage-pulse.git",
-        "ref": "v0.1.8",
-        "sha": "4ae0cd35bcec2f9c1420e7f98c03bb3a9dff5564"
+        "ref": "v0.1.9",
+        "sha": "a331dfe691319f3d6cfca4652fab7ef2377ad633"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -108,8 +108,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Addonry.git",
-        "ref": "v0.3.0",
-        "sha": "9600198104e411c9284c873d6c36ccf51a737a3e"
+        "ref": "v0.3.1",
+        "sha": "84389db7f1dedc569595f5b2beaad063227bb618"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -123,8 +123,8 @@
         "source": "git-subdir",
         "url": "https://github.com/0langa/computer-custom.git",
         "path": "./dist/computer-custom",
-        "ref": "v0.1.5",
-        "sha": "c4dec6f1d42042c0ede4f4cbc1857d0163b331dc"
+        "ref": "v0.1.6",
+        "sha": "353c9e8c0408fc53619da78a1e237397670b97fe"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -1,25 +1,20 @@
 # Marketplace release status
 
-Updated: 2026-08-27
+Updated: 2026-09-09
 
-## Completed in current release
+## Current delivery
 
-- Marketplace v1.0.20 pins Addonry 0.3.0 with shared Chrome and Firefox Manifest V3 targeting, acceptance-driven repair loops, source-bound browser proof, and deterministic local packaging.
-- Other source releases remain current: Agent Handoff 0.2.5, Computer Custom 0.1.5, Customization Control 0.1.4, Plugin Evaluation Kimi 0.1.3, Plugin Forge 0.2.12, RECALL 1.5.5, Usage Pulse 0.1.8, and Web.de Access 0.2.8.
-- Codex and Claude Code catalogs pin every source to its release tag and full commit SHA; Kimi Code consumes the same checked-out submodules.
-- Codex, Claude Code, Kimi Code, and provider-neutral catalogs agree on supported plugins and versions.
-- Computer Custom is declared for Codex and Claude Code; Kimi remains unsupported.
-- Install examples use portable paths.
-- Marketplace validator checks manifests, assets, provider parity, versions, submodules, and secret signatures.
-- GitHub Actions runs marketplace validation on pushes and pull requests.
-- 2026-07-06 PluginEval baseline and 2026-07-12 ChatGPT/Codex compatibility evidence are preserved.
-- Removed 22 empty tracked stderr logs and ignored local RECALL project state.
+The six confirmed-bug patch releases are published: Computer Custom 0.1.6, Usage Pulse 0.1.9, Plugin Forge 0.2.13, Customization Control 0.1.5, Addonry 0.3.1, and Web.de Access 0.2.9. Every repository that defines CI passed it at the released commit; Customization Control passed its local Python and Pester checks.
+
+The v1.0.21 marketplace candidate pins those exact release tags and full commit SHAs. Codex and Claude catalogs, the provider-neutral registry, and Kimi submodule paths agree. Fresh public-source install verification is in progress before the marketplace release tag is published.
+
+No product decision blocks these patches. Addonry feature completion and Usage Pulse/Plugin Forge polish remain separate follow-up work. Computer Custom supports Codex and Claude Code; Kimi remains unsupported.
 
 ## Operator setup
 
-No CI secrets are required: all plugin source repositories went public on 2026-08-25, and GitHub Actions checks out submodules anonymously for full manifest/asset validation. `MARKETPLACE_SUBMODULE_TOKEN` is obsolete; delete it from repository secrets if it is still configured.
+All plugin source repositories are public. GitHub Actions checks out submodules anonymously; no CI secret is required. Existing provider enable/disable preferences are preserved during the isolated verification.
 
-## Optional follow-up
+## Follow-up
 
-- Reconcile active Codex, Claude Code, and Kimi Code installs from this published marketplace release.
-- Re-run PluginEval after improving low-activation Customization Control skills.
+- Finish public-source install verification and record the results with the v1.0.21 release.
+- Continue unfinished product work only with its own scoped instructions.
