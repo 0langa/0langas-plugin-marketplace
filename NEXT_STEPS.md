@@ -4,7 +4,7 @@ Updated: 2026-09-09
 
 ## Current delivery
 
-The six confirmed-bug patch releases are published: Computer Custom 0.1.6, Usage Pulse 0.1.9, Plugin Forge 0.2.13, Customization Control 0.1.5, Addonry 0.3.1, and Web.de Access 0.2.9. Every repository that defines CI passed it at the released commit; Customization Control passed its local Python and Pester checks.
+The six confirmed-bug patch releases are published: Computer Custom 0.1.6, Usage Pulse 0.1.9, Plugin Forge 0.2.13, Customization Control 0.1.5, Addonry 0.3.1, and Web.de Access 0.2.10. Every repository that defines CI passed it at the released commit; Customization Control passed its local Python and Pester checks.
 
 The v1.0.21 marketplace candidate pins those exact release tags and full commit SHAs. Codex and Claude catalogs, the provider-neutral registry, and Kimi submodule paths agree. Fresh public-source install verification is in progress before the marketplace release tag is published.
 

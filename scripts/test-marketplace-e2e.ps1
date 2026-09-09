@@ -37,7 +37,15 @@ function Invoke-Native([string]$Command, [string[]]$Arguments) {
 }
 
 $isolationRoot = if ([string]::IsNullOrWhiteSpace($IsolationRoot)) {
-    [IO.Path]::GetFullPath((Join-Path $env:LOCALAPPDATA '0langas-marketplace-e2e'))
+    if ([Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) {
+        # MSIX can expand LocalAppData into a long package path. Claude's nested
+        # submodule clone then exceeds Git's Windows path limit before install.
+        $systemRoot = [IO.Path]::GetPathRoot([Environment]::SystemDirectory)
+        [IO.Path]::GetFullPath((Join-Path $systemRoot 'mp-e2e'))
+    }
+    else {
+        [IO.Path]::GetFullPath((Join-Path ([IO.Path]::GetTempPath()) 'mp-e2e'))
+    }
 }
 else {
     [IO.Path]::GetFullPath($IsolationRoot)

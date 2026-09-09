@@ -2,9 +2,10 @@
 
 ## 2026-09-09 (v1.0.21)
 
-- Released six confirmed-bug patches: Computer Custom 0.1.6, Usage Pulse 0.1.9, Plugin Forge 0.2.13, Customization Control 0.1.5, Addonry 0.3.1, and Web.de Access 0.2.9.
+- Released six confirmed-bug patches: Computer Custom 0.1.6, Usage Pulse 0.1.9, Plugin Forge 0.2.13, Customization Control 0.1.5, Addonry 0.3.1, and Web.de Access 0.2.10.
 - Updated immutable release-tag/SHA catalog pins and matching Kimi submodules together. Agent Handoff 0.2.5, Plugin Evaluation Kimi 0.1.3, and RECALL 1.5.5 remain current.
 - Repairs cover current Computer Use bootstrap, Usage Pulse MCP dispatch, installed-plugin inventory layouts, local runtime/cache placement, Windows fixture digests, and Web.de MCP version/dependency health.
+- Fixed the native Windows install test's default path after MSIX AppData expansion exceeded Git's nested-clone path limit.
 - Product polish and unfinished Addonry workflows remain separate from this maintenance release.
 
 ## 2026-08-27 (v1.0.20)

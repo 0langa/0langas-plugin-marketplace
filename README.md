@@ -56,7 +56,7 @@ Source plugins live under `plugins/` as git submodules. Per-plugin notes live un
 ./scripts/test-marketplace-e2e.ps1
 ```
 
-Use `-IsolationRoot <short-path>` when Windows path limits or disk policy require test homes on another drive.
+Windows test homes default to a short `mp-e2e` folder on the system drive so MSIX AppData expansion does not exceed Git's nested-clone path limit. Other systems use their temporary directory. Use `-IsolationRoot <short-local-path>` to choose a different local folder.
 
 `test-marketplace-e2e.ps1` installs all nine plugins into isolated Codex and Claude Code homes. Kimi Code uses the checked-out local catalog and is verified separately.
 
