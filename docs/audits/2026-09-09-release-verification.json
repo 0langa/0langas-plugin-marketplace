@@ -1,0 +1,288 @@
+{
+  "marketplace_release": "1.0.21",
+  "verified_date": "2026-09-09",
+  "tested_catalog_commit": "bec8411a59c72c2a56ea277c208b2754f247c447",
+  "catalog_blob_sha256": {
+    "plugins.json": "fc6e7180930422f0797dd7db4a70ce116dc21003264bda9ae98411bb93cc7a47",
+    ".agents/plugins/marketplace.json": "5f72904364046dc8983b4c686b829ce7161e8438b2effe1bab99e7c6c5acb309",
+    ".claude-plugin/marketplace.json": "8151d7cea1451a3de996e0feba5e3e23db61180fa6697941f3fb75b19a8efc64",
+    "kimi-marketplace.json": "7a36ddbc7460af9435db0c54a35405c783b74d801a3b18d4066b7d05f6f8ea33"
+  },
+  "plugin_releases": [
+    {
+      "repo": "computer-custom",
+      "version": "0.1.6",
+      "sha": "353c9e8c0408fc53619da78a1e237397670b97fe",
+      "release_url": "https://github.com/0langa/computer-custom/releases/tag/v0.1.6",
+      "ci_urls": [
+        "https://github.com/0langa/computer-custom/actions/runs/34384877543"
+      ],
+      "ci_defined": true
+    },
+    {
+      "repo": "usage-pulse",
+      "version": "0.1.9",
+      "sha": "a331dfe691319f3d6cfca4652fab7ef2377ad633",
+      "release_url": "https://github.com/0langa/usage-pulse/releases/tag/v0.1.9",
+      "ci_urls": [
+        "https://github.com/0langa/usage-pulse/actions/runs/34384881207"
+      ],
+      "ci_defined": true
+    },
+    {
+      "repo": "plugin-forge",
+      "version": "0.2.13",
+      "sha": "72e72c4a00e4cc50740fc9e8c218a20b92eb1703",
+      "release_url": "https://github.com/0langa/plugin-forge/releases/tag/v0.2.13",
+      "ci_urls": [
+        "https://github.com/0langa/plugin-forge/actions/runs/34384885430"
+      ],
+      "ci_defined": true
+    },
+    {
+      "repo": "customization-control",
+      "version": "0.1.5",
+      "sha": "6dc8caf232fe1dfb956a5d734e83d0c283828809",
+      "release_url": "https://github.com/0langa/customization-control/releases/tag/v0.1.5",
+      "ci_urls": [],
+      "ci_defined": false
+    },
+    {
+      "repo": "Addonry",
+      "version": "0.3.1",
+      "sha": "84389db7f1dedc569595f5b2beaad063227bb618",
+      "release_url": "https://github.com/0langa/Addonry/releases/tag/v0.3.1",
+      "ci_urls": [
+        "https://github.com/0langa/Addonry/actions/runs/34384893293"
+      ],
+      "ci_defined": true
+    },
+    {
+      "repo": "Web.de Access",
+      "version": "0.2.10",
+      "sha": "192cad61288ae49f1c1c98bd13d6945abb2ac026",
+      "release_url": "https://github.com/0langa/Web.de-Access/releases/tag/v0.2.10",
+      "ci_urls": [
+        "https://github.com/0langa/Web.de-Access/actions/runs/34387153699"
+      ],
+      "ci_defined": true
+    }
+  ],
+  "unit_tests": {
+    "passed": 230,
+    "skipped": 1,
+    "skip_reason": "Optional Plugin Forge real-marketplace fixture missing"
+  },
+  "webde_cold_start_integration": {
+    "passed": true,
+    "node": "24.18.0",
+    "npm": "12.0.2",
+    "native_keytar": true,
+    "tools": 20,
+    "mailbox_access": false
+  },
+  "computer_custom_host_smoke": {
+    "fresh_install": true,
+    "wrapped": true,
+    "distinct_wrapper": true,
+    "apps_observed": 40,
+    "windows_observed": 4,
+    "input_actions": 0
+  },
+  "native_marketplace_installers": {
+    "codex": 9,
+    "claude": 9,
+    "claude_load_errors": 0
+  },
+  "kimi_verification_method": "Isolated managed copies via Plugin Forge registrar; direct MCP entrypoint checks, without native Kimi CLI/UI install proof",
+  "provider_checks": {
+    "codex": [
+      {
+        "plugin": "recall",
+        "version": "1.5.5",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 8
+      },
+      {
+        "plugin": "plugin-evaluation-kimi",
+        "version": "0.1.3",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "agent-handoff",
+        "version": "0.2.5",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 7
+      },
+      {
+        "plugin": "customization-control",
+        "version": "0.1.5",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "plugin-forge",
+        "version": "0.2.13",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 12,
+        "verified_calls": 1
+      },
+      {
+        "plugin": "usage-pulse",
+        "version": "0.1.9",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 7,
+        "verified_calls": 4
+      },
+      {
+        "plugin": "computer-custom",
+        "version": "0.1.6",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "addonry",
+        "version": "0.3.1",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 29
+      },
+      {
+        "plugin": "webde-access",
+        "version": "0.2.10",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 20
+      }
+    ],
+    "claude": [
+      {
+        "plugin": "addonry",
+        "version": "0.3.1",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 29
+      },
+      {
+        "plugin": "agent-handoff",
+        "version": "0.2.5",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 7
+      },
+      {
+        "plugin": "computer-custom",
+        "version": "0.1.6",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "customization-control",
+        "version": "0.1.5",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "plugin-evaluation-kimi",
+        "version": "0.1.3",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "plugin-forge",
+        "version": "0.2.13",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 12,
+        "verified_calls": 1
+      },
+      {
+        "plugin": "recall",
+        "version": "1.5.5",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 8
+      },
+      {
+        "plugin": "usage-pulse",
+        "version": "0.1.9",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 7,
+        "verified_calls": 4
+      },
+      {
+        "plugin": "webde-access",
+        "version": "0.2.10",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 20
+      }
+    ],
+    "kimi": [
+      {
+        "plugin": "recall",
+        "version": "1.5.5",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 8
+      },
+      {
+        "plugin": "plugin-evaluation-kimi",
+        "version": "0.1.3",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "agent-handoff",
+        "version": "0.2.5",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 7
+      },
+      {
+        "plugin": "customization-control",
+        "version": "0.1.5",
+        "kind": "skills-only",
+        "passed": true
+      },
+      {
+        "plugin": "plugin-forge",
+        "version": "0.2.13",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 12,
+        "verified_calls": 1
+      },
+      {
+        "plugin": "usage-pulse",
+        "version": "0.1.9",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 7,
+        "verified_calls": 4
+      },
+      {
+        "plugin": "addonry",
+        "version": "0.3.1",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 29
+      },
+      {
+        "plugin": "webde-access",
+        "version": "0.2.10",
+        "kind": "mcp",
+        "passed": true,
+        "tools": 20
+      }
+    ]
+  },
+  "anonymous_source_manifests": 9,
+  "immutable_source_tags_verified": 9
+}
