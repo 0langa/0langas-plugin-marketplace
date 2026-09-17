@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-17 (v1.0.22)
+
+- Updated RECALL from 1.5.5 to the published 1.6.0 release.
+- Pinned the Codex and Claude Code catalogs to immutable tag `v1.6.0` and commit `c2452a48845dfc72a3461076ec833f249326ba02`.
+- Updated the RECALL submodule to the same commit for Kimi Code local installs.
+- Kept every other plugin version and source pin unchanged.
+
 ## 2026-09-09 (v1.0.21)
 
 - Released six confirmed-bug patches: Computer Custom 0.1.6, Usage Pulse 0.1.9, Plugin Forge 0.2.13, Customization Control 0.1.5, Addonry 0.3.1, and Web.de Access 0.2.10.
