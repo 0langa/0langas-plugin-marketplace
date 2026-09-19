@@ -116,12 +116,12 @@
         "source": "git-subdir",
         "url": "https://github.com/0langa/computer-custom.git",
         "path": "dist/computer-custom",
-        "ref": "v0.1.6",
-        "sha": "353c9e8c0408fc53619da78a1e237397670b97fe"
+        "ref": "v0.2.0",
+        "sha": "91b2bd0c9bc7b2dbcc4c545aacbe10671730896e"
       },
       "displayName": "Computer Custom",
-      "description": "Policy-controlled guard for Computer Use: hard-blocked paths/actions, risky-action confirmation, and a redacted audit log.",
-      "version": "0.1.6",
+      "description": "Self-contained Windows computer control with policy gates, native helper, saved flows, and no provider runtime dependency.",
+      "version": "0.2.0",
       "repository": "https://github.com/0langa/computer-custom"
     }
   ]

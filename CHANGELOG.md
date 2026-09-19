@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-19 (v1.0.23)
+
+- Released Computer Custom 0.2.0 with a self-contained MCP server, native Windows helper, policy gates, saved flows, elevation support, and an activity overlay.
+- Pinned the Codex and Claude Code catalogs to immutable tag `v0.2.0` and commit `91b2bd0c9bc7b2dbcc4c545aacbe10671730896e`.
+- Updated the Computer Custom submodule to the same commit. Computer Custom remains intentionally unsupported on Kimi Code.
+
 ## 2026-09-17 (v1.0.22)
 
 - Updated RECALL from 1.5.5 to the published 1.6.0 release.

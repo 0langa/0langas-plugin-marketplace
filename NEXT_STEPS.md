@@ -1,30 +1,31 @@
 # Marketplace release status
 
-Updated: 2026-09-17
+Updated: 2026-09-19
 
 ## Released
 
-Marketplace **v1.0.22** updates RECALL to the published **1.6.0** release.
-The Codex and Claude Code catalog pins and the Kimi Code submodule agree on
-`v1.6.0` / `c2452a48845dfc72a3461076ec833f249326ba02`.
-Every other plugin version and source pin remains unchanged.
+Marketplace **v1.0.23** updates Computer Custom to the published **0.2.0**
+self-contained rebuild. The Codex and Claude Code catalogs and the development
+submodule agree on `v0.2.0` / `91b2bd0c9bc7b2dbcc4c545aacbe10671730896e`.
+Computer Custom remains intentionally unsupported on Kimi Code.
 
 Fresh full marketplace validation passed for all nine plugin entries and three
-provider catalogs. Fresh isolated Codex and Claude Code installs of RECALL 1.6.0
-passed from the candidate catalog. Both installed entrypoints initialized,
-reported version 1.6.0, exposed all eight MCP tools, and returned the memory
-contract. Claude reported no plugin load errors.
+provider catalogs. Fresh isolated Codex and Claude Code installs of Computer
+Custom 0.2.0 passed from the candidate catalog. Claude registered the bundled
+MCP server with no plugin load error. The packaged server initialized directly,
+exposed all 24 tools, and returned live helper status.
 
-These are installation and direct MCP entrypoint checks. The native model
-behavior limits listed in the [RECALL release report](https://github.com/0langa/RECALL/releases/tag/v1.6.0)
-remain unchanged. The delivery checks below describe the previous all-plugin
-v1.0.21 audit.
+The source release passed 109 local tests, the public-safety scan, packaging,
+signed-helper verification, and its GitHub CI. Existing sessions still need a
+marketplace refresh and client restart before they load the new plugin copy.
 
 ## Previous release
 
-Marketplace **v1.0.21** publishes the verified bug-fix set: Computer Custom 0.1.6, Usage Pulse 0.1.9, Plugin Forge 0.2.13, Customization Control 0.1.5, Addonry 0.3.1, and Web.de Access 0.2.10. RECALL 1.5.5, Agent Handoff 0.2.5, and Plugin Evaluation Kimi 0.1.3 remain current.
+Marketplace **v1.0.22** updates RECALL to the published **1.6.0** release. The
+Codex and Claude Code catalog pins and the Kimi Code submodule agree on
+`v1.6.0` / `c2452a48845dfc72a3461076ec833f249326ba02`.
 
-No product decision or known release blocker remains for these patches. Addonry feature completion and Usage Pulse/Plugin Forge polish remain separate work.
+Every other plugin version and source pin remained unchanged in v1.0.22.
 
 ## Verified delivery
 
