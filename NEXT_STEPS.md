@@ -4,22 +4,29 @@ Updated: 2026-09-19
 
 ## Released
 
+Marketplace **v1.0.24** updates Computer Custom to the published **0.2.1**
+Codex MCP registration fix. The Codex and Claude Code catalogs and the development
+submodule agree on `v0.2.1` / `136e1059de6d7629202a693ccc98d22046559939`.
+Computer Custom remains intentionally unsupported on Kimi Code.
+
+Fresh full marketplace validation passed for all nine plugin entries and three
+provider catalogs. Fresh isolated Codex and Claude Code installs of Computer
+Custom 0.2.1 passed from the candidate catalog. Both provider packages register
+the bundled MCP server. The packaged server initialized directly, exposed all
+24 tools, and returned live helper status.
+
+The source release passed 110 local tests, the public-safety scan, packaging,
+signed-helper verification, and its GitHub CI. Existing sessions still need a
+marketplace refresh and client restart before they load the new plugin copy.
+
+## Previous release
+
 Marketplace **v1.0.23** updates Computer Custom to the published **0.2.0**
 self-contained rebuild. The Codex and Claude Code catalogs and the development
 submodule agree on `v0.2.0` / `91b2bd0c9bc7b2dbcc4c545aacbe10671730896e`.
 Computer Custom remains intentionally unsupported on Kimi Code.
 
-Fresh full marketplace validation passed for all nine plugin entries and three
-provider catalogs. Fresh isolated Codex and Claude Code installs of Computer
-Custom 0.2.0 passed from the candidate catalog. Claude registered the bundled
-MCP server with no plugin load error. The packaged server initialized directly,
-exposed all 24 tools, and returned live helper status.
-
-The source release passed 109 local tests, the public-safety scan, packaging,
-signed-helper verification, and its GitHub CI. Existing sessions still need a
-marketplace refresh and client restart before they load the new plugin copy.
-
-## Previous release
+## Earlier release
 
 Marketplace **v1.0.22** updates RECALL to the published **1.6.0** release. The
 Codex and Claude Code catalog pins and the Kimi Code submodule agree on

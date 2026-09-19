@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-19 (v1.0.24)
+
+- Updated Computer Custom to 0.2.1 so Codex loads the bundled MCP server directly from the plugin manifest.
+- Pinned the Codex and Claude Code catalogs to immutable tag `v0.2.1` and commit `136e1059de6d7629202a693ccc98d22046559939`.
+- Updated the Computer Custom submodule to the same commit. Computer Custom remains intentionally unsupported on Kimi Code.
+
 ## 2026-09-19 (v1.0.23)
 
 - Released Computer Custom 0.2.0 with a self-contained MCP server, native Windows helper, policy gates, saved flows, elevation support, and an activity overlay.
