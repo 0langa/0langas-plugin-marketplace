@@ -213,7 +213,7 @@
       "displayName": "Computer Custom",
       "description": "Policy-controlled Windows Computer Use wrapper for Codex and Claude Code.",
       "repository": "https://github.com/0langa/computer-custom",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "author": "0langa",
       "license": "MIT",
       "providers": [

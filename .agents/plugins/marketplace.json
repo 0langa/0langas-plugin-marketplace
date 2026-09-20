@@ -123,8 +123,8 @@
         "source": "git-subdir",
         "url": "https://github.com/0langa/computer-custom.git",
         "path": "./dist/computer-custom",
-        "ref": "v0.2.1",
-        "sha": "136e1059de6d7629202a693ccc98d22046559939"
+        "ref": "v0.2.2",
+        "sha": "936cefc5d857c2756be33acf9c792a1b33d7f1a9"
       },
       "policy": {
         "installation": "AVAILABLE",
