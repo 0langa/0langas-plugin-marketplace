@@ -1,6 +1,32 @@
 # Marketplace release status
 
-Updated: 2026-09-19
+Updated: 2026-09-23
+
+## Open: new plugin logos (not released)
+
+A new logo set for all nine plugins is approved and committed to the marketplace
+`assets/<plugin>/{icon.png,logo.png}` (1024 px, transparent corners). Addonry got
+its first `assets/addonry/` folder; it still has no `screenshot-1.png`. The plugin
+repositories and their Codex manifests still carry the old art. Do not release
+until the owner asks.
+
+Remaining work, one plugin at a time, when the owner starts it:
+
+1. Copy the new art into each plugin repository. `dormant/plugin-asset-kit` does
+   this (`plugin-asset-kit sync`, dry-run first, then `sync --apply --plugin <name>`).
+   Its built-in default still points at the pre-2026-08-24 path
+   `C:\Users\Julius\source\repos\0langas-plugin-marketplace`; pass the current
+   `maintained\` path explicitly.
+2. Computer Custom has no `brandColor` in its Codex manifest. The logo uses `#E0457B`.
+3. Each plugin then needs its own commit and release, and this marketplace needs
+   the usual pin update and validation.
+
+Source of the set: `docs/logo-explorations/round-4-final/`. `final.py` draws every
+mark and the preview `final.html`; `render.mjs` turns `svg/` into `png/` with
+`@resvg/resvg-js` (install it in a scratch folder, not here). Design rules the owner
+set: brand disc with thin ring, one fold crease (lit upper left), a hard two-ink
+split, no stray slivers or jogs. Earlier rounds 1-3 are kept local only and are
+excluded through `.git/info/exclude`.
 
 ## Released
 
