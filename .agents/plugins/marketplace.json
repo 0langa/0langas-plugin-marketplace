@@ -9,8 +9,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/Web.de-Access.git",
-        "ref": "v0.2.11",
-        "sha": "7d651449bd4eb45ad072a6354de695114c170f13"
+        "ref": "v0.2.12",
+        "sha": "e9480d632ae30320163e756d35eb505e122aaf8a"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -24,8 +24,8 @@
         "source": "git-subdir",
         "url": "https://github.com/0langa/RECALL.git",
         "path": "./plugins/recall",
-        "ref": "v1.6.1",
-        "sha": "ab04904896c3215015633b1fb66494af176ad043"
+        "ref": "v1.6.2",
+        "sha": "205397d3975bdeba74a55246a7908d26a0bc1be7"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -52,8 +52,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/agent-handoff-cck.git",
-        "ref": "v0.2.6",
-        "sha": "2a5f0c13bb664273598e029f37d8da69bbab1973"
+        "ref": "v0.2.7",
+        "sha": "85d32493288292dceba20be17719fbde377ffea5"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -66,8 +66,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/customization-control.git",
-        "ref": "v0.1.7",
-        "sha": "18f6bce2465d30ccbac78ec51adb47fb6615bee9"
+        "ref": "v0.1.8",
+        "sha": "0f3bdbce5139780b1d09609740d6c9b0fec21405"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -80,8 +80,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/plugin-forge.git",
-        "ref": "v0.2.14",
-        "sha": "a675de14107ac6fd8d0eccb5bdb65e92c76d6afd"
+        "ref": "v0.2.15",
+        "sha": "b72bed14b4d34da88885664d5d31584f7e508d04"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -94,8 +94,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/0langa/usage-pulse.git",
-        "ref": "v0.1.10",
-        "sha": "083dbb3bcf990905cbf4a0135ccbd8f732ad2675"
+        "ref": "v0.1.11",
+        "sha": "2ff041719353842c87741dea13567df3c87d7330"
       },
       "policy": {
         "installation": "AVAILABLE",

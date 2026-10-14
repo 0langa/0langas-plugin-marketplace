@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-15 (v1.0.26)
+
+- Released six plugin updates: RECALL 1.6.2, Web.de Access 0.2.12, Agent Handoff 0.2.7, Customization Control 0.1.8, Plugin Forge 0.2.15, and Usage Pulse 0.1.11.
+- RECALL 1.6.2 hooks no longer create `.recall/` in projects where RECALL was never initialized (their turn state lives in a per-user folder), `doctor --repair` restores text garbled by the pre-1.6.1 Windows MCP bug, and several JSONL storage edge cases are fixed. A `.recall/` folder holding only `runtime/`, left by 1.6.1 in such a project, can be deleted.
+- Web.de Access 0.2.12 adds Mark-of-the-Web to attachments and messages saved on Windows, so they open with the usual downloaded-file warning, and refuses to rename or delete a folder that holds a protected folder. Dependencies are unchanged since 0.2.11; installs on 0.2.10 or older still need `npm ci --omit=dev`.
+- Agent Handoff 0.2.7 also redacts cookies, PEM private keys, `curl -u` passwords, and passwords written as prose. Existing records are redacted on the next capture.
+- Customization Control 0.1.8 dedupes only within one scope, so a personal copy is no longer removed because a project copy of the same name exists. Re-run the planner before applying a plan made with 0.1.7 or earlier.
+- Plugin Forge 0.2.15 lists forge-local Claude plugins in the `./plugins/<name>` form Claude Code accepts and generates Claude hooks that work on Windows without `commandWindows`. Run `forge install --provider claude` again for each plugin registered with Claude Code.
+- Usage Pulse 0.1.11 takes tool-call durations from the host's hook payload, so hook startup no longer inflates them, and on first run merges the doubled tool-call rows recorded before 0.1.10.
+- Pinned the Codex and Claude Code catalogs to each immutable release tag and full commit SHA, and moved the matching Kimi Code submodules to the same commits. No Codex hook definitions changed, so no `/hooks` re-trust is needed. Addonry 0.3.2, Computer Custom 0.2.3, and Plugin Evaluation Kimi 0.1.3 remain current.
+
 ## 2026-10-14 (v1.0.25)
 
 - Released seven plugin updates from the 2026-10-14 audit: RECALL 1.6.1, Web.de Access 0.2.11, Agent Handoff 0.2.6, Customization Control 0.1.7, Plugin Forge 0.2.14, Usage Pulse 0.1.10, and Addonry 0.3.2.
