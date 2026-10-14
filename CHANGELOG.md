@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-14 (v1.0.25)
+
+- Released seven plugin updates from the 2026-10-14 audit: RECALL 1.6.1, Web.de Access 0.2.11, Agent Handoff 0.2.6, Customization Control 0.1.7, Plugin Forge 0.2.14, Usage Pulse 0.1.10, and Addonry 0.3.2.
+- RECALL 1.6.1 hooks now run on Windows under Claude Code (`py -3` instead of the `python3` Store alias), keep Codex's strict hook output schema on memory-free turns, and close two path-traversal routes. Codex users must re-trust the changed hooks in `/hooks`.
+- Web.de Access 0.2.11 closes several mail-loss paths (closing a folder no longer expunges mail other clients only flagged; a failed MOVE fallback no longer deletes the original), refuses plaintext IMAP, and moves to nodemailer 10. Existing installs need `npm ci --omit=dev`.
+- Agent Handoff 0.2.6 redacts secrets on every write path. Customization Control 0.1.7 no longer removes the copy dedupe means to keep and works when the agent was started from PowerShell 7. Plugin Forge 0.2.14, Usage Pulse 0.1.10, and Addonry 0.3.2 patch vulnerable dependencies and fix smaller bugs.
+- Pinned the Codex and Claude Code catalogs to each immutable release tag and full commit SHA, and moved the matching Kimi Code submodules to the same commits. Computer Custom 0.2.3 and Plugin Evaluation Kimi 0.1.3 remain current.
+
 ## 2026-09-19 (v1.0.24)
 
 - Updated Computer Custom to 0.2.1 so Codex loads the bundled MCP server directly from the plugin manifest.
